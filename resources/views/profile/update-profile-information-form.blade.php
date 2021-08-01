@@ -52,12 +52,26 @@
             </div>
         @endif
 
-        <!-- Name -->
+        <!-- Surname (Second name)-->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="name" value="{{ __('Name') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
-            <x-jet-input-error for="name" class="mt-2" />
+            <x-jet-label for="second_name" value="{{ __('Surname') }}" />
+            <x-jet-input id="second_name" type="text" class="mt-1 block w-full" wire:model.defer="state.second_name" autocomplete="second_name" />
+            <x-jet-input-error for="second_name" class="mt-2" />
         </div>
+
+        <!-- Names (First names) -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="first_name" value="{{ __('Names') }}" />
+            <x-jet-input id="first_name" type="text" class="mt-1 block w-full" wire:model.defer="state.first_name" autocomplete="first_name" />
+            <x-jet-input-error for="first_name" class="mt-2" />
+        </div>   
+
+        <!-- National ID  -->
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="student_number" value="{{ __('Student Number') }}" />
+            <x-jet-input id="student_number" type="text" class="mt-1 block w-full" wire:model.defer="state.student_number" autocomplete="student_number" />
+            <x-jet-input-error for="student_number" class="mt-2" />
+        </div>              
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">

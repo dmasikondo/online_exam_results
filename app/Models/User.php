@@ -23,11 +23,17 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded =[];
+    // protected $fillable = [
+    //     'email',
+    //     'password',
+    //     'national_id',
+    //     'second_name',
+    //     'first_name',
+    //     'student_number',
+    //     'phone_number',
+    //     'slug',
+    // ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -58,4 +64,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function results()
+    {
+        return $this->hasMany(Result::class, 'users_id');
+    }
 }

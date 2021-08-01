@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
+            {{ __('My Profile') }} <span class="text-sm">National ID No. {{$user->national_id}}</span>
         </h2>
     </x-slot>
 

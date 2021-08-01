@@ -138,6 +138,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'surname' =>[
+            'exists' =>'Surname, names and candidate number not matching our records',
+        ],
     ],
 
     /*
