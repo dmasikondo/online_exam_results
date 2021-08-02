@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="mt-6 text-gray-500">
-                    You must be fully paid up to Harare Polytechnic (with $0 balance or $-) in your college account to be able to view your current Hexco results.
+                    You must be fully paid up to Harare Polytechnic (with $0 balance or <span class="text-red-700">$-</span>) in your college account to be able to view your current Hexco results.
                 </div>
             </div>  
 
@@ -28,41 +28,43 @@
                         <x-icon name="academic-cap" class="h-14 w-14 text-gray-200"/>
                     </div>
                     
-                    <section name="exam_results" class="ml-12 shadow">
+                    <section name="exam_results" class="ml-12 p-2 shadow">
                         <div class="mt-2 text-sm text-gray-500">
+
                         @if($exam_results->count()>0)
                             <div class="text-center border-b">
-                                <h2 class="border-b">MINISTRY OF HIGHER AND TERTIARY EDUCATION, SCIENCE AND TECHNOLOGY DEVELOPMENT</h2>
-                                <p>HIGHER EDUCATION EXAMINATIONS COUNCIL</p>
-                                <p>(HEXCO)</p>
-                                <p>INDIVIDUAL STATEMENT OF RESULTS</p>
+                                <h2 class="border-b text-lg font-thin">MINISTRY OF HIGHER AND TERTIARY EDUCATION, SCIENCE AND TECHNOLOGY DEVELOPMENT</h2>
+                                <p class="text-xl font-extrabold">HIGHER EDUCATION EXAMINATIONS COUNCIL</p>
+                                <p class="text-xl font-extrabold">(HEXCO)</p>
+                                <p class="text-xl font-extrabold">INDIVIDUAL STATEMENT OF RESULTS</p>
                             </div>
-                            <div class="my-2 w-1/2">
-                                <p class="flex justify-between"><span>CANDIDATE NUMBER</span><span>:{{$exam_results[0]->candidate_number}}</span></p>
-                                <p class="flex justify-between"><span>COMMENT</span><span>:{{$exam_results[0]->comment}}</span></p>
-                                <p class="flex justify-between"><span>SURNAME</span><span>:{{$exam_results[0]->surname}}</span></p>
-                                <p class="flex justify-between"><span>FIRST NAMES</span><span>:{{$exam_results[0]->names}}</span></p>
-                                <p class="flex justify-between"><span>INSTITUTION NAME</span><span>:Harare Polytechnic</span></p>
-                                <p class="flex justify-between"><span>COURSE LEVEL</span><span></span></p>
-                                <p class="flex justify-between"><span>COURSE TITLE</span><span>:{{$exam_results[0]->discipline}}</span></p>
+                            <div class="my-4 py-2 w-1/2">
+                                <p class="flex justify-between"><span class="font-bold">CANDIDATE NUMBER</span><span>:{{$exam_results[0]->candidate_number}}</span></p>
+                                <p class="flex justify-between"><span class="font-bold">COMMENT</span><span>:{{$exam_results[0]->comment}}</span></p>
+                                <p class="flex justify-between"><span class="font-bold">SURNAME</span><span>:{{$exam_results[0]->surname}}</span></p>
+                                <p class="flex justify-between"><span class="font-bold">FIRST NAMES</span><span>:{{$exam_results[0]->names}}</span></p>
+                                <p class="flex justify-between"><span class="font-bold">INSTITUTION NAME</span><span>:Harare Polytechnic</span></p>
+                                <p class="flex justify-between"><span class="font-bold">COURSE LEVEL</span><span class="text-red-700">************</span></p>
+                                <p class="flex justify-between"><span class="font-bold">COURSE TITLE</span><span class="text-red-700">:{{$exam_results[0]->discipline}}</span></p>
                             </div>
-                            <div class="bg-orange grid grid-cols-4 ">
-                                <div>PAPER No.</div>
-                                <div>APPROVED SUBJECT TITLES</div>
-                                <div>GRADE</div>
-                                <div>Date</div>
+
+                            <div class="grid md:grid-cols-4 gap-2 my-4">
+                                <div class="font-extrabold">PAPER No. </div>
+                                <div class="font-extrabold">APPROVED SUBJECT TITLES </div>
+                                <div class="font-extrabold">GRADE </div>
+                                <div class="font-extrabold">Date </div>
                             @foreach($exam_results as $exam_result)
-                                <div>{{$exam_result->subject_code}}</div>
-                                <div>{{$exam_result->subject}}</div>
-                                <div>{{$exam_result->grade}}</div>
-                                <div>{{$exam_result->session}}</div>
+                                <div>{{$exam_result->subject_code}} </div>
+                                <div>{{$exam_result->subject}} </div>
+                                <div>{{$exam_result->grade}} </div>
+                                <div>{{$exam_result->session}} </div>
                                 
                             @endforeach                                
                             </div>
 
 
                         @else
-                        <p>hapana chakaipa</p>
+                        <p>There is no record of results. You may need to contact exams</p>
                         @endif
                         </div>
                 </section>

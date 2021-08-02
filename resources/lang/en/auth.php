@@ -14,7 +14,7 @@ return [
     */
 
     'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
+    'password' => 'Give the password that you registered with, on this system.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

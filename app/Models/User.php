@@ -69,4 +69,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Result::class, 'users_id');
     }
+
+
+    public function fees()
+    {
+        return $this->hasMany(Fee::class);
+    }
 }
