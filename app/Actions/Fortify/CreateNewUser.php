@@ -43,6 +43,7 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
         $uuid = Str::uuid();
         $slug=$input['surname'].$uuid;
+        $uniq_slug = $input['surname'].uniqid();
         $user = User::create([
         //return User::create([
             'second_name' => $input['surname'],
@@ -54,7 +55,8 @@ class CreateNewUser implements CreatesNewUsers
         ]);
 
         Result::where('candidate_number',request('candidate_number'))->update(['users_id'=>$user->id]);
-        $user->fees()->create(['intake_id'=>1,'cleared_at'=>null,]);
+        $user->fees()->create(['intake_id'=>1,'cleared_at'=>null,'slug'=>$uniq_slug]);
+        $user->students()->create(['user_id'=>1]);
         //dd($user);
         return $user;       
 

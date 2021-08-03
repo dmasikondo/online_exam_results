@@ -76,6 +76,11 @@ class User extends Authenticatable
         return $this->hasMany(Fee::class);
     }
 
+    public function students()
+    {
+        return $this->hasMany(Student::class);
+    }
+
     public function roles()
     {
         return $this->belongsToMany(Role::class)->withTimestamps();    

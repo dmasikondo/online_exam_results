@@ -16,7 +16,7 @@
 
             <div>
                 <x-jet-label for="surname" value="{{ __('Surname') }}" />
-                <x-jet-input id="surname" class="block mt-1 w-full @error('surname') border-red-700 @enderror" type="text" name="surname" :value="old('surname')" required  />
+                <x-jet-input id="surname" class="block mt-1 w-full" type="text" name="surname" :value="old('surname')" required  />
                 <p>@error('surname') surname error @enderror</p>
             </div>
             <div>
