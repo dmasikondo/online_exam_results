@@ -15,10 +15,12 @@ class CreateFeesTable extends Migration
     {
         Schema::create('fees', function (Blueprint $table) {
             $table->id();
+            $table->string('slug');
             $table->foreignId('user_id');
-            $table->timestamp('cleared_at')->default(null);
-            $table->foreignId('clearer_id');
-            $table->foreignId('intake_id');
+            $table->timestamp('cleared_at')->default(null)->nullable();
+            $table->foreignId('clearer_id')->nullable();
+            $table->foreignId('intake_id')->nullable();
+            $table->boolean('is_cleared')->default(false);
             $table->timestamps();
         });
     }

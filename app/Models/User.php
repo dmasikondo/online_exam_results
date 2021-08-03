@@ -75,4 +75,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Fee::class);
     }
+
+    // public function person()
+    // {
+    //     if(Auth::user()->id ==$this->id)
+    //     {
+    //         return 'Me';
+    //     }
+    //     else{
+    //         return $this->second_name. ' '.$this->first_name;
+    //     }
+    // }
+
 }

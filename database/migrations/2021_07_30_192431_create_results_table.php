@@ -16,6 +16,7 @@ class CreateResultsTable extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users_id')->nullable();
+            $table->foreignId('intake_id');
             $table->string('discipline');
             $table->string('course_code');
             $table->string('candidate_number');

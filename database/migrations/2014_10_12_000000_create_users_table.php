@@ -18,9 +18,11 @@ class CreateUsersTable extends Migration
             $table->string('second_name');
             $table->string('first_name');
             $table->string('slug')->unique();
-            $table->string('national_id')->unique();
-            $table->string('student_number')->nullable()->unique();
+            $table->string('national_id')->nullable()->unique();
             $table->string('phone_number')->nullable();
+            $table->enum('sex',['male','female'])->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->boolean('must_reset')->default(false);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
