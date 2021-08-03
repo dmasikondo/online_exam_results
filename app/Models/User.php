@@ -76,15 +76,30 @@ class User extends Authenticatable
         return $this->hasMany(Fee::class);
     }
 
-    // public function person()
-    // {
-    //     if(Auth::user()->id ==$this->id)
-    //     {
-    //         return 'Me';
-    //     }
-    //     else{
-    //         return $this->second_name. ' '.$this->first_name;
-    //     }
-    // }
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();    
+    }
+ 
+
+    /**
+     * Assign user a role
+     */
+
+    public function assignRole($role)
+    {
+       // $check_if_role_exists = Role::where('name',$role)->get();
+            
+
+        return $this->roles()->save(Role::firstOrCreate(['name' =>$role]));
+    } 
+
+    /**
+      * Check if the user has role of 
+    */ 
+    public function hasRole($role)
+    {
+        return  (bool) $this->roles()->where('name',$role)->count();
+    }     
 
 }
