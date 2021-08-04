@@ -21,5 +21,15 @@ class Fee extends Model
     public function approver()
     {
         return $this->belongsTo(User::class, 'clearer_id');
-    }    
+    } 
+
+    public function user()
+    {
+        return $this->belongsto(User::class);
+    } 
+
+    public function result()   
+    {
+        return hasMany(Result::class);
+    }
 }

@@ -22,6 +22,9 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/students', [StudentController::class, 'index'])->name('students');
+    Route::get('/practice', function(){
+        return view('practice');
+    });
 });
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');

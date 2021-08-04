@@ -4,12 +4,14 @@
             {{ __('Students') }} 
         </h2>
     </x-slot> 
-<!-- ./Client Table -->
-    <!-- Client Table -->
-    {{-- {{$students}} --}}
+<!-- .students clearance Table -->
         <div class="mt-4 mx-4">
           <div class="w-full overflow-hidden rounded-lg shadow-xs">
-            <div class="w-full overflow-x-auto">
+          	<x-session-message/>
+          	<x-session-warning/>
+            <div class="w-full overflow-x-auto">          	
+            		
+            	
               <table class="w-full">
                 <thead>
                   <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b">
@@ -18,6 +20,7 @@
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3">Processed by</th>
                     <th class="px-4 py-3">Date</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -66,12 +69,21 @@
                       </p>
                     </td>
                     <td class="px-4 py-3 text-sm">{{$student->updated_at}}</td>
+                    <td>
+                    	@livewire('fees.clear-student')
+                    	<button onclick="window.livewire.emitTo('fees.clear-student','updateFeesClearanceState','{{$student->fees[0]->slug}}')" 
+            				class="flex-1 text-indigo-500 hover:text-indigo-900">
+            				{{-- {{$project->is_complete ? 'Mark as Incompleted': 'Mark as Completed'}}            				 --}}
+            				update fees clearance
+
+            			</button>
+                    </td>
                   </tr>
                 @endforeach              
                 </tbody>
               </table>
             </div>
-            <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
+ {{--            <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
               <span class="flex items-center col-span-3"> Showing 21-30 of 100 </span>
               <span class="col-span-2"></span>
               <!-- Pagination -->
@@ -118,6 +130,6 @@
               </span>
             </div>
           </div>
-        </div>
+        </div> --}}
         <!-- ./Client Table -->    
 </x-app-layout>

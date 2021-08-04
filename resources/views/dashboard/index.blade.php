@@ -44,8 +44,8 @@
                                 <p class="flex justify-between"><span class="font-bold">SURNAME</span><span>:{{$exam_results[0]->surname}}</span></p>
                                 <p class="flex justify-between"><span class="font-bold">FIRST NAMES</span><span>:{{$exam_results[0]->names}}</span></p>
                                 <p class="flex justify-between"><span class="font-bold">INSTITUTION NAME</span><span>:Harare Polytechnic</span></p>
-                                <p class="flex justify-between"><span class="font-bold">COURSE LEVEL</span><span class="text-red-700">************</span></p>
-                                <p class="flex justify-between"><span class="font-bold">COURSE TITLE</span><span class="text-red-700">:{{$exam_results[0]->discipline}}</span></p>
+                                <p class="flex justify-between"><span class="font-bold">COURSE LEVEL</span><span>{{$exam_results[0]->course_code}}</span></p>
+                                <p class="flex justify-between"><span class="font-bold">COURSE CODE</span><span class="text-red-700">:{{$exam_results[0]->course_code}}</span></p>
                             </div>
 
                             <div class="grid md:grid-cols-4 gap-2 my-4">
@@ -69,7 +69,7 @@
                         </div>
                 </section>
                     
-<!-- ./Client Table -->
+{{-- <!-- ./Client Table -->
     <!-- Client Table -->
         <div class="mt-4 mx-4">
           <div class="w-full overflow-hidden rounded-lg shadow-xs">
@@ -230,7 +230,7 @@
             </div>
           </div>
         </div>
-        <!-- ./Client Table -->
+        <!-- ./Client Table --> --}}
 
 
                 </div>                     

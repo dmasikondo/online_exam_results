@@ -105,6 +105,21 @@ class User extends Authenticatable
     public function hasRole($role)
     {
         return  (bool) $this->roles()->where('name',$role)->count();
-    }     
+    }  
+
+    // sentence-capitalise 
+     public function getSecondNameAttribute($desc)
+     {
+         return ucwords($desc);
+     }   
+
+     public function getFirstNameAttribute($desc)
+     {
+         return ucwords($desc);
+     } 
+     public function getSexAttribute($desc)
+     {
+         return ucwords($desc);
+     }     
 
 }
