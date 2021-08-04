@@ -27,7 +27,7 @@
                     <div class="flex items-center">
                         <x-icon name="academic-cap" class="h-14 w-14 text-gray-200"/>
                     </div>
-                    
+            @can('view', $exam_results)        
                     <section name="exam_results" class="ml-12 p-2 shadow">
                         <div class="mt-2 text-sm text-gray-500">
 
@@ -45,7 +45,7 @@
                                 <p class="flex justify-between"><span class="font-bold">FIRST NAMES</span><span>:{{$exam_results[0]->names}}</span></p>
                                 <p class="flex justify-between"><span class="font-bold">INSTITUTION NAME</span><span>:Harare Polytechnic</span></p>
                                 <p class="flex justify-between"><span class="font-bold">COURSE LEVEL</span><span>{{$exam_results[0]->course_code}}</span></p>
-                                <p class="flex justify-between"><span class="font-bold">COURSE CODE</span><span class="text-red-700">:{{$exam_results[0]->course_code}}</span></p>
+                                <p class="flex justify-between"><span class="font-bold">COURSE TITLE</span><span class="text-red-700">:{{$exam_results[0]->discipline}}</span></p>
                             </div>
 
                             <div class="grid md:grid-cols-4 gap-2 my-4">
@@ -61,13 +61,16 @@
                                 
                             @endforeach                                
                             </div>
-{{-- SELECT substring(course_code,1,1) AS Level FROM hrepoly4.results; --}}
 
                         @else
                         <p>There is no record of results. You may need to contact exams</p>
                         @endif
                         </div>
                 </section>
+                @else
+                  <p>You must first clear your fees arrears with accounts department to see your April 2021 Results</p>
+              
+                @endcan
                     
 {{-- <!-- ./Client Table -->
     <!-- Client Table -->

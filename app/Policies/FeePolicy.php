@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Result;
+use App\Models\Fee;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ResultPolicy
+class FeePolicy
 {
     use HandlesAuthorization;
 
@@ -22,29 +22,18 @@ class ResultPolicy
     }
 
     /**
-     * if own results and is cleared by accounts
-     * if user is manager, ITU or exams
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Result  $result
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function view(User $user, Result $result)
-    {
-        return ($user->id == $result->users_id && $user->id == $user->fees->user_id && $user->fees->is_cleared) || $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager');
-    }
-
-    /**
-     * Determine whether the user can upload proof of payment
+     * Determine whether the user can view the model.
      * Must be the logged in user and results clearance being shown is own and is pending
-     *
+     * Or is accounts or is ITU or management or exams 
+     * 
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Fee  $fee
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function sendProof(User $user, Result $result)
+    public function view(User $user, Fee $fee)
     {
-        return ($user->id  == $result->users_id && $user->id == $user->fees->user_id && !$user->fees->is_cleared);
-    }    
+        return ($user->id == $fee->user_id) || $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager');;
+    }
 
     /**
      * Determine whether the user can create models.
@@ -61,10 +50,10 @@ class ResultPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Result  $result
+     * @param  \App\Models\Fee  $fee
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Result $result)
+    public function update(User $user, Fee $fee)
     {
         //
     }
@@ -73,10 +62,10 @@ class ResultPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Result  $result
+     * @param  \App\Models\Fee  $fee
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Result $result)
+    public function delete(User $user, Fee $fee)
     {
         //
     }
@@ -85,10 +74,10 @@ class ResultPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Result  $result
+     * @param  \App\Models\Fee  $fee
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Result $result)
+    public function restore(User $user, Fee $fee)
     {
         //
     }
@@ -97,10 +86,10 @@ class ResultPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Result  $result
+     * @param  \App\Models\Fee  $fee
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Result $result)
+    public function forceDelete(User $user, Fee $fee)
     {
         //
     }

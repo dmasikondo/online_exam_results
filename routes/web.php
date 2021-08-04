@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\FeesClearanceController;
+use App\Http\Controllers\ExamResultController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +22,12 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/students', [StudentController::class, 'index'])->name('students');
+    Route::get('/my-results', [ExamResultController::class, 'myresults'])->name('my-results');
+    Route::get('/results/clearance/{user:slug}', [ExamResultController::class, 'show'])->name('my-clearance');
+    //for accounts
+    Route::get('/dashboard/fees-clearances', [FeesClearanceController::class, 'index'])->name('fees-clearances');
+    Route::get('/dashboard', [FeesClearanceController::class, 'index'])->name('dashboard');
+
     Route::get('/practice', function(){
         return view('practice');
     });

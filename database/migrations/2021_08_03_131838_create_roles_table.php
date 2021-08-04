@@ -29,7 +29,7 @@ class CreateRolesTable extends Migration
                 ['name' => 'manager', 'label'=>'principal office','created_at'=>now(),'updated_at'=>now()],
                 ['name' => 'library', 'label'=>'library office','created_at'=>now(),'updated_at'=>now()],
                 ['name' => 'hod', 'label'=>'head of department','created_at'=>now(),'updated_at'=>now()],
-                ['name' => 'IT Unit', 'label'=>'IT Unit Department','created_at'=>now(),'updated_at'=>now()],
+                ['name' => 'superadmin', 'label'=>'IT Unit Department','created_at'=>now(),'updated_at'=>now()],
             ]);
 
         Schema::create('role_user', function (Blueprint $table) {

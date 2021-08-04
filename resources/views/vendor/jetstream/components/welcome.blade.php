@@ -23,7 +23,7 @@
 
             </div>
 
-{{$exam_results}}
+
         </div>
     </div>
 

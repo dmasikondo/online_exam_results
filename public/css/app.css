@@ -1208,6 +1208,9 @@ select {
 .mr-1 {
 	margin-right: 0.25rem;
 }
+.ml-16 {
+	margin-left: 4rem;
+}
 .mb-2 {
 	margin-bottom: 0.5rem;
 }
@@ -1355,11 +1358,11 @@ select {
 .max-w-none {
 	max-width: none;
 }
-.max-w-6xl {
-	max-width: 72rem;
-}
 .max-w-full {
 	max-width: 100%;
+}
+.max-w-6xl {
+	max-width: 72rem;
 }
 .max-w-sm {
 	max-width: 24rem;
@@ -1572,14 +1575,14 @@ select {
 .border-b {
 	border-bottom-width: 1px;
 }
-.border-r-0 {
-	border-right-width: 0px;
-}
 .border-r {
 	border-right-width: 1px;
 }
 .border-b-4 {
 	border-bottom-width: 4px;
+}
+.border-r-0 {
+	border-right-width: 0px;
 }
 .border-gray-300 {
 	--tw-border-opacity: 1;
@@ -1600,9 +1603,9 @@ select {
 	--tw-border-opacity: 1;
 	border-color: rgba(243, 244, 246, var(--tw-border-opacity));
 }
-.border-blue-600 {
+.border-indigo-100 {
 	--tw-border-opacity: 1;
-	border-color: rgba(37, 99, 235, var(--tw-border-opacity));
+	border-color: rgba(224, 231, 255, var(--tw-border-opacity));
 }
 .border-red-500 {
 	--tw-border-opacity: 1;
@@ -1612,6 +1615,10 @@ select {
 	--tw-border-opacity: 1;
 	border-color: rgba(99, 102, 241, var(--tw-border-opacity));
 }
+.border-red-300 {
+	--tw-border-opacity: 1;
+	border-color: rgba(252, 165, 165, var(--tw-border-opacity));
+}
 .border-green-300 {
 	--tw-border-opacity: 1;
 	border-color: rgba(110, 231, 183, var(--tw-border-opacity));
@@ -1619,6 +1626,10 @@ select {
 .border-gray-400 {
 	--tw-border-opacity: 1;
 	border-color: rgba(156, 163, 175, var(--tw-border-opacity));
+}
+.border-blue-600 {
+	--tw-border-opacity: 1;
+	border-color: rgba(37, 99, 235, var(--tw-border-opacity));
 }
 .bg-white {
 	--tw-bg-opacity: 1;
@@ -1676,10 +1687,6 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(209, 250, 229, var(--tw-bg-opacity));
 }
-.bg-blue-600 {
-	--tw-bg-opacity: 1;
-	background-color: rgba(37, 99, 235, var(--tw-bg-opacity));
-}
 .bg-black {
 	--tw-bg-opacity: 1;
 	background-color: rgba(0, 0, 0, var(--tw-bg-opacity));
@@ -1688,8 +1695,16 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
 }
+.bg-indigo-200 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(199, 210, 254, var(--tw-bg-opacity));
+}
 .bg-transparent {
 	background-color: transparent;
+}
+.bg-blue-600 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(37, 99, 235, var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
 	--tw-bg-opacity: 0.25;
@@ -2357,12 +2372,12 @@ select {
 		margin-left: 1.5rem;
 	}
 
-	.sm\:mt-auto {
-		margin-top: auto;
-	}
-
 	.sm\:ml-0 {
 		margin-left: 0px;
+	}
+
+	.sm\:mt-auto {
+		margin-top: auto;
 	}
 
 	.sm\:block {
