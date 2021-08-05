@@ -32,8 +32,12 @@
                   <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
                     <td class="px-4 py-3">
                       <div class="flex items-center text-sm">
-                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                          <img class="object-cover w-full h-full rounded-full" src="{{$student->profile_photo_url}} alt="" loading="lazy" />
+                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block bg-gray-800">
+                       
+                          {{-- <img class="object-cover w-full h-full rounded-full" src="{{$student->profile_photo_url}} alt="" /> --}}
+                       
+                          {{-- <span class="text-red-700 text-sm object-fill m-1">{{$student->first_name[0]}} {{$student->second_name[0]}}</span> --}}
+                        
                           <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                         </div>
                         <div>
@@ -44,7 +48,7 @@
                     </td>
                     <td class="px-4 py-3 text-sm">{{$student->results[0]->discipline}}</td>
                     <td class="px-4 py-3 text-xs">
-                      
+     {{-- Display clearannce status--}}
                      @if($student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared == false)
                      	<span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full"> 
                      		Pending
@@ -58,7 +62,8 @@
                      		Approved
                      	</span>
                      @endif
-                      </span>
+       {{-- Endof Display clearannce status--}}              
+                      
                       <p class="text-xs text-gray-600 dark:text-gray-400">
                       	{{!is_null($student->fees[0]->cleared_at)? $student->fees[0]->cleared_at->diffForHumans():''}}
                       </p>
@@ -74,13 +79,19 @@
                     </td>
                     <td class="px-4 py-3 text-sm">{{$student->updated_at}}</td>
                     <td>
-
+     {{-- action buttons--}}                    
+                     @if(!$student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared)
+                       <x-icon name="check-circle" class="w-4 h-4 text-green-700"/>
+                      
+                     @elseif(!$student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared == false)
+                        <x-icon name="exclamation" class="w-4 h-4 text-red-700"/>
+                     @else        
                     	<button onclick="window.livewire.emitTo('fees.clear-student','updateFeesClearanceState','{{$student->fees[0]->slug}}')" 
-            				class="flex-1 text-indigo-500 hover:text-indigo-900">
-            				{{-- {{$project->is_complete ? 'Mark as Incompleted': 'Mark as Completed'}}            				 --}}
-            				update fees clearance
-
-            			</button>
+            				    class="text-sm py-1 px-2 rounded-lg bg-indigo-500 text-white hover:text-indigo-500 hover:bg-white hover:border-4 hover:border-indigo-500">
+            				    update fees clearance
+            			   </button>
+                    @endif
+                {{-- Endof action buttons--}} 
                     </td>
                   </tr>
                 @endforeach              

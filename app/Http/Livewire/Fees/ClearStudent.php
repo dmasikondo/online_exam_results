@@ -52,9 +52,9 @@ class ClearStudent extends Modal
                 
         if($this->fee->is_cleared)
 
-        {
-            $this->hide();
+        {            
             session()->flash('warning',"The student: '$this->surname $this->first_name' is already cleared");
+            $this->hide();
             return redirect('/dashboard'); 
             //change url to view more mode          
 
@@ -65,9 +65,9 @@ class ClearStudent extends Modal
          
 
         if(Auth::user()->id ==$this->fee->user_id)
-        {
-            $this->hide();
+        {            
             session()->flash('warning',"Failed! You cannot process your own account ");
+            $this->hide();
             return redirect('/dashboard');  
             //change url to view more mode 
                       
@@ -84,8 +84,7 @@ class ClearStudent extends Modal
                 
         if($this->fee->is_cleared)
 
-        {
-            
+        {            
             session()->flash('warning',"The student: '$this->surname $this->first_name' is already cleared");
             $this->hide();
             return redirect('/dashboard'); 
@@ -126,22 +125,10 @@ class ClearStudent extends Modal
             
             session()->flash('warning',"The student: '$this->surname $this->first_name' is already cleared");
             $this->hide();
-            return redirect('/dashboard/students'); 
+            return redirect('/dashboard'); 
             //change url to view more mode          
 
         }
-        /**
-         *  abort if the processing personnel is to approve own student payment
-         */      
-         
-
-        // if(Auth::user()->id ==$this->fee->user_id)
-        // {
-        //     session()->flash('warning',"Failed! You cannot process your own account ");
-        //     return redirect('/dashboard/students');  
-        //     //change url to view more mode 
-                      
-        // }
 
          $this->fee->update(['is_cleared'=>false, 'clearer_id'=>Auth::user()->id, 'cleared_at'=>now()]);       
         session()->flash('message',"The student: '$this->surname $this->first_name's account was successfully updated");
