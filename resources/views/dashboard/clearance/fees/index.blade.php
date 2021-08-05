@@ -29,10 +29,10 @@
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
                @foreach($students as $student)
-                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
+                  <tr class="bg-gray-50">
                     <td class="px-4 py-3">
                       <div class="flex items-center text-sm">
-                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block bg-gray-800">
+                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block bg-gray-800 border-1">
                        
                           {{-- <img class="object-cover w-full h-full rounded-full" src="{{$student->profile_photo_url}} alt="" /> --}}
                        

@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FeesClearanceController;
 use App\Http\Controllers\ExamResultController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,8 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     //for accounts
     Route::get('/dashboard/fees-clearances', [FeesClearanceController::class, 'index'])->name('fees-clearances');
     Route::get('/dashboard', [FeesClearanceController::class, 'index'])->name('dashboard');
-
+    Route::get('/users/registration', [UserController::class, 'create'])->name('user-registration');
+    Route::post('/users/registration', [UserController::class, 'store']);
     Route::get('/practice', function(){
         return view('practice');
     });

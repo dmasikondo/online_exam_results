@@ -56,7 +56,7 @@ class CreateNewUser implements CreatesNewUsers
 
         Result::where('candidate_number',request('candidate_number'))->update(['users_id'=>$user->id]);
         $user->fees()->create(['intake_id'=>1,'cleared_at'=>null,'slug'=>$uniq_slug]);
-        $user->students()->create(['user_id'=>1]);
+        $user->students()->create(['user_id'=> $user->id]);
         //dd($user);
         return $user;       
 

@@ -81,6 +81,11 @@ class User extends Authenticatable
         return $this->hasMany(Student::class);
     }
 
+   public function staff()
+    {
+        return $this->hasMany(Staff::class);
+    }    
+
     public function roles()
     {
         return $this->belongsToMany(Role::class)->withTimestamps();    
