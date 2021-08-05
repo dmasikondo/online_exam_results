@@ -15,6 +15,7 @@ class ExamResultController extends Controller
     public function myresults()
     {        
         $exam_results = Auth::user()->results()->get();
+        //dd($exam_results);
         return view('results.myresults', compact('exam_results'));
     }
 

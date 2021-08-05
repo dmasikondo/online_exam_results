@@ -31,6 +31,7 @@
                     <th class="px-4 py-3">Status</th>
                     <th class="px-4 py-3">Processed by</th>
                     <th class="px-4 py-3">Date</th>
+                    <th class="px-4 py-3">Session</th>
                   </tr>
                 </thead>
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
@@ -78,13 +79,7 @@
                       </p>
                     </td>
                     <td class="px-4 py-3 text-sm">{{$fee_clearance->updated_at}}</td>
-                    <td>
-                        @php $results = $fee_clearance->user->results[0]; @endphp
-                        @can('sendProod',$results)
-                            <p>Load proof of payment</p>
-                        @endcan
-                        
-                    </td>
+                    <td>{{$fee_clearance->intake->label}}</td>
                   </tr>
                 @endforeach              
                 </tbody>

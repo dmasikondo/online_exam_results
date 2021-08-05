@@ -22,6 +22,7 @@ class ResultPolicy
     }
 
     /**
+     * Determine if user can view his / her examination results
      * if own results and is cleared by accounts
      * if user is manager, ITU or exams
      *
@@ -31,7 +32,7 @@ class ResultPolicy
      */
     public function view(User $user, Result $result)
     {
-        return ($user->id == $result->users_id && $user->id == $user->fees->user_id && $user->fees->is_cleared) || $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager');
+        return ($user->id == $result->users_id && $user->fees[0]->is_cleared) || $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager');
     }
 
     /**

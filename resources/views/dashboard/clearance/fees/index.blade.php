@@ -10,7 +10,11 @@
           	<x-session-message/>
           	<x-session-warning/>
             <div class="w-full overflow-x-auto">          	
-            		
+
+              @php
+                $random =time().time();
+              @endphp                      
+              @livewire('fees.clear-student', key($random))            		
             	
               <table class="w-full">
                 <thead>
@@ -70,7 +74,7 @@
                     </td>
                     <td class="px-4 py-3 text-sm">{{$student->updated_at}}</td>
                     <td>
-                    	@livewire('fees.clear-student')
+
                     	<button onclick="window.livewire.emitTo('fees.clear-student','updateFeesClearanceState','{{$student->fees[0]->slug}}')" 
             				class="flex-1 text-indigo-500 hover:text-indigo-900">
             				{{-- {{$project->is_complete ? 'Mark as Incompleted': 'Mark as Completed'}}            				 --}}

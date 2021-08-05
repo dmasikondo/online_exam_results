@@ -22,8 +22,8 @@ class FeePolicy
     }
 
     /**
-     * Determine whether the user can view the model.
-     * Must be the logged in user and results clearance being shown is own and is pending
+     * Determine whether the user can send proof of payment
+     * Must be the logged in user and results clearance being shown is own and is not cleared
      * Or is accounts or is ITU or management or exams 
      * 
      * @param  \App\Models\User  $user

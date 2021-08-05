@@ -17,7 +17,7 @@ class Result extends Model
         {
             return 'National Certificate';
         }
-        elseif($code =='5' || $dcode == '6')
+        elseif($code =='5' || $code == '6')
         {
             return 'National Diploma';
         }

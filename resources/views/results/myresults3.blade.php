@@ -2,37 +2,23 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ Auth::user()->second_name }} 
-            {{ Auth::user()->first_name }}
+            {{ __('Dashboard') }} 
         </h2>
     </x-slot> 
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg">
+            <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                 <div>
                     <x-jet-application-logo class="block h-12 w-auto" />
                 </div>
 
-                <div class="mt-8 space-y-4">
-                    <h2 class="font-semibold text-4xl tracking-wide">Hie {{ Auth::user()->first_name }} !</h2>
-                    
-                    <p class="font-thin text-lg">To view your Harare Polytechnic's Hexco Examination Results ...</p> 
+                <div class="mt-8 text-2xl">
+                    Welcome to Harare Polytechnic's Hexco Examination Results!
                 </div>
 
-                <div class="mt-4 text-gray-500">
-                    You must be fully paid up to Harare Polytechnic (with $0 balance or <span class="text-red-700">$-</span>) in your college account and be cleared by the accounts department.
-                </div>
-                <div class="my-2 py-12">
-                  <a href="/results/clearance/{{Auth::user()->slug}}">
-                    <button  class="float-right p-2 rounded-lg bg-indigo-500 text-white hover:text-indigo-500 hover:bg-white hover:border-4 hover:border-indigo-500" >
-                        Send Proof of Payment
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="inline h-6 w-6">
-                          <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                        </svg>
-                    </button>  
-                  </a>                  
-
+                <div class="mt-6 text-gray-500">
+                    You must be fully paid up to Harare Polytechnic (with $0 balance or <span class="text-red-700">$-</span>) in your college account to be able to view your current Hexco results.
                 </div>
             </div>  
 
@@ -41,12 +27,12 @@
                     <div class="flex items-center">
                         <x-icon name="academic-cap" class="h-14 w-14 text-gray-200"/>
                     </div>
-                  
+                    
+            @can('view', $exam_results[0])        
                     <section name="exam_results" class="ml-12 p-2 shadow">
                         <div class="mt-2 text-sm text-gray-500">
 
                         @if($exam_results->count()>0)
-                          @can('view',$exam_results[0])
                             <div class="text-center border-b">
                                 <h2 class="border-b text-lg font-thin">MINISTRY OF HIGHER AND TERTIARY EDUCATION, SCIENCE AND TECHNOLOGY DEVELOPMENT</h2>
                                 <p class="text-xl font-extrabold">HIGHER EDUCATION EXAMINATIONS COUNCIL</p>
@@ -68,32 +54,24 @@
                                 <div class="font-extrabold">APPROVED SUBJECT TITLES </div>
                                 <div class="font-extrabold">GRADE </div>
                                 <div class="font-extrabold">Date </div>
-                            @endcan
-                           @foreach($exam_results as $exam_result)
-
-                            @can('view', $exam_result)                           
+                            @foreach($exam_results as $exam_result)
                                 <div>{{$exam_result->subject_code}} </div>
                                 <div>{{$exam_result->subject}} </div>
                                 <div>{{$exam_result->grade}} </div>
-                                <div>{{$exam_result->session}} </div>                              
-                           {{--  @else
-                              <div>             
-                                <p>You must first be cleared of any fees arrears with accounts department to see your April 2021 Results</p>
-              
-            
-                              </div> --}}
-                            @endcan  
-                            @endforeach                                              
+                                <div>{{$exam_result->session}} </div>
+                                
+                            @endforeach                                
                             </div>
-
-                          
 
                         @else
                         <p>There is no record of results. You may need to contact exams</p>
                         @endif
                         </div>
                 </section>
-
+                @else
+                  <p>You must first clear your fees arrears with accounts department to see your April 2021 Results</p>
+              
+                @endcan
                     
 {{-- <!-- ./Client Table -->
     <!-- Client Table -->
