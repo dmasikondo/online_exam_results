@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => 'auth:sanctum'], function(){
+Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/my-results', [ExamResultController::class, 'myresults'])->name('my-results');
     Route::get('/results/clearance/{user:slug}', [ExamResultController::class, 'show'])->name('my-clearance');
     //for accounts
@@ -30,10 +30,14 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/dashboard', [FeesClearanceController::class, 'index'])->name('dashboard');
     Route::get('/users/registration', [UserController::class, 'create'])->name('user-registration');
     Route::post('/users/registration', [UserController::class, 'store']);
+        
     Route::get('/practice', function(){
         return view('practice');
     });
+    
 });
+    Route::get('/users/activate-account',[UserController::class, 'activate']);
+    Route::put('/users/activate-account',[UserController::class, 'activation']);
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');

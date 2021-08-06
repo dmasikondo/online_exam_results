@@ -61,7 +61,34 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    //'home' => RouteServiceProvider::HOME,
+
+    /**
+     * customisation of redirection of authenticated user
+     */
+    'home' => function () {
+        $must_reset = Auth::user()->must_reset;
+        //$role = Auth::user()->role;
+        $uniq = uniqid().uniqid().time().time();
+        if($must_reset ==1){
+            return "/users/activate-account?verbose=".$uniq.'&ikokokwacho='.Auth::user()->slug.'&ramblings='.$uniq;
+        }
+        else{
+           return RouteServiceProvider::HOME;
+        }
+       
+/*        if ($is_active == 1) {
+            Auth
+
+            if ($role== 1) {
+                return '/admin/dashboard';   
+            } else {
+                return '/';
+            }
+        } else {
+            return '/login';
+        }*/
+    },    
 
     /*
     |--------------------------------------------------------------------------
