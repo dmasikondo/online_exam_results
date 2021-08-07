@@ -1,4 +1,4 @@
-<div class="w-full flex justify-center bg-gray-200 h-screen items-center">
+<div class="absolute w-full flex justify-center bg-gray-200 h-screen items-center">
     <x-session-message/>
   <div class="rounded-xl bg-white w-full md:w-2/3 lg:w-1/3"
         x-data="{ isUploading: false, progress: 0 }"
@@ -10,7 +10,7 @@
     <div class="px-5 py-3 flex items-center justify-between text-blue-400 border-b">
       <i class="fas fa-times text-xl"></i>
 
-      <p class="inline hover:bg-indigo-100 px-4 py-3 rounded-full font-bold cursor-pointer">Send Proof of Payment</p>
+      <p class="inline hover:bg-indigo-100 px-4 py-3 rounded-full font-bold">Send Proof of Payment</p>
     </div>
 
  <form wire:submit.prevent="uploadFile" enctype="multipart/form-data">

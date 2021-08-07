@@ -86,7 +86,13 @@
               </table>
             </div>
         </div>
-        @livewire('comment.comment-upload',['fileableId'=>$fee_clearance->id,'fileableType' =>'App\Models\Fee',]) 
+        <div class="mb-6 p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg">
+            <div class="my">
+            @livewire('comment.get-comments',['fileableId'=>$fee_clearance->id,'fileableType' =>'App\Models\Fee',])  
+            </div>
+            @livewire('comment.comment-upload',['fileableId'=>$fee_clearance->id,'fileableType' =>'App\Models\Fee',]) 
+        </div>
+        
     </div>
 </x-app-layout>
 </div>

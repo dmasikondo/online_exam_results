@@ -31,5 +31,10 @@ class File extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function fee()
+    {
+        return $this->belongsTo(Fee::class);
+    }
+
 
 }
