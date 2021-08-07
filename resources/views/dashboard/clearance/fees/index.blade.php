@@ -4,6 +4,7 @@
             {{ __('Student Fees Clearances') }} 
         </h2>
     </x-slot> 
+    @livewire('comment.comment-upload')
 <!-- .students clearance Table -->
         <div class="mt-4 mx-4">
           <div class="w-full overflow-hidden rounded-lg shadow-xs">

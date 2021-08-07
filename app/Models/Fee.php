@@ -32,4 +32,9 @@ class Fee extends Model
     {
         return hasMany(Result::class);
     }
+
+     public function files()
+     {
+      return $this->morphMany(File::class, 'fileable');
+     }    
 }

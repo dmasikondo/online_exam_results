@@ -40,7 +40,7 @@
                     <td class="px-4 py-3">
                       <div class="flex items-center text-sm">
                         <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                          <img class="object-cover w-full h-full rounded-full" src="{{$fee_clearance->user->profile_photo_url}} alt="{{$fee_clearance->user->second_name}}"  />
+                          <img class="object-cover w-full h-full rounded-full" src="{{$fee_clearance->user->profile_photo_url}}" alt="{{$fee_clearance->user->second_name}}"  />
                           <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                         </div>
                         <div>
@@ -85,7 +85,8 @@
                 </tbody>
               </table>
             </div>
-        </div> 
+        </div>
+        @livewire('comment.comment-upload',['fileableId'=>$fee_clearance->id,'fileableType' =>'App\Models\Fee',]) 
     </div>
 </x-app-layout>
 </div>
