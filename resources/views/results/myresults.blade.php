@@ -5,8 +5,7 @@
             {{ Auth::user()->second_name }} 
             {{ Auth::user()->first_name }}
         </h2>
-    </x-slot>
-    
+    </x-slot>    
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -14,27 +13,45 @@
                 <div>
                     <x-jet-application-logo class="block h-12 w-auto" />
                 </div>
-
+        
                 <div class="mt-8 space-y-4">
                     <h2 class="font-semibold text-4xl tracking-wide">Hie {{ Auth::user()->first_name }} !</h2>
                     
-                    <p class="font-thin text-lg">To view your Harare Polytechnic's Hexco Examination Results ...</p> 
+                    <p class="font-thin text-lg">
+                      @can('view',$exam_results[0])
+                        You may want to view your 
+                     @endcan 
+                    @cannot('view',$exam_results[0])
+                        To view your Harare Polytechnic's Hexco Examination Results ... 
+                    @endcannot                                       
+                    </p> 
                 </div>
 
                 <div class="mt-4 text-gray-500">
+                      @can('view',$exam_results[0])
+                        Fees Clearance Status ...
+                     @endcan 
+                     @cannot('view',$exam_results[0])                  
                     You must be fully paid up to Harare Polytechnic (with $0 balance or <span class="text-red-700">$-</span>) in your college account and be cleared by the accounts department.
+                    @endcannot
                 </div>
                 <div class="my-2 py-12">
                   <a href="/results/clearance/{{Auth::user()->slug}}">
                     <button  class="float-right p-2 rounded-lg bg-indigo-500 text-white hover:text-indigo-500 hover:bg-white hover:border-4 hover:border-indigo-500" >
+                      @can('view',$exam_results[0])
+                        Fees Clearance Status 
+                     @endcan                       
+                      @cannot('view',$exam_results[0]) 
                         Send Proof of Payment
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="inline h-6 w-6">
                           <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
                         </svg>
+                      @endcannot
                     </button>  
                   </a>                  
 
                 </div>
+
             </div>  
 
             <div class="bg-gray-200 bg-opacity-25">
@@ -85,181 +102,13 @@
                               </div> --}}
                             @endcan  
                             @endforeach                                              
-                            </div>
-
-                          
+                            </div>                         
 
                         @else
                         <p>There is no record of results. You may need to contact exams</p>
                         @endif
                         </div>
                 </section>
-
-                    
-{{-- <!-- ./Client Table -->
-    <!-- Client Table -->
-        <div class="mt-4 mx-4">
-          <div class="w-full overflow-hidden rounded-lg shadow-xs">
-            <div class="w-full overflow-x-auto">
-              <table class="w-full">
-                <thead>
-                  <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
-                    <th class="px-4 py-3">Client</th>
-                    <th class="px-4 py-3">Amount</th>
-                    <th class="px-4 py-3">Status</th>
-                    <th class="px-4 py-3">Date</th>
-                  </tr>
-                </thead>
-                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3">
-                      <div class="flex items-center text-sm">
-                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                          <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
-                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                        </div>
-                        <div>
-                          <p class="font-semibold">Hans Burger</p>
-                          <p class="text-xs text-gray-600 dark:text-gray-400">10x Developer</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-3 text-sm">$855.85</td>
-                    <td class="px-4 py-3 text-xs">
-                      <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Approved </span>
-                    </td>
-                    <td class="px-4 py-3 text-sm">15-01-2021</td>
-                  </tr>
-                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3">
-                      <div class="flex items-center text-sm">
-                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                          <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;facepad=3&amp;fit=facearea&amp;s=707b9c33066bf8808c934c8ab394dff6" alt="" loading="lazy" />
-                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                        </div>
-                        <div>
-                          <p class="font-semibold">Jolina Angelie</p>
-                          <p class="text-xs text-gray-600 dark:text-gray-400">Unemployed</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-3 text-sm">$369.75</td>
-                    <td class="px-4 py-3 text-xs">
-                      <span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full"> Pending </span>
-                    </td>
-                    <td class="px-4 py-3 text-sm">23-03-2021</td>
-                  </tr>
-                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3">
-                      <div class="flex items-center text-sm">
-                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                          <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/photo-1502720705749-871143f0e671?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;s=b8377ca9f985d80264279f277f3a67f5" alt="" loading="lazy" />
-                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                        </div>
-                        <div>
-                          <p class="font-semibold">Dave Li</p>
-                          <p class="text-xs text-gray-600 dark:text-gray-400">Influencer</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-3 text-sm">$775.45</td>
-                    <td class="px-4 py-3 text-xs">
-                      <span class="px-2 py-1 font-semibold leading-tight text-gray-700 bg-gray-100 rounded-full dark:text-gray-100 dark:bg-gray-700"> Expired </span>
-                    </td>
-                    <td class="px-4 py-3 text-sm">09-02-2021</td>
-                  </tr>
-                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3">
-                      <div class="flex items-center text-sm">
-                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                          <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/photo-1551006917-3b4c078c47c9?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
-                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                        </div>
-                        <div>
-                          <p class="font-semibold">Rulia Joberts</p>
-                          <p class="text-xs text-gray-600 dark:text-gray-400">Actress</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-3 text-sm">$1276.75</td>
-                    <td class="px-4 py-3 text-xs">
-                      <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"> Approved </span>
-                    </td>
-                    <td class="px-4 py-3 text-sm">17-04-2021</td>
-                  </tr>
-                  <tr class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
-                    <td class="px-4 py-3">
-                      <div class="flex items-center text-sm">
-                        <div class="relative hidden w-8 h-8 mr-3 rounded-full md:block">
-                          <img class="object-cover w-full h-full rounded-full" src="https://images.unsplash.com/photo-1566411520896-01e7ca4726af?ixlib=rb-1.2.1&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=200&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjE3Nzg0fQ" alt="" loading="lazy" />
-                          <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
-                        </div>
-                        <div>
-                          <p class="font-semibold">Hitney Wouston</p>
-                          <p class="text-xs text-gray-600 dark:text-gray-400">Singer</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="px-4 py-3 text-sm">$863.45</td>
-                    <td class="px-4 py-3 text-xs">
-                      <span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"> Denied </span>
-                    </td>
-                    <td class="px-4 py-3 text-sm">11-01-2021</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800">
-              <span class="flex items-center col-span-3"> Showing 21-30 of 100 </span>
-              <span class="col-span-2"></span>
-              <!-- Pagination -->
-              <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                <nav aria-label="Table navigation">
-                  <ul class="inline-flex items-center">
-                    <li>
-                      <button class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple" aria-label="Previous">
-                        <svg aria-hidden="true" class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                          <path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                        </svg>
-                      </button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">1</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">2</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 text-white dark:text-gray-800 transition-colors duration-150 bg-blue-600 dark:bg-gray-100 border border-r-0 border-blue-600 dark:border-gray-100 rounded-md focus:outline-none focus:shadow-outline-purple">3</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">4</button>
-                    </li>
-                    <li>
-                      <span class="px-3 py-1">...</span>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">8</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">9</button>
-                    </li>
-                    <li>
-                      <button class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple" aria-label="Next">
-                        <svg class="w-4 h-4 fill-current" aria-hidden="true" viewBox="0 0 20 20">
-                          <path d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path>
-                        </svg>
-                      </button>
-                    </li>
-                  </ul>
-                </nav>
-              </span>
-            </div>
-          </div>
-        </div>
-        <!-- ./Client Table --> --}}
-
-
                 </div>                     
         </div>
     </div>        

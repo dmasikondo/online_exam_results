@@ -18,7 +18,13 @@
                 </div>
 
                 <div class="mt-6 text-gray-500">
-                    You must be fully paid up to Harare Polytechnic (with $0 balance or <span class="text-red-700">$-</span>) in your college account to be able to view your current Hexco results.
+                   @can('sendProof', $fees_clearances[0]) {{-- not able to view results unless admin --}}
+                    You are not currently cleared by the accounts department to view your current Harare Polytechnic Hexco Results. You may need to upload proof of fees payment.
+                   @endcan 
+                   @cannot('sendProof', $fees_clearances[0])
+                    You have been cleared by the accounts department and you are able to view your current Harare Polytechnic Hexco Results.
+                   @endcannot
+
                 </div>
             </div>
 
@@ -89,12 +95,15 @@
               </table>
             </div>
             <div class="mb-6 p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg">
-                <div class="my">
+                <div class="my -2">
                 @livewire('comment.get-comments',['fileableId'=>$fee_clearance->id,'fileableType' =>'App\Models\Fee',])  
                 </div>
-                @livewire('comment.comment-upload',['fileableId'=>$fee_clearance->id,'fileableType' =>'App\Models\Fee',]) 
             </div>
-
+        @can('sendProof', $fees_clearances[0]) {{-- not able to view results unless admin --}}
+            <div class="mb-6 p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg">           
+                @livewire('comment.comment-upload',['fileableId'=>$fee_clearance->id,'fileableType' =>'App\Models\Fee',])            
+            </div>
+        @endcan
         </div>
 
         

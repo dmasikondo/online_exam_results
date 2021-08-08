@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Fee;
 use App\Models\User;
+use App\Models\ClearedStudent;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class FeePolicy
@@ -23,7 +24,7 @@ class FeePolicy
 
     /**
      * Determine whether the user can send proof of payment
-     * Must be the logged in user and results clearance being shown is own and is not cleared
+     * Must be the logged in user and results clearance being shown is own
      * Or is accounts or is ITU or management or exams 
      * 
      * @param  \App\Models\User  $user
@@ -32,8 +33,24 @@ class FeePolicy
      */
     public function view(User $user, Fee $fee)
     {
-        return ($user->id == $fee->user_id) || $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager');;
+        return ($user->id == $fee->user_id) || $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager');
     }
+
+    /**
+     * Determine whether the user can send proof of payment
+     * Must be the logged in user and results clearance being shown is own and is not cleared
+     * Or is accounts or is ITU or management or exams 
+     * 
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Fee  $fee
+     * @return \Illuminate\Auth\Access\Response|bool
+     */    
+
+    public function sendProof(User $user, Fee $fee)
+    {
+        $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$user->national_id.'%')->get();
+        return ($user->id == $fee->user_id && !$fee->is_cleared && $cleared_national_id->count()<1) || $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager');
+    }    
 
     /**
      * Determine whether the user can create models.

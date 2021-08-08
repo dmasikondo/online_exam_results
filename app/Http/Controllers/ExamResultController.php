@@ -16,7 +16,11 @@ class ExamResultController extends Controller
     public function myresults()
     {        
         $exam_results = Auth::user()->results()->get();
-        //dd($exam_results);
+        if($exam_results->count()<1)
+        {
+            abort(403, 'Are you a student? It seems you are not authorised to view this page');
+        }
+        //$this->authorize('view', $exam_results[0]);
         return view('results.myresults', compact('exam_results'));
     }
 

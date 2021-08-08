@@ -24,8 +24,8 @@ class ResultPolicy
 
     /**
      * Determine if user can view his / her examination results
-     * if own results and is cleared by accounts
-     * if user is manager, ITU or exams
+     * if own results and is cleared by accounts online / offline (via excel sheet of cleared student sent to IT Unit)
+     * and is a student
      *
      * @param  \App\Models\User  $user
      * @param  \App\Models\Result  $result
@@ -34,19 +34,22 @@ class ResultPolicy
     public function view(User $user, Result $result)
     {
         $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$user->national_id.'%')->get();
-        return ($user->id == $result->users_id && $user->fees[0]->is_cleared) || $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager') || $cleared_national_id->count()>0;
+        return (($user->id == $result->users_id && $user->fees[0]->is_cleared) || $cleared_national_id->count()>0);
+        //|| $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager') 
+
     }
 
     /**
      * Determine whether the user can upload proof of payment
-     * Must be the logged in user and results clearance being shown is own and is pending
+     * Must be the logged in user and results clearance being shown is own and is not cleared
      *
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function sendProof(User $user, Result $result)
     {
-        return ($user->id  == $result->users_id && $user->id == $user->fees->user_id && !$user->fees->is_cleared);
+         $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$user->national_id.'%')->get();
+        return ($user->id  == $result->users_id && $user->id == $user->fees->user_id && !$user->fees->is_cleared && $cleared_national_id->count()<1);
     }    
 
     /**
