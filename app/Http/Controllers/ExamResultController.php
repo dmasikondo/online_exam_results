@@ -27,6 +27,7 @@ class ExamResultController extends Controller
         $fee = $user->fees()->firstOrFail();
         $this->authorize('view',$fee);
         $fees_clearances =$user->fees()->with('intake')->get();
+        //$cleared_status = 
         return view('results.show',compact('fees_clearances'));
     }
 }

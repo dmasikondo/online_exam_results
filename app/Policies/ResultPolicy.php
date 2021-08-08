@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Result;
 use App\Models\User;
+use App\Models\ClearedStudent;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ResultPolicy
@@ -32,7 +33,8 @@ class ResultPolicy
      */
     public function view(User $user, Result $result)
     {
-        return ($user->id == $result->users_id && $user->fees[0]->is_cleared) || $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager');
+        $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$user->national_id.'%')->get();
+        return ($user->id == $result->users_id && $user->fees[0]->is_cleared) || $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager') || $cleared_national_id->count()>0;
     }
 
     /**
