@@ -1,6 +1,6 @@
-<div class="absolute w-full flex justify-center bg-gray-200 h-screen items-center">
+<div class="{{-- absolute w-full --}} flex justify-center bg-gray-200 {{-- h-screen --}} items-center">
     <x-session-message/>
-  <div class="rounded-xl bg-white w-full md:w-2/3 lg:w-1/3"
+  <div class="rounded-xl bg-white w-full {{-- md:w-2/3 --}} {{-- lg:w-1/3 --}}"
         x-data="{ isUploading: false, progress: 0 }"
         x-on:livewire-upload-start="isUploading = true"
         x-on:livewire-upload-finish="isUploading = false"        
@@ -76,7 +76,9 @@
         </div>  
 
       <div>
-        <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-indigo-300 cursor-pointer" wire:click="uploadFile"></button>
+        <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-indigo-300 cursor-pointer" wire:click="uploadFile">
+          Send Payment Proof
+        </button>
         <div>
             <span wire:loading wire:target="uploadFile">
                 Processing ...

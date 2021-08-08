@@ -1,4 +1,5 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100" >
+    {{--  <div class="absolute bg-red-600 w-full h-1/2 z-0 top-0" style="border-bottom-left-radius: 50% 20%; border-bottom-right-radius: 50% 20%;"></div> --}}
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">

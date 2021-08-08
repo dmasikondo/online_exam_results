@@ -19,11 +19,9 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-<div class="overflow-hidden relative flex items-center min-h-screen">
-  <div class="absolute bg-red-600 w-full h-1/2 z-0 top-0" style="border-bottom-left-radius: 50% 20%; border-bottom-right-radius: 50% 20%;"></div>
 
         <x-jet-banner />
-</div>
+
 
         <div class="min-h-screen bg-gray-100">
             @livewire('navigation-menu')
@@ -37,8 +35,11 @@
                 </header>
             @endif
 
+            <!-- Side Bar -->
+            <x-sidebar/>
+
             <!-- Page Content -->
-            <main>
+            <main class="ml-12">
                 {{ $slot }}
             </main>
         </div>
