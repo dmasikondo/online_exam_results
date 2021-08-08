@@ -51,8 +51,12 @@
                     </td>
                     <td class="px-4 py-3 text-sm">{{$fee_clearance->user->results[0]->discipline}}</td>
                     <td class="px-4 py-3 text-xs">
-                      
-                     @if($fee_clearance->cleared_at == null && $fee_clearance->is_cleared == false)
+
+                     @if($offline_cleared) 
+                    <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> 
+                        Approved
+                    </span>                     
+                     @elseif($fee_clearance->cleared_at == null && $fee_clearance->is_cleared == false)
                         <span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full"> 
                             Pending
                         </span>                         
@@ -90,7 +94,7 @@
                 </div>
                 @livewire('comment.comment-upload',['fileableId'=>$fee_clearance->id,'fileableType' =>'App\Models\Fee',]) 
             </div>
-            
+
         </div>
 
         

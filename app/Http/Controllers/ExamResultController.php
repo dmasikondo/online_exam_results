@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
 use App\Models\Fee;
+use App\Models\ClearedStudent;
 
 class ExamResultController extends Controller
 {
@@ -26,8 +27,20 @@ class ExamResultController extends Controller
     {
         $fee = $user->fees()->firstOrFail();
         $this->authorize('view',$fee);
+        /**
+         * This gives information on student's online clearance status
+         */
         $fees_clearances =$user->fees()->with('intake')->get();
-        //$cleared_status = 
-        return view('results.show',compact('fees_clearances'));
+        /**
+         * Check if student was cleared offline (excel list of cleared students updated to database)
+         */
+        $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$user->national_id.'%')->get();
+        if($cleared_national_id->count()>0) {
+            $offline_cleared = true;
+        }
+        else{
+            $offline_cleared = false;
+        }
+        return view('results.show',compact('fees_clearances', 'offline_cleared'));
     }
 }
