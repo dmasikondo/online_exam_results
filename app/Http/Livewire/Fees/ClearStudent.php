@@ -22,6 +22,7 @@ class ClearStudent extends Modal
     public function updateFeesClearanceState($slug)
     {
         $this->show();
+        
         $this->fee =Fee::where('slug',$slug)->with('user','user.results')->firstOrFail(); 
         $this->created = $this->fee->user->created_at->diffForHumans();
         $this->surname = $this->fee->user->second_name;

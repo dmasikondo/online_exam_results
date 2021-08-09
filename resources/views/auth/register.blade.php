@@ -6,12 +6,13 @@
 
         <x-jet-validation-errors class="mb-4" />
 
+
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
             <div>
                 <x-jet-label for="candidate_number" value="{{ __('Candidate Number') }}" />
-                <x-jet-input id="candidate_number" class="block mt-1 w-full" type="text" name="candidate_number" :value="old('candidate_number')" required/>
+                <x-jet-input id="candidate_number" class="block mt-1 w-full" type="text" name="candidate_number" :value="old('candidate_number')" required pattern="[0-9]{7}[a-zA-Z]{1}[0-9]{5}" title="Your Candidate No. must be in the format 99-9999999Z99"/>
             </div>
 
             <div>
@@ -25,7 +26,9 @@
             </div>
             <div>
                 <x-jet-label for="national_id" value="{{ __('National ID') }}" />
-                <x-jet-input id="national_id" class="block mt-1 w-full" type="text" name="national_id" :value="old('national_id')" required />
+                <x-jet-input id="national_id" class="block mt-1 w-full" type="text" name="national_id" :value="old('national_id')" required 
+                    pattern="([0-9]{2}-[0-9]{5,7}[a-zA-Z]{1}[0-9]{2})" title="Your National ID No. must be in the format 99-9999999Z99"
+                />
             </div>            
 
             <div class="mt-4">

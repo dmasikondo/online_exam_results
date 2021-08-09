@@ -15,7 +15,11 @@
               @php
                 $random =time().time();
               @endphp                      
-              @livewire('fees.clear-student', key($random))            		
+              @livewire('fees.clear-student', key($random)) 
+              @include('includes.search_student')              
+              <div class="my-2 px-2">
+                {{$students->links()}}
+              </div>                         		
   <!-- .students clearance Table -->          	
               <table class="w-full">
                 <thead>
@@ -50,7 +54,12 @@
                     <td class="px-4 py-3 text-sm">{{$student->results[0]->discipline}}</td>
                     <td class="px-4 py-3 text-xs">
      {{-- Display clearannce status--}}
-                     @if($student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared == false)
+                    @if($student->isClearedOffline())
+                      <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> 
+                        Approved 
+                        <x-icon name="check-circle" class="inline w-4 h-4"/>
+                      </span>                    
+                     @elseif($student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared == false)
                      	<span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full"> 
                      		Pending
                      	</span>                     	
@@ -80,8 +89,12 @@
                     </td>
                     <td class="px-4 py-3 text-sm">{{$student->updated_at}}</td>
                     <td>
-     {{-- action buttons--}}                    
-                     @if(!$student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared)
+     {{-- action buttons--}} 
+                    @if($student->isClearedOffline())
+                      <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> 
+                        <x-icon name="check-circle" class="inline w-4 h-4"/>
+                      </span>                        
+                     @elseif(!$student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared)
                        <x-icon name="check-circle" class="w-4 h-4 text-green-700"/>
                       
                      @elseif(!$student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared == false)
@@ -98,5 +111,9 @@
                 @endforeach              
                 </tbody>
               </table>
+              <div class="my-2 px-2">
+                {{$students->links()}}
+              </div>
+              
             </div>   
 </x-app-layout>

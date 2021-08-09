@@ -61,6 +61,7 @@
                      @if($offline_cleared) 
                     <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> 
                         Approved
+                        <x-icon name="check-circle" class="inline w-4 h-4"/>
                     </span>                     
                      @elseif($fee_clearance->cleared_at == null && $fee_clearance->is_cleared == false)
                         <span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full"> 

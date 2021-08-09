@@ -125,6 +125,71 @@ class User extends Authenticatable
      public function getSexAttribute($desc)
      {
          return ucwords($desc);
-     }     
+     } 
 
+     /**
+      * Check if the user has results that have been cleared offline 
+      * (accounts department sends an excel sheet of cleared user to ITU)
+      */
+
+     public function isClearedOffline()
+     {
+        $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$this->national_id.'%')->get();
+        if($cleared_national_id->count()>0) {
+            return true;
+        }
+        else{
+            return false;
+        }        
+     }
+
+    public function scopeFilter($query, array $filters)
+    {
+    /*    $query->when($filters['department'] ?? false, function($query, $department){
+            $query->whereHas('results', function($query, $department){
+                $query->where('discipline', $department);
+
+            });
+        });*/
+
+            $query->when($filters['department'] ?? false, fn($query, $department) =>
+            $query->whereHas('results', fn ($query) =>
+                $query->where('discipline', $department)
+                )
+            );
+            $query->when($filters['name'] ?? false, fn($query, $name) =>
+            $query->whereHas('results')
+                ->where('second_name', 'like', '%' . $name . '%')
+                ->orWhere('first_name', 'like', '%' . $name . '%'));
+            $query->when($filters['nat_id'] ?? false, fn($query, $nat_id) =>
+            $query->whereHas('results')
+                ->where('national_id', 'like', '%' . $nat_id . '%'));            
+                       
+      /*  $query->when($filters['name'] ?? false, fn($query, $name) =>
+            $query
+                ->where('second_name', 'like', '%' . $name . '%')
+                ->orWhere('first_name', 'like', '%' . $name . '%'));   
+        $query->when($filters['nat_id'] ?? false, fn($query, $nat_id) =>
+            $query->where('national_id', 'like', '%' . $nat_id . '%')); */                        
+
+
+  /*      $query->when($filters['department'] ?? false, fn($query, $search) =>
+            $query
+                ->where('title', 'like', '%' . $search . '%')
+                ->orWhere('body', 'like', '%' . $search . '%'));
+        $query->when($filters['category'] ?? false, fn($query, $category) =>
+            $query->whereHas('category', fn ($query) =>
+                $query->where('slug', $category)
+            )
+        );*/
+    }
+
+
+        //     if(!is_null(request()->department)){
+        //     $students=User::whereHas('results', function($query){
+        //          return $query->where('discipline',request('department'));
+        //     })->with('fees','results','fees.approver')->paginate(1)->withQueryString();
+        //     //dd($students);
+        //     return view('dashboard.clearance.fees.index',compact('students','departments'));
+        // }     
 }
