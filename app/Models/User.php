@@ -158,12 +158,16 @@ class User extends Authenticatable
                 )
             );
             $query->when($filters['name'] ?? false, fn($query, $name) =>
-            $query->whereHas('results')
+            $query->has('results')
                 ->where('second_name', 'like', '%' . $name . '%')
-                ->orWhere('first_name', 'like', '%' . $name . '%'));
+                ->orWhere('first_name', 'like', '%' . $name . '%')
+                //->whereHas('results')
+            );
             $query->when($filters['nat_id'] ?? false, fn($query, $nat_id) =>
-            $query->whereHas('results')
-                ->where('national_id', 'like', '%' . $nat_id . '%'));            
+            $query->has('results')
+                ->where('national_id', 'like', '%' . $nat_id . '%')
+                //->whereHas('results')
+            );            
                        
       /*  $query->when($filters['name'] ?? false, fn($query, $name) =>
             $query

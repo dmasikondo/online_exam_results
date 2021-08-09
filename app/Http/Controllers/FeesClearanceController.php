@@ -27,9 +27,10 @@ class FeesClearanceController extends Controller
         }
        $students=User::whereHas('results')->with('fees','results','fees.approver')->paginate(3);*/
         
-                 $students=User::latest()->filter(
+                 $students=User::has('results')->filter(
                         request(['department','name','nat_id'])
-                    )->with('fees','results','fees.approver')->paginate(10)->withQueryString() ;  
+                    )->with('fees','results','fees.approver')->paginate(10)->withQueryString() ; 
+                   // dd($students); 
 
         return view('dashboard.clearance.fees.index',compact('students','departments'));
     } 

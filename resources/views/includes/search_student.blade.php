@@ -31,14 +31,14 @@
           </svg>
         </div> --}}
         <div class="relative flex-1">
-          <input id="name" name="name" type="text" class="peer h-10 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 p-3" placeholder="Student Name" />
+          <input id="name" name="name" type="text" class="peer h-10 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 p-3" placeholder="Student Name" value="{{request('name')}}" />
           <label for="name" class="absolute left-2 px-1 -top-2.5 bg-white text-indigo-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-900 peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-indigo-600 peer-focus:text-sm">Student's Name</label>
           <div class="absolute right-0 top-0 mt-2 mr-2">
             <x-icon name="user" class="h-6 w-6 text-indigo-600" stroke-width="1"/>
           </div>
         </div>
         <div class="relative flex-1">
-          <input id="national_id" value="" name="nat_id" type="text" class="peer h-10 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 p-3" 
+          <input id="national_id" value="{{request('nat_id')}}" name="nat_id" type="text" class="peer h-10 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 p-3" 
             placeholder="National ID" 
             pattern="{{-- ([0-9]{2}-[0-9]{5,7}[a-zA-Z]{1}[0-9]{2}) --}}" title="National ID must be of the format 99-999999Y99"
           />
@@ -47,13 +47,13 @@
             <x-icon name="identification" class="h-6 w-6 text-indigo-600" stroke-width="1"/>
           </div>
         </div>
-        <div class="relative flex-1">
+   {{--      <div class="relative flex-1">
           <input id="candidate_no" name="cand_no" type="text" class="peer h-10 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 p-3" placeholder="Candidate No." />
           <label for="candidate_no" class="absolute left-2 px-1 -top-2.5 bg-white text-indigo-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-900 peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-indigo-600 peer-focus:text-sm">Candidate No.</label>
           <div class="absolute right-0 top-0 mt-2 mr-2">
             <x-icon name="user-circle" class="h-6 w-6 text-indigo-600" stroke-width="1"/>
           </div>
-        </div>
+        </div> --}}
       </div>
       <div class="flex justify-center mt-6">
         <button class="bg-white text-blue-400  font-extrabold text-lg rounded-full px-6 py-3 hover:bg-indigo-100 ">Search</button>
