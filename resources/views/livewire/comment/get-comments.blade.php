@@ -7,7 +7,13 @@
         </div>    
         <div class="col-start-2 col-span-6 border border-indigo-200 p-4 rounded-lg">
             <div class="my-2">
-                <span class ="text-gray-700">{{$comment->user->second_name}} {{$comment->user->first_name}}</span>
+                <span class ="text-gray-700">
+                @if($isFromStudent && Auth::user()->id !=$comment->user->id) {{-- if is user and not own comment --}}
+                    Accounts Department
+                @else
+                    {{$comment->user->second_name}} {{$comment->user->first_name}}
+                @endif
+                </span>
                 <span class="text-xs text-gray-400">posted 2 minutes ago</span>
             </div>
             <div>

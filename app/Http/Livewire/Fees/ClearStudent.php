@@ -17,7 +17,7 @@ class ClearStudent extends Modal
     public $status;
     public $created;
     public $noOfFiles;
-    public $defaultAccountsPersonnel;
+    //public $defaultAccountsPersonnel;
     public function resetForm()
     {
         $this->resetErrorBag();
@@ -25,7 +25,7 @@ class ClearStudent extends Modal
     public function updateFeesClearanceState($slug)
     {
         $this->show();
-        $this->defaultAccountsPersonnel = User::where('email','accounts@hrepoly.ac.zw')->firstOrFail(); //default accounts dept account to be used in messages
+        //$this->defaultAccountsPersonnel = User::where('email','accounts@hrepoly.ac.zw')->firstOrFail(); //default accounts dept account to be used in messages
         $this->fee =Fee::where('slug',$slug)->with('user','files','user.results')->firstOrFail(); 
         $this->noOfFiles = $this->fee->files()->count();
         $this->created = $this->fee->user->created_at->diffForHumans();
@@ -111,7 +111,7 @@ class ClearStudent extends Modal
         }   
         
         $this->fee->update(['is_cleared'=>true, 'clearer_id'=>Auth::user()->id, 'cleared_at'=>now()]);  
-         $this->fee->files()->create(['body' =>'Your account was successfully processed','user_id' => $this->defaultAccountsPersonnel->id]);          
+         $this->fee->files()->create(['body' =>'Your account was successfully processed','user_id' => Auth::user()->id]);          
          session()->flash('message',"The student: '$this->surname $this->first_name's account was successfully updated");
         $this->hide(); 
          return redirect('/dashboard/fees-clearances/'.$this->fee->user->slug);        
@@ -149,7 +149,7 @@ class ClearStudent extends Modal
         }        
 
          $this->fee->update(['is_cleared'=>false, 'clearer_id'=>Auth::user()->id, 'cleared_at'=>now()]);  
-         $this->fee->files()->create(['body' =>'Your account is in arrears, please clear the arrears and upload your proof of payment','user_id' => $this->defaultAccountsPersonnel->id]);     
+         $this->fee->files()->create(['body' =>'Your account is in arrears, please clear the arrears and upload your proof of payment','user_id' => Auth::user()->id]);     
         session()->flash('message',"The student: '$this->surname $this->first_name's account was successfully updated");
         $this->hide();
         return redirect('/dashboard/fees-clearances/'.$this->fee->user->slug);        

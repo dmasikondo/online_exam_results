@@ -10,7 +10,8 @@ use Auth;
 class CommentUpload extends Component
 {
     use WithFileUploads;
-
+    public $isFromStudent = false;
+    public $possibleNewProofOfPayment = false;
     public $fileName;
     public $fileableType;
     public $fileableId;
@@ -70,6 +71,17 @@ class CommentUpload extends Component
             $this->comment = null;
             //$this->iteration++;
             $this->randomu++;
+            /**
+             * update Fee model if user was declined and is sending a new file
+             */
+            if($this->possibleNewProofOfPayment)
+            {
+                if(!is_null($morphTo->clearer_id))
+                {
+                   $morphTo->update(['clearer_id'=>NULL]); 
+                }
+                
+            }
             session()->flash('message', 'Your message was successfully sent.');  
     }
 /*    public function showFiles()
@@ -90,10 +102,12 @@ class CommentUpload extends Component
     //     $file->delete();    
     //     session()->flash('message', 'The file was successfully deleted.');  
     // }
-    public function mount($fileableId, $fileableType)
+    public function mount($fileableId, $fileableType, $isFromStudent,$possibleNewProofOfPayment = false)
     {
         $this->fileableId = $fileableId;
         $this->fileableType = $fileableType;
+        $this->isFromStudent = $isFromStudent;
+        $this->possibleNewProofOfPayment = $possibleNewProofOfPayment;
     }
     public function render()
     {

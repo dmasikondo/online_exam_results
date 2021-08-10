@@ -8,9 +8,15 @@
         x-on:livewire-upload-progress="progress = $event.detail.progress"
   >
     <div class="px-5 py-3 flex items-center justify-between text-blue-400 border-b">
-      <i class="fas fa-times text-xl"></i>
+      {{-- <i class="fas fa-times text-xl"></i> --}}
 
-      <p class="inline hover:bg-indigo-100 px-4 py-3 rounded-full font-bold">Send Proof of Payment</p>
+      <p class="inline hover:bg-indigo-100 px-4 py-3 rounded-full font-bold">
+          @if($isFromStudent)
+            Send Payment Proof
+          @else
+            You may message the student if necessary
+          @endif
+      </p>
     </div>
 
  <form wire:submit.prevent="uploadFile" enctype="multipart/form-data">
@@ -77,7 +83,11 @@
 
       <div>
         <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-indigo-300 cursor-pointer" wire:click="uploadFile">
-          Send Payment Proof
+          @if($isFromStudent)
+            Send Payment Proof
+          @else
+            Send message
+          @endif
         </button>
         <div>
             <span wire:loading wire:target="uploadFile">

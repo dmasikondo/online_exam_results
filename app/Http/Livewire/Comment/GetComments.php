@@ -8,12 +8,14 @@ class GetComments extends Component
 {
     public $fileableType;
     public $fileableId; 
-    public $comments;   
+    public $comments; 
+    public $isFromStudent;  
     
-    public function mount($fileableId, $fileableType)
+    public function mount($fileableId, $fileableType, $isFromStudent)
     {
         $this->fileableId = $fileableId;
         $this->fileableType = $fileableType;
+        $this->isFromStudent = $isFromStudent;
     } 
     public function showComments()
     {

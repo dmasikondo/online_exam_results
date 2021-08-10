@@ -111,7 +111,7 @@
                      @elseif(!$student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared)
                        <x-icon name="check-circle" class="w-4 h-4 text-green-700"/>
                       
-                     @elseif(!$student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared == false)
+                     @elseif(!$student->fees[0]->cleared_at == null && !is_null($student->fees[0]->clearer_id) && $student->fees[0]->is_cleared == false)
                         <x-icon name="exclamation" class="w-4 h-4 text-red-700"/>
                      @else        
                     	<button onclick="window.livewire.emitTo('fees.clear-student','updateFeesClearanceState','{{$student->fees[0]->slug}}')" 

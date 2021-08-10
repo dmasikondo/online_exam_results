@@ -102,12 +102,12 @@
             </div>
             <div class="mb-6 p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg">
                 <div class="my -2">
-                @livewire('comment.get-comments',['fileableId'=>$fee_clearance->id,'fileableType' =>'App\Models\Fee',])  
+                @livewire('comment.get-comments',['fileableId'=>$fee_clearance->id,'fileableType' =>'App\Models\Fee','isFromStudent'=>true])  
                 </div>
             </div>
         @can('sendProof', $fees_clearances[0]) {{-- not able to view results unless admin --}}
             <div class="mb-6 p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg">           
-                @livewire('comment.comment-upload',['fileableId'=>$fee_clearance->id,'fileableType' =>'App\Models\Fee',])            
+                @livewire('comment.comment-upload',['fileableId'=>$fee_clearance->id,'fileableType' =>'App\Models\Fee','isFromStudent'=>true, 'possibleNewProofOfPayment'=>true,])            
             </div>
         @endcan
         </div>
