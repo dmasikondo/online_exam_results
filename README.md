@@ -18,6 +18,8 @@ This Web App is built using Laravel 8.52 Framework Jetstream with livewire stack
 
 - Authentication system
 - Access Control Level Management
+- User Management System (suspensions, account creation from dashboard, account activation)
+- User Profile
 - Notification System
 - Detailed Dashboard for Exams, Candidates, Accountancy, Admins and Management
 - File uploading system
