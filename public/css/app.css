@@ -1386,6 +1386,12 @@ select {
 .w-1\/2 {
 	width: 50%;
 }
+.w-32 {
+	width: 8rem;
+}
+.w-24 {
+	width: 6rem;
+}
 .min-w-0 {
 	min-width: 0px;
 }
@@ -1460,6 +1466,22 @@ select {
 }
 .transform {
 	transform: var(--tw-transform);
+}
+@-webkit-keyframes spin {
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+@keyframes spin {
+
+	to {
+		transform: rotate(360deg);
+	}
+}
+.animate-spin {
+	-webkit-animation: spin 1s linear infinite;
+	        animation: spin 1s linear infinite;
 }
 @-webkit-keyframes pulse {
 
@@ -1672,6 +1694,9 @@ select {
 .border-b-4 {
 	border-bottom-width: 4px;
 }
+.border-t-2 {
+	border-top-width: 2px;
+}
 .border-r-0 {
 	border-right-width: 0px;
 }
@@ -1720,6 +1745,10 @@ select {
 .border-gray-400 {
 	--tw-border-opacity: 1;
 	border-color: rgba(156, 163, 175, var(--tw-border-opacity));
+}
+.border-purple-500 {
+	--tw-border-opacity: 1;
+	border-color: rgba(139, 92, 246, var(--tw-border-opacity));
 }
 .border-indigo-200 {
 	--tw-border-opacity: 1;
@@ -2352,6 +2381,10 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(30, 64, 175, var(--tw-bg-opacity));
 }
+.hover\:bg-indigo-500:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
+}
 .hover\:text-gray-500:hover {
 	--tw-text-opacity: 1;
 	color: rgba(107, 114, 128, var(--tw-text-opacity));
@@ -2379,6 +2412,10 @@ select {
 .hover\:text-indigo-500:hover {
 	--tw-text-opacity: 1;
 	color: rgba(99, 102, 241, var(--tw-text-opacity));
+}
+.hover\:text-white:hover {
+	--tw-text-opacity: 1;
+	color: rgba(255, 255, 255, var(--tw-text-opacity));
 }
 .hover\:text-indigo-800:hover {
 	--tw-text-opacity: 1;
