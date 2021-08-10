@@ -6,6 +6,7 @@ use Livewire\Component;
 
 class GetComments extends Component
 {
+    protected $listeners = ['updateComments' => 'render'];
     public $fileableType;
     public $fileableId; 
     public $comments; 

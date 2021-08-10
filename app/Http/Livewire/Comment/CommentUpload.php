@@ -82,6 +82,7 @@ class CommentUpload extends Component
                 }
                 
             }
+            $this->emit('updateComments');
             session()->flash('message', 'Your message was successfully sent.');  
     }
 /*    public function showFiles()
