@@ -33,7 +33,7 @@ class FeePolicy
      */
     public function view(User $user, Fee $fee)
     {
-        return ($user->id == $fee->user_id) || $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager');
+        return ($user->id == $fee->user_id) || $user->hasRole('superadmin') || $user->hasRole('exams') ||  $user->hasRole('manager');
     }
 
     /**
@@ -49,8 +49,22 @@ class FeePolicy
     public function sendProof(User $user, Fee $fee)
     {
         $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$user->national_id.'%')->get();
-        return ($user->id == $fee->user_id && !$fee->is_cleared && $cleared_national_id->count()<1) || $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager');
+        return ($user->id == $fee->user_id && !$fee->is_cleared && $cleared_national_id->count()<1) || $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('manager');
     }    
+
+    /**
+     * Determine whether the user can view a user name
+     * Must be the the one who processed, or is hod accounts or is IT unit or is mgt
+     * 
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Fee  $fee
+     * @return \Illuminate\Auth\Access\Response|bool
+     */    
+
+    public function showName(User $user, Fee $fee)
+    {
+        return ($user->id == $fee->clearer_id  || $user->hasRole('superadmin') || $user->hasRole('superadmin') || $user->hasRole('manager') || ($user->hasRole('hod') && $user->id == $user->department->id));
+    } 
 
     /**
      * Determine whether the user can create models.

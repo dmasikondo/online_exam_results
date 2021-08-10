@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Fees;
 use Livewire\Component;
 use App\Http\Livewire\Modal;
 use App\Models\Fee;
+use App\Models\User;
 use Auth;
 
 class ClearStudent extends Modal
@@ -15,6 +16,8 @@ class ClearStudent extends Modal
     public $discipline;
     public $status;
     public $created;
+    public $noOfFiles;
+    public $defaultAccountsPersonnel;
     public function resetForm()
     {
         $this->resetErrorBag();
@@ -22,8 +25,9 @@ class ClearStudent extends Modal
     public function updateFeesClearanceState($slug)
     {
         $this->show();
-        
-        $this->fee =Fee::where('slug',$slug)->with('user','user.results')->firstOrFail(); 
+        $this->defaultAccountsPersonnel = User::where('email','accounts@hrepoly.ac.zw')->firstOrFail(); //default accounts dept account to be used in messages
+        $this->fee =Fee::where('slug',$slug)->with('user','files','user.results')->firstOrFail(); 
+        $this->noOfFiles = $this->fee->files()->count();
         $this->created = $this->fee->user->created_at->diffForHumans();
         $this->surname = $this->fee->user->second_name;
         $this->first_name =$this->fee->user->first_name;
@@ -69,7 +73,7 @@ class ClearStudent extends Modal
         {            
             session()->flash('warning',"Failed! You cannot process your own account ");
             $this->hide();
-            return redirect('/dashboard');  
+            return redirect('/dashboard/fees-clearances/');  
             //change url to view more mode 
                       
         }
@@ -88,7 +92,7 @@ class ClearStudent extends Modal
         {            
             session()->flash('warning',"The student: '$this->surname $this->first_name' is already cleared");
             $this->hide();
-            return redirect('/dashboard'); 
+            return redirect('/dashboard/fees-clearances/'.$this->fee->user->slug); 
             //change url to view more mode          
 
         }
@@ -101,15 +105,16 @@ class ClearStudent extends Modal
         {            
             session()->flash('warning',"Failed! You cannot process your own account ");
             $this->hide();
-            return redirect('/dashboard');  
+            return redirect('/dashboard/fees-clearances/'.$this->fee->user->slug);  
             //change url to view more mode 
                       
         }   
         
-        $this->fee->update(['is_cleared'=>true, 'clearer_id'=>Auth::user()->id, 'cleared_at'=>now()]);    
+        $this->fee->update(['is_cleared'=>true, 'clearer_id'=>Auth::user()->id, 'cleared_at'=>now()]);  
+         $this->fee->files()->create(['body' =>'Your account was successfully processed','user_id' => $this->defaultAccountsPersonnel->id]);          
          session()->flash('message',"The student: '$this->surname $this->first_name's account was successfully updated");
         $this->hide(); 
-         return redirect('/dashboard');        
+         return redirect('/dashboard/fees-clearances/'.$this->fee->user->slug);        
     }
 
 
@@ -126,15 +131,28 @@ class ClearStudent extends Modal
             
             session()->flash('warning',"The student: '$this->surname $this->first_name' is already cleared");
             $this->hide();
-            return redirect('/dashboard'); 
+            return redirect('/dashboard/fees-clearances/'.$this->fee->user->slug); 
             //change url to view more mode          
 
         }
 
-         $this->fee->update(['is_cleared'=>false, 'clearer_id'=>Auth::user()->id, 'cleared_at'=>now()]);       
+        /**
+         *  abort if the processing personnel is to approve own student payment
+         */  
+        if(Auth::user()->id ==$this->fee->user_id)
+        {            
+            session()->flash('warning',"Failed! You cannot process your own account ");
+            $this->hide();
+            return redirect('/dashboard/fees-clearances/'.$this->fee->user->slug);  
+            //change url to view more mode 
+                      
+        }        
+
+         $this->fee->update(['is_cleared'=>false, 'clearer_id'=>Auth::user()->id, 'cleared_at'=>now()]);  
+         $this->fee->files()->create(['body' =>'Your account is in arrears, please clear the arrears and upload your proof of payment','user_id' => $this->defaultAccountsPersonnel->id]);     
         session()->flash('message',"The student: '$this->surname $this->first_name's account was successfully updated");
         $this->hide();
-        return redirect('/dashboard/students');        
+        return redirect('/dashboard/fees-clearances/'.$this->fee->user->slug);        
     }    
 
     public function render()

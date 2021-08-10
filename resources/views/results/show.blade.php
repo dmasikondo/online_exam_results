@@ -82,7 +82,12 @@
                     </td>
                     <td class="px-4 py-3 text-sm">
                       <p class="font-semibold">
-                        {{!is_null($fee_clearance->clearer_id)? 'Accounts Department':''}}
+                        {{-- {{!is_null($fee_clearance->clearer_id)? 'Accounts Department':''}} --}}
+                    @can('showName',$fee_clearance)
+                        {{$fee_clearance->approver->second_name ?? false}}
+                        {{$fee_clearance->approver->first_name ?? false}}                        
+                    @endcan
+                        Accounts Department                        
                       </p>
                       <p class="text-xs text-gray-600 dark:text-gray-400">
                         {{!is_null($fee_clearance->clearer_id)? Carbon\Carbon::parse($fee_clearance->cleared_at)->format('D d M Y h:i:s'): ''}}

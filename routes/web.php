@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     //for accounts
     Route::get('/dashboard/fees-clearances', [FeesClearanceController::class, 'index'])->name('fees-clearances');
     Route::get('/dashboard', [FeesClearanceController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/fees-clearances/{user:slug}', [FeesClearanceController::class, 'show'])->name('fees-clearance');
     Route::get('/users/registration', [UserController::class, 'create'])->name('user-registration');
     Route::post('/users/registration', [UserController::class, 'store']);
         

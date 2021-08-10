@@ -12,36 +12,35 @@ class FeesClearanceController extends Controller
 {
     /**
      * Show all students with hexco exam results who have registered online
+     * or appear in the search criteria (filter)
      */
     public function index()
     {
         $departments = Result::select('discipline')->groupBy('discipline')->get();
-       // dd($departments);
-       // dd(request('department'));
-   /*     if(!is_null(request()->department)){
-            $students=User::whereHas('results', function($query){
-                 return $query->where('discipline',request('department'));
-            })->with('fees','results','fees.approver')->paginate(1)->withQueryString();
-            //dd($students);
-            return view('dashboard.clearance.fees.index',compact('students','departments'));
-        }
-       $students=User::whereHas('results')->with('fees','results','fees.approver')->paginate(3);*/
         
-                 $students=User::has('results')->filter(
-                        request(['department','name','nat_id'])
-                    )->with('fees','results','fees.approver')->paginate(10)->withQueryString() ; 
-                   // dd($students); 
+         $students=User::has('results')->filter(
+            request(['department','name','nat_id']))
+            ->with('fees','results','fees.approver')->paginate(10)->withQueryString() ;                   
 
         return view('dashboard.clearance.fees.index',compact('students','departments'));
-    } 
-}
-// // Retrieve posts with at least one comment containing words like foo%...
-// $posts = App\Post::whereHas('comments', function (Builder $query) {
-// $query->where('content', 'like', 'foo%');
-// })->get();
+    }
 
-       /* $commit = $this->member->committees()->with(['term','designations' => function($query){
-        return $query->where('member_id',$this->member->id);
-        }])->with('term')->get()->groupBy(function($query){
-            return $query->title;
-        });*/
+    public function show (User $user)
+    {
+        /**
+         * This gives information on student's online clearance status
+         */
+        $fees_clearances =$user->fees()->with('intake')->get();
+        /**
+         * Check if student was cleared offline (excel list of cleared students from accounts dept to ITU updated to database)
+         */
+        $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$user->national_id.'%')->get();
+        if($cleared_national_id->count()>0) {
+            $offline_cleared = true;
+        }
+        else{
+            $offline_cleared = false;
+        }
+        return view('dashboard.clearance.fees.show',compact('fees_clearances', 'offline_cleared','user'));
+    }
+}

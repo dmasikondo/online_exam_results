@@ -34,7 +34,7 @@ class ExamResultController extends Controller
         /**
          * This gives information on student's online clearance status
          */
-        $fees_clearances =$user->fees()->with('intake')->get();
+        $fees_clearances =$user->fees()->with('intake','user')->get();
         /**
          * Check if student was cleared offline (excel list of cleared students updated to database)
          */
