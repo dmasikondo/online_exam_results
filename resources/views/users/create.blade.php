@@ -1,7 +1,7 @@
 <div>
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-extrabold text-xl text-indigo-200 leading-tight">
             {{ __('Register a user') }} 
         </h2>
     </x-slot> 
@@ -13,7 +13,7 @@
                     <div class="w-full bg-white p-5 rounded-lg lg:rounded-l-none">
                         <x-session-message/>
                         <x-jet-validation-errors class="mb-4" />
-                        <h3 class="pt-4 text-2xl text-center">Create a Member of Staff's  User Account!</h3>
+                        <h3 class="pt-4 text-2xl text-center text-gray-300">Create a Member of Staff's  User Account!</h3>
                         <form action="/users/registration" method="post" class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
                             @csrf
 
