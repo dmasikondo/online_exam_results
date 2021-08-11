@@ -73,6 +73,10 @@ return [
         if($must_reset ==1){
             return "/users/activate-account?verbose=".$uniq.'&ikokokwacho='.Auth::user()->slug.'&ramblings='.$uniq;
         }
+        elseif(Auth::user()->has('results'))
+        {
+            return "/my-results";
+        }
         else{
            return RouteServiceProvider::HOME;
         }

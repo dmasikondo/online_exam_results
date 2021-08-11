@@ -16,54 +16,53 @@
                             @csrf
                             @method('put')
                             <input type="hidden" name="checkit" value="{{$slug}}">
-                            <div class="mb-4 md:flex md:justify-between">
-                                <div class="mb-4 md:mr-2 md:mb-0">
-                                    <label class="block mb-2 text-sm font-bold text-gray-700" for="firstName">
-                                        First Name
-                                    </label>
-                                    <input name="first_name" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('first_name') border-red-500 @enderror" id="firstName" type="text" placeholder="First Name " value="{{old('first_name')}}">
-                                    @error('first_name')<p class="text-xs italic text-red-500">{{$message}}</p>@enderror
+
+
+                        <div class="flex gap-2 flex-col md:flex-row center">            
+                                <div class="mt-4 relative flex-1">
+                                    <x-form.input id="first_name" type="text" name="first_name" placeholder="Surname" value="{{old('first_name')}}"  required/> 
+                                    <x-form.label for="first_name">First Name</x-form.label>             
+                                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                                        <x-icon name="user" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                                    </div>
+                                    <p class="text-red-900 italic text-sm">@error('first_name') {{$message}} @enderror</p>                    
                                 </div>
-                                <div class="md:ml-2 ">
-                                    <label class="block mb-2 text-sm font-bold text-gray-700" for="second_name">
-                                        Last Name
-                                    </label>
-                                    <input name="second_name" class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline @error('last_name') border-red-500 @enderror" id="second_name" type="text" placeholder="Last Name" value="{{old('second_name')}}">
-                                    @error('second_name')<p class="text-xs italic text-red-500">{{$message}}</p>@enderror
+
+                                <div class="mt-4 relative flex-1">
+                                    <x-form.input id="second_name" type="text" name="second_name" placeholder="Second Name" value="{{old('second_name')}}" required/> 
+                                    <x-form.label for="second_name">Last Name</x-form.label>             
+                                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                                        <x-icon name="user-group" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                                    </div>
+                                    <p class="text-red-900 italic text-sm">@error('second_name') {{$message}} @enderror</p>                    
+                                </div>   
+                        </div>
+
+                        <div class="flex gap-2 flex-col md:flex-row center">            
+                                <div class="mt-4 relative flex-1">
+                                    <x-form.input id="password" type="password" name="password" placeholder="Password" required/> 
+                                    <x-form.label for="password">New Password</x-form.label>             
+                                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                                        <x-icon name="lock-closed" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                                    </div>
+                                    <p class="text-red-900 italic text-sm">@error('password') {{$message}} @enderror</p>                    
                                 </div>
-                            </div>
-                            <div class="mb-4 md:flex md:justify-between">
-                                <div class="mb-4 md:mr-2 md:mb-0">
-                                    <label class="block mb-2 text-sm font-bold text-gray-700" for="password">
-                                        Password
-                                    </label>
-                                    <input name="password" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border @error('password') border-red-500 @enderror rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
-                                    @error('password')<p class="text-xs italic text-red-500">{{$message}}</p>@enderror
-                                </div>
-                                <div class="md:ml-2">
-                                    <label class="block mb-2 text-sm font-bold text-gray-700" for="password_confirmation">
-                                        Confirm Password
-                                    </label>
-                                    <input name="password_confirmation" class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" id="" type="password" placeholder="******************">
-                                </div>
-                            </div>
+
+                                <div class="mt-4 relative flex-1">
+                                    <x-form.input id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm Password" required/> 
+                                    <x-form.label for="password_confirmation">Confirm Password</x-form.label>             
+                                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                                        <x-icon name="key" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                                    </div>                 
+                                </div>  
+                        </div>                           
                             
-                            <div class="mb-6 text-center">
+                            <div class="my-6 text-center">
                                 <button class="w-full px-4 py-2 font-bold text-white bg-indigo-500 rounded-full hover:bg-indigo-700 focus:outline-none focus:shadow-outline" type="submit">
                                     Activate Account
                                 </button>
                             </div>
                             <hr class="mb-6 border-t">
-{{--                             <div class="text-center">
-                                <a class="inline-block text-sm text-indigo-500 align-baseline hover:text-indigo-800" href="#">
-                                    Forgot Password?
-                                </a>
-                            </div>
-                            <div class="text-center">
-                                <a class="inline-block text-sm text-indigo-500 align-baseline hover:text-indigo-800" href="./index.html">
-                                    Already have an account? Login!
-                                </a>
-                            </div> --}}
                         </form>
                     </div>
                 </div>

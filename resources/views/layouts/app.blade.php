@@ -36,7 +36,7 @@
             @endif
 
             <!-- Side Bar -->
-            <x-sidebar/>
+         {{--    <x-sidebar/> --}}
 
             <!-- Page Content -->
             <main class="ml-12">

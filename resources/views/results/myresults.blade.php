@@ -1,4 +1,39 @@
 <div>
+  <style>
+.exam_results:after{
+    /*position:absolute;
+    z-index:1;*/
+  content: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quis suscipit non, quam explicabo perferendis maxime, blanditiis id amet odit neque. Minus alias deleniti neque recusandae voluptates, nulla, optio ipsa. ';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  opacity: 0.2; 
+      min-height:50%; 
+    min-width:50%;   
+    }  
+#background{
+    position:absolute;
+    z-index:0;
+    background:white;
+    display:block;
+    min-height:50%; 
+    min-width:50%;
+    color:yellow;
+}
+
+#bg-text
+{
+    color:lightgrey;
+    font-size:120px;
+    transform:rotate(225deg);
+    -webkit-transform:rotate(225deg);
+}
+lorem30 
+
+</style>
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight" {{-- style="border-bottom-left-radius: 50% 20%; border-bottom-right-radius: 50% 20%;" --}}>
@@ -59,12 +94,18 @@
                     <div class="flex items-center">
                         <x-icon name="academic-cap" class="h-14 w-14 text-gray-200"/>
                     </div>
-                  
+
                     <section name="exam_results" class="ml-12 p-2 shadow">
                         <div class="mt-2 text-sm text-gray-500">
 
+
                         @if($exam_results->count()>0)
                           @can('view',$exam_results[0])
+                    {{-- watermark --}}
+  {{-- <div id="background">
+  <p id="bg-text">Background</p>
+  </div> --}}
+                       <article class="exam_results">
                             <div class="text-center border-b">
                                 <h2 class="border-b text-lg font-thin">MINISTRY OF HIGHER AND TERTIARY EDUCATION, SCIENCE AND TECHNOLOGY DEVELOPMENT</h2>
                                 <p class="text-xl font-extrabold">HIGHER EDUCATION EXAMINATIONS COUNCIL</p>
@@ -106,6 +147,8 @@
 
                         @else
                         <p>There is no record of results. You may need to contact exams</p>
+
+                       </article>                     
                         @endif
                         </div>
                 </section>

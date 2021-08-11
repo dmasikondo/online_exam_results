@@ -143,6 +143,11 @@ class User extends Authenticatable
         }        
      }
 
+     public function isStudent()
+     {
+        return (bool) $this->results()->where('users_id', $this->id)->count();
+     }
+
     public function scopeFilter($query, array $filters)
     {
     /*    $query->when($filters['department'] ?? false, function($query, $department){

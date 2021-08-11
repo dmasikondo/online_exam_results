@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Result;
 use App\Models\ClearedStudent;
+use Auth;
 
 class FeesClearanceController extends Controller
 {
@@ -16,6 +17,10 @@ class FeesClearanceController extends Controller
      */
     public function index()
     {
+        if(!Auth::user()->hasRole('accounts'))
+        {
+            abort(403, 'It seems you are not authorised to view this page. Please contact ITUnit');
+        }
         $departments = Result::select('discipline')->groupBy('discipline')->get();
         
          $students=User::has('results')->filter(
@@ -27,6 +32,10 @@ class FeesClearanceController extends Controller
 
     public function show (User $user)
     {
+        if(!Auth::user()->hasRole('accounts'))
+        {
+            abort(403, 'It seems you are not authorised to view this page. Please contact ITUnit');
+        }        
         /**
          * This gives information on student's online clearance status
          */
