@@ -59,20 +59,9 @@ class UserController extends Controller
      */
 
     public function activate()
-    {
-
-       // dd(auth()->user());
-        //dd($email);
-        //Auth::logout();
-       // request()->session()->invalidate();
-
-        //request()->session()->regenerateToken(); 
-        //request()->session()->flush();         
+    {         
         $slug= request()->ikokokwacho;
-    //  request()->session()->flush(); 
-    // request()->session()->invalidate();
         Auth::guard('web')->logout();
-    //request()->session()->regenerateToken();
         return view('users.activate',compact('slug'));
     }
 
@@ -90,7 +79,15 @@ class UserController extends Controller
         'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        $user = User::where('slug',request()->checkit);
+        $user = User::where('slug',request()->checkit)->firstOrFail();
+        /**
+         * if account is already active, do not activate
+         */
+        if(!$user->must_reset)
+        {
+           session()->flash('warning',"This account is already active. You can log in using your last successful password"); 
+             return redirect('/login') ;                 
+        }
         $user->update(['must_reset' =>0,'password'=>Hash::make(request('password'))]);
         session()->flash('message',"Your account was successfully activated. You can now login using your new password"); 
          return redirect('/login') ;      

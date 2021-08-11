@@ -91,7 +91,7 @@
                                     </x-form.select>
                                     <x-form.label for="department">Select the User's Department</x-form.label>             
                                     <div class="absolute right-0 top-0 mt-6 mr-2">
-                                        <x-icon name="tag" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                                        <x-icon name="clipboard-list" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
                                     </div>
                                     <p class="text-red-900 italic text-sm">@error('department') {{$message}} @enderror</p>                    
                                 </div>               

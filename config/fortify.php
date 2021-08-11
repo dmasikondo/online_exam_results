@@ -77,6 +77,10 @@ return [
         {
             return "/my-results";
         }
+        elseif(Auth::user()->hasRole('hod') && Auth::user()->id == Auth::user()->departments->id || Auth::user()->hasRole('superadmin'))
+        {
+            return "/users/registration";
+        }
         else{
            return RouteServiceProvider::HOME;
         }
