@@ -43,7 +43,7 @@ lorem30
     </x-slot>    
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl {{-- mx-auto --}} sm:px-6 lg:px-8">
             <div class="p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg">
                 <div>
                     <x-jet-application-logo class="block h-12 w-auto" />
@@ -121,29 +121,37 @@ lorem30
                                 <p class="flex justify-between"><span class="font-bold">COURSE LEVEL</span><span>{{$exam_results[0]->course_code}}</span></p>
                                 <p class="flex justify-between"><span class="font-bold">COURSE TITLE</span><span class="text-red-700">:{{$exam_results[0]->discipline}}</span></p>
                             </div>
+                        
+              <table class="w-full">
+                <thead>
+                  <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b">
+                    <th class="px-4 py-3">PAPER No.</th>
+                    <th class="px-4 py-3">APPROVED SUBJECT TITLES </th>
+                    <th class="px-4 py-3">GRADE</th>
+                    <th class="px-4 py-3">Date</th>
+                  </tr>
+                </thead>
 
-                            <div class="grid md:grid-cols-4 gap-2 my-4">
-                                <div class="font-extrabold">PAPER No. </div>
-                                <div class="font-extrabold">APPROVED SUBJECT TITLES </div>
-                                <div class="font-extrabold">GRADE </div>
-                                <div class="font-extrabold">Date </div>
-                            @endcan
-                           @foreach($exam_results as $exam_result)
+                <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+             
+               @foreach($exam_results as $exam_result)   
+                  <tr class="bg-gray-50  text-gray-700">
+                    <td class="px-4 py-3">
+                      <div class="flex items-center text-sm">
+                        <div>
+                          <p class="font-semibold">{{$exam_result->subject_code}}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-sm">{{$exam_result->subject}}</td>
+                    <td class="px-4 py-3 text-sm">{{$exam_result->grade}}</td>
+                    <td class="px-4 py-3 text-sm">{{$exam_result->session}} </td>
+                 </tr>
+                @endforeach              
+                </tbody>
+              </table>
 
-                            @can('view', $exam_result)                           
-                                <div>{{$exam_result->subject_code}} </div>
-                                <div>{{$exam_result->subject}} </div>
-                                <div>{{$exam_result->grade}} </div>
-                                <div>{{$exam_result->session}} </div>                              
-                           {{--  @else
-                              <div>             
-                                <p>You must first be cleared of any fees arrears with accounts department to see your April 2021 Results</p>
-              
-            
-                              </div> --}}
-                            @endcan  
-                            @endforeach                                              
-                            </div>                         
+              @endcan
 
                         @else
                         <p>There is no record of results. You may need to contact exams</p>

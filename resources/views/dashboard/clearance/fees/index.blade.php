@@ -7,7 +7,7 @@
  {{--    @livewire('comment.comment-upload') --}}
 
         <div class="mt-4 mx-4">
-          <div class="max-w-7xl mx-auto overflow-hidden rounded-lg shadow-xs">
+          <div class="max-w-7xl {{-- mx-auto --}} overflow-hidden rounded-lg shadow-xs">
           	<x-session-message/>
           	<x-session-warning/>
             <div class="overflow-x-auto">          	

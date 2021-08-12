@@ -154,8 +154,20 @@ class User extends Authenticatable
 
      public function belongsToDepartmentOf($dept)
      {
-        $department = Department::where('name',$dept)->first();        
-        return (bool)  $this->staff()->where('department_id',$department->id)->count();          
+        $department = Department::where('name',$dept)->first();
+
+        return (bool) $this->staff()->where('user_id', $this->id)->where('department_id',$department->id)->count();
+
+     /*  $exists= $this->whereHas('staff', fn ($query)=>
+            $query->where('department_id',$department->id )
+                    ->where('user_id', $this->id)
+            )->get();  
+       if($exists->count()>0){
+        return true;
+       }
+       else{
+        return false;
+       }*/
         
          
      }

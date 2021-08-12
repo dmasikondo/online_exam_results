@@ -36,12 +36,25 @@
             @endif
 
             <!-- Side Bar -->
-         {{--    <x-sidebar/> --}}
+            {{-- <x-sidebar/> --}}
 
             <!-- Page Content -->
-            <main class="ml-12">
+{{--             <main class="ml-12">
                 {{ $slot }}
-            </main>
+            </main> --}}
+            <div class="min-h-screen md:flex">
+              <div class="flex-none w-full md:max-w-xs">
+                <x-sidebar/>
+              </div>
+              <div class="flex-1">
+                <main class="">
+                    {{ $slot }}
+                </main>
+              </div>
+            </div>
+
+
+
         </div>
 
         @stack('modals')
@@ -49,3 +62,4 @@
         @livewireScripts
     </body>
 </html>
+

@@ -1,6 +1,6 @@
 <div class="{{-- absolute w-full --}} flex justify-center bg-gray-200 {{-- h-screen --}} items-center">
     
-  <div class="rounded-xl bg-white w-full {{-- md:w-2/3 --}} {{-- lg:w-1/3 --}}"
+  <div class="rounded-xl bg-white w-full overflow-x-auto{{-- md:w-2/3 --}} {{-- lg:w-1/3 --}}"
         x-data="{ isUploading: false, progress: 0 }"
         x-on:livewire-upload-start="isUploading = true"
         x-on:livewire-upload-finish="isUploading = false"        
@@ -28,8 +28,6 @@
         <img class="rounded-full w-8" src="{{Auth::user()->profile_photo_url }}" />
       </div>
      
-
-      </form>
       <div class="ml-3 flex flex-col w-full">
         <textarea placeholder="You may leave this section blank" class="w-full text-xl resize-none outline-none h-32" wire:model.defer="comment"></textarea>
          <p wire:loading.remove>
@@ -67,13 +65,6 @@
 
             <input id="upload{{ $iteration }}"  type="file" wire:model.defer="fileName" accept="image/*,.pdf" wire:click="clearErrors" {{-- id="{{$randomu}}{{$ayd}} --}}
             class="text-xs"/>  
-{{--             <button x-show="fileSelected" wire:click="uploadImage" style="display: none;" class="p-2 rounded-lg bg-indigo-500 text-white hover:text-indigo-500 hover:bg-white hover:border-4 hover:border-indigo-500" wire:loading.class="animate-pulse">
-                Upload
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="inline h-6 w-6">
-                  <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
-                </svg>
-            </button> --}}
-            {{-- error message --}}
              <p wire:loading.remove>
                 @error('fileName')
                     <span class="text-red-500 text-sm italic">{{ $message }}</span>

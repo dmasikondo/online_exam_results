@@ -55,14 +55,14 @@
         <!-- Surname (Second name)-->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="second_name" value="{{ __('Surname') }}" />
-            <x-jet-input id="second_name" type="text" class="mt-1 block w-full" wire:model.defer="state.second_name" autocomplete="second_name" />
+            <x-jet-input id="second_name" type="text" class="mt-1 block w-full" wire:model.defer="state.second_name" autocomplete="second_name" disabled />
             <x-jet-input-error for="second_name" class="mt-2" />
         </div>
 
         <!-- Names (First names) -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="first_name" value="{{ __('Names') }}" />
-            <x-jet-input id="first_name" type="text" class="mt-1 block w-full" wire:model.defer="state.first_name" autocomplete="first_name" />
+            <x-jet-input id="first_name" type="text" class="mt-1 block w-full" wire:model.defer="state.first_name" autocomplete="first_name" disabled />
             <x-jet-input-error for="first_name" class="mt-2" />
         </div>   
 

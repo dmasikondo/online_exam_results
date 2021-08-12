@@ -12,11 +12,37 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                </div>
+                </div> --}}
+    @if(Auth::user()->isStudent()) 
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('my-results') }}" :active="request()->routeIs('my-results')">
+                        {{ __('My Results') }}
+                    </x-jet-nav-link>
+                </div>    
+{{--                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('my-clearance') }}" :active="request()->routeIs('my-clearance')">
+                        {{ __('Fees Clearance') }}
+                    </x-jet-nav-link>
+                </div> --}}                
+    @elseif(Auth::user()->hasRole('accounts'))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('fees-clearances') }}" :active="request()->routeIs('fees-clearances')">
+                        {{ __('Fees Clearances') }}
+                    </x-jet-nav-link>
+                </div>     
+    @elseif(Auth::user()->hasRole('superadmin') || (Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit')))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('user-registration') }}" :active="request()->routeIs('user-registration')">
+                        {{ __('Add a New User') }}
+                    </x-jet-nav-link>
+                </div>    
+    @endif              
+
+
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">

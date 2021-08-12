@@ -7,7 +7,7 @@
     </x-slot> 
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8  shadow-inner">
+        <div class="max-w-7xl {{-- mx-auto --}} sm:px-6 lg:px-8  shadow-inner">
             <div class="mb-6 {{-- p-6 sm:px-20 --}} bg-white border-b border-gray-200 shadow-lg">
                 <div>
                     <div class="w-full bg-white p-5 rounded-lg lg:rounded-l-none">
