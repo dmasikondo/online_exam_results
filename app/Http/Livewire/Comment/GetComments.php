@@ -21,7 +21,7 @@ class GetComments extends Component
     public function showComments()
     {
         $morphTo = $this->fileableType::findOrFail($this->fileableId);
-        $comments = $morphTo->files()->with('user','fee')->latest()->get();
+        $comments = $morphTo->files()->with('user','fee')->oldest()->get();
         return $comments;
     }    
 
