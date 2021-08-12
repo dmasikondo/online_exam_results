@@ -69,7 +69,8 @@ class CommentUpload extends Component
             $morphTo->files()->create(['url' =>$url, 'body' =>$this->comment,'user_id' => Auth::user()->id]);
             $this->fileName = null;
             $this->comment = null;
-            //$this->iteration++;
+            $this->iteration++;
+            $this->fileName = null;
             $this->randomu++;
             /**
              * update Fee model if user was declined and is sending a new file
@@ -83,6 +84,8 @@ class CommentUpload extends Component
                 
             }
             $this->emit('updateComments');
+            $this->resetValidation();
+
             session()->flash('message', 'Your message was successfully sent.');  
     }
 /*    public function showFiles()

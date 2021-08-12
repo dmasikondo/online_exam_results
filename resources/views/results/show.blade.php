@@ -1,19 +1,19 @@
 <div>
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }} 
+        <h2 class="font-semibold text-xl text-indigo-200 leading-tight">
+            {{ __('My fees clearance status') }} 
         </h2>
     </x-slot> 
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 bg-indigo-200 shadow-inner">
-            <div class="mb-6 p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg">
+            <div class="mb-6 p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg rounded-lg">
                 <div>
                     <x-jet-application-logo class="block h-12 w-auto" />
                 </div>
 
-                <div class="mt-8 text-2xl">
+                <div class="mt-8 text-2xl text-gray-300">
                     Welcome to Harare Polytechnic's Hexco Examination Results!
                 </div>
 
@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-            <div class="my-24 p-6 sm:px-20 bg-white">
+            <div class="my-24 p-6 sm:px-20 bg-white rounded-lg">
               <table class="w-full">
                 <thead>
                   <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b">
@@ -100,7 +100,7 @@
                 </tbody>
               </table>
             </div>
-            <div class="mb-6 p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg">
+            <div class="{{-- mb-6 p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg --}}">
                 <div class="my -2">
                 @livewire('comment.get-comments',['fileableId'=>$fee_clearance->id,'fileableType' =>'App\Models\Fee','isFromStudent'=>true])  
                 </div>
@@ -116,3 +116,5 @@
     </div>
 </x-app-layout>
 </div>
+
+

@@ -68,19 +68,33 @@ return [
      */
     'home' => function () {
         $must_reset = Auth::user()->must_reset;
-        //$role = Auth::user()->role;
         $uniq = uniqid().uniqid().time().time();
         if($must_reset ==1){
             return "/users/activate-account?verbose=".$uniq.'&ikokokwacho='.Auth::user()->slug.'&ramblings='.$uniq;
         }
-        elseif(Auth::user()->has('results'))
+        /**
+         * if user is a student
+         */
+        elseif(Auth::user()->isStudent())
         {
             return "/my-results";
         }
-        elseif(Auth::user()->hasRole('hod') && Auth::user()->id == Auth::user()->departments->id || Auth::user()->hasRole('superadmin'))
+
+        /**
+         * if user is from IT Mgr or from IT Unit
+         */
+        elseif((Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit')) || Auth::user()->hasRole('superadmin'))
         {
             return "/users/registration";
         }
+
+        /**
+         * if user is Accountant or from Accounts
+         */
+        elseif((Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('accounts')) || Auth::user()->hasRole('accounts'))
+        {
+            return "/dashboard/fees-clearances";
+        }        
         else{
            return RouteServiceProvider::HOME;
         }

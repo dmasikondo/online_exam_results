@@ -16,9 +16,14 @@ class UserController extends Controller
 {
     /**
      * Show the form for registering users
+     * To IT mgr & IT Unit 
      */
     public function create()
     {
+        if((Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit')) || Auth::user()->hasRole('superadmin'))
+        {
+            abort(403, 'It seems you are not authorised to view this page!');
+        }        
         $roles =Role::orderBy('name')->get();
         $departments =Department::orderBy('name')->get();
         return view('users.create', compact('roles','departments'));

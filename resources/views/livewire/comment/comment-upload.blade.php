@@ -1,5 +1,5 @@
 <div class="{{-- absolute w-full --}} flex justify-center bg-gray-200 {{-- h-screen --}} items-center">
-    <x-session-message/>
+    
   <div class="rounded-xl bg-white w-full {{-- md:w-2/3 --}} {{-- lg:w-1/3 --}}"
         x-data="{ isUploading: false, progress: 0 }"
         x-on:livewire-upload-start="isUploading = true"
@@ -18,9 +18,12 @@
           @endif
       </p>
     </div>
+    <div class="my-1">
+      <x-session-message/>
+    </div>
 
  <form wire:submit.prevent="uploadFile" enctype="multipart/form-data">
-    <div class="flex p-4">
+    <div class="flex p-4 ">
       <div>
         <img class="rounded-full w-8" src="{{Auth::user()->profile_photo_url }}" />
       </div>
@@ -62,7 +65,7 @@
         {{-- file input and submit --}}
         <div x-data="{fileSelected: true}" x-on:livewire-upload-finish="fileSelected = true" class="border-b-4 pb-4 space-y-4">
 
-            <input type="file" wire:model.defer="fileName" accept="image/*,.pdf" wire:click="clearErrors" {{-- id="{{$randomu}}{{$ayd}} --}}
+            <input id="upload{{ $iteration }}"  type="file" wire:model.defer="fileName" accept="image/*,.pdf" wire:click="clearErrors" {{-- id="{{$randomu}}{{$ayd}} --}}
             class="text-xs"/>  
 {{--             <button x-show="fileSelected" wire:click="uploadImage" style="display: none;" class="p-2 rounded-lg bg-indigo-500 text-white hover:text-indigo-500 hover:bg-white hover:border-4 hover:border-indigo-500" wire:loading.class="animate-pulse">
                 Upload
@@ -82,7 +85,7 @@
         </div>  
 
       <div>
-        <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-indigo-300 cursor-pointer" wire:click="uploadFile">
+        <button type="submit" class="inline px-4 py-3 rounded-full font-bold text-white bg-indigo-300 hover:bg-gray-200 cursor-pointer" wire:click="uploadFile">
           @if($isFromStudent)
             Send Payment Proof
           @else

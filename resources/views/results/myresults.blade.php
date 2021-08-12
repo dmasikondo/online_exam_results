@@ -36,7 +36,7 @@ lorem30
 </style>
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight" {{-- style="border-bottom-left-radius: 50% 20%; border-bottom-right-radius: 50% 20%;" --}}>
+        <h2 class="font-semibold text-xl text-indigo-200 leading-tight" {{-- style="border-bottom-left-radius: 50% 20%; border-bottom-right-radius: 50% 20%;" --}}>
             {{ Auth::user()->second_name }} 
             {{ Auth::user()->first_name }}
         </h2>
@@ -50,7 +50,7 @@ lorem30
                 </div>
         
                 <div class="mt-8 space-y-4">
-                    <h2 class="font-semibold text-4xl tracking-wide">Hie {{ Auth::user()->first_name }} !</h2>
+                    <h2 class="font-semibold text-4xl text-gray-300 tracking-wide">Hie {{ Auth::user()->first_name }} !</h2>
                     
                     <p class="font-thin text-lg">
                       @can('view',$exam_results[0])

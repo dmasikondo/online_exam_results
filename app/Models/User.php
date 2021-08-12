@@ -148,6 +148,18 @@ class User extends Authenticatable
         return (bool) $this->results()->where('users_id', $this->id)->count();
      }
 
+     /**
+      * check if user belongs to a given department
+      */
+
+     public function belongsToDepartmentOf($dept)
+     {
+        $department = Department::where('name',$dept)->first();        
+        return (bool)  $this->staff()->where('department_id',$department->id)->count();          
+        
+         
+     }
+
     public function scopeFilter($query, array $filters)
     {
     /*    $query->when($filters['department'] ?? false, function($query, $department){
@@ -166,39 +178,15 @@ class User extends Authenticatable
             $query->has('results')
                 ->where('second_name', 'like', '%' . $name . '%')
                 ->orWhere('first_name', 'like', '%' . $name . '%')
-                //->whereHas('results')
+                
             );
             $query->when($filters['nat_id'] ?? false, fn($query, $nat_id) =>
             $query->has('results')
                 ->where('national_id', 'like', '%' . $nat_id . '%')
-                //->whereHas('results')
+               
             );            
                        
-      /*  $query->when($filters['name'] ?? false, fn($query, $name) =>
-            $query
-                ->where('second_name', 'like', '%' . $name . '%')
-                ->orWhere('first_name', 'like', '%' . $name . '%'));   
-        $query->when($filters['nat_id'] ?? false, fn($query, $nat_id) =>
-            $query->where('national_id', 'like', '%' . $nat_id . '%')); */                        
-
-
-  /*      $query->when($filters['department'] ?? false, fn($query, $search) =>
-            $query
-                ->where('title', 'like', '%' . $search . '%')
-                ->orWhere('body', 'like', '%' . $search . '%'));
-        $query->when($filters['category'] ?? false, fn($query, $category) =>
-            $query->whereHas('category', fn ($query) =>
-                $query->where('slug', $category)
-            )
-        );*/
     }
 
-
-        //     if(!is_null(request()->department)){
-        //     $students=User::whereHas('results', function($query){
-        //          return $query->where('discipline',request('department'));
-        //     })->with('fees','results','fees.approver')->paginate(1)->withQueryString();
-        //     //dd($students);
-        //     return view('dashboard.clearance.fees.index',compact('students','departments'));
-        // }     
+   
 }

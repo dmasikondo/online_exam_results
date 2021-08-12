@@ -1441,6 +1441,9 @@ select {
 .flex-initial {
 	flex: 0 1 auto;
 }
+.flex-none {
+	flex: none;
+}
 .flex-shrink-0 {
 	flex-shrink: 0;
 }
@@ -2406,6 +2409,10 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(30, 64, 175, var(--tw-bg-opacity));
 }
+.hover\:bg-gray-200:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+}
 .hover\:bg-indigo-500:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
@@ -2951,6 +2958,10 @@ select {
 
 	.md\:w-1\/2 {
 		width: 50%;
+	}
+
+	.md\:max-w-xs {
+		max-width: 20rem;
 	}
 
 	.md\:grid-cols-3 {
