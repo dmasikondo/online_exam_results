@@ -1,9 +1,15 @@
 <div>
   <style>
-.exam_results:after{
-    /*position:absolute;
+  @media print
+  {
+    .no-print{
+      display: none;
+    }
+  }
+/*.exam_results2{
+    position:absolute;
     z-index:1;*/
-  content: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quis suscipit non, quam explicabo perferendis maxime, blanditiis id amet odit neque. Minus alias deleniti neque recusandae voluptates, nulla, optio ipsa. ';
+/*  content: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quis suscipit non, quam explicabo perferendis maxime, blanditiis id amet odit neque. Minus alias deleniti neque recusandae voluptates, nulla, optio ipsa. ';
   position: absolute;
   top: 0;
   bottom: 0;
@@ -12,8 +18,8 @@
   z-index: -1;
   opacity: 0.2; 
       min-height:50%; 
-    min-width:50%;   
-    }  
+    min-width:50%;*/   
+ /*   }  
 #background{
     position:absolute;
     z-index:0;
@@ -30,13 +36,12 @@
     font-size:120px;
     transform:rotate(225deg);
     -webkit-transform:rotate(225deg);
-}
-lorem30 
+}*/
 
 </style>
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-indigo-200 leading-tight" {{-- style="border-bottom-left-radius: 50% 20%; border-bottom-right-radius: 50% 20%;" --}}>
+        <h2 class="font-semibold text-xl text-indigo-200 leading-tight no-print" {{-- style="border-bottom-left-radius: 50% 20%; border-bottom-right-radius: 50% 20%;" --}}>
             {{ Auth::user()->second_name }} 
             {{ Auth::user()->first_name }}
         </h2>
@@ -44,7 +49,7 @@ lorem30
 
     <div class="py-12">
         <div class="max-w-7xl {{-- mx-auto --}} sm:px-6 lg:px-8">
-            <div class="p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg">
+            <div class="p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg no-print">
                 <div>
                     <x-jet-application-logo class="block h-12 w-auto" />
                 </div>
@@ -90,7 +95,7 @@ lorem30
             </div>  
 
             <div class="bg-gray-200 bg-opacity-25">
-                <div class="p-6">
+                <div class="p-6 relative">
                     <div class="flex items-center">
                         <x-icon name="academic-cap" class="h-14 w-14 text-gray-200"/>
                     </div>
@@ -111,6 +116,12 @@ lorem30
                                 <p class="text-xl font-extrabold">HIGHER EDUCATION EXAMINATIONS COUNCIL</p>
                                 <p class="text-xl font-extrabold">(HEXCO)</p>
                                 <p class="text-xl font-extrabold">INDIVIDUAL STATEMENT OF RESULTS</p>
+                                <p class="no-print"> 
+                                  <button class="cursor-pointer p-2" onclick="window.print()">
+                                    <x-icon="document-download" class="h-8 w-8 text-red-900" stroke-width="2"/>
+                                      download
+                                  </button>
+                                </p>    
                             </div>
                             <div class="my-4 py-2 w-1/2">
                                 <p class="flex justify-between sm:space-x-6"><span class="font-bold">CANDIDATE NUMBER</span><span>:{{$exam_results[0]->candidate_number}}</span></p>
@@ -124,7 +135,9 @@ lorem30
                         
               <table class="w-full">
                 <thead>
+
                   <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b">
+
                     <th class="px-4 py-3">PAPER No.</th>
                     <th class="px-4 py-3">APPROVED SUBJECT TITLES </th>
                     <th class="px-4 py-3">GRADE</th>
@@ -133,9 +146,12 @@ lorem30
                 </thead>
 
                 <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-             
+              
                @foreach($exam_results as $exam_result)   
-                  <tr class="bg-gray-50  text-gray-700">
+                  <tr class="bg-gray-100  text-gray-700">
+        <div class="text-gray-50 container__watermark text-4xl space-y-2 opacity-25" style=" transform: rotate(-45deg); position:absolute; width: 100%; margin: 0 auto; opacity: 0.25;">
+            <p>Not for Official Use Not for Official Use</p>
+        </div>                     
                     <td class="px-4 py-3">
                       <div class="flex items-center text-sm">
                         <div>

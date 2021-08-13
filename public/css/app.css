@@ -1091,8 +1091,8 @@ select {
 .-top-2 {
 	top: -0.5rem;
 }
-.top-32 {
-	top: 8rem;
+.top-40 {
+	top: 10rem;
 }
 .z-0 {
 	z-index: 0;
@@ -1439,14 +1439,14 @@ select {
 .flex-1 {
 	flex: 1 1 0%;
 }
+.flex-none {
+	flex: none;
+}
 .flex-auto {
 	flex: 1 1 auto;
 }
 .flex-initial {
 	flex: 0 1 auto;
-}
-.flex-none {
-	flex: none;
 }
 .flex-shrink-0 {
 	flex-shrink: 0;
@@ -1623,9 +1623,6 @@ select {
 }
 .overflow-y-hidden {
 	overflow-y: hidden;
-}
-.overflow-y-scroll {
-	overflow-y: scroll;
 }
 .truncate {
 	overflow: hidden;
@@ -2219,6 +2216,10 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(129, 140, 248, var(--tw-text-opacity));
 }
+.text-gray-50 {
+	--tw-text-opacity: 1;
+	color: rgba(249, 250, 251, var(--tw-text-opacity));
+}
 .text-blue-500 {
 	--tw-text-opacity: 1;
 	color: rgba(59, 130, 246, var(--tw-text-opacity));
@@ -2250,6 +2251,9 @@ select {
 }
 .opacity-50 {
 	opacity: 0.5;
+}
+.opacity-25 {
+	opacity: 0.25;
 }
 .shadow-sm {
 	--tw-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -2675,6 +2679,10 @@ select {
 	color: rgba(79, 70, 229, var(--tw-text-opacity));
 }
 @media (min-width: 640px) {
+
+	.sm\:top-32 {
+		top: 8rem;
+	}
 
 	.sm\:col-span-4 {
 		grid-column: span 4 / span 4;
