@@ -49,7 +49,7 @@
                                 <p class="flex justify-between"><span class="font-bold">COURSE TITLE</span><span class="text-red-700">:{{$exam_results[0]->discipline}}</span></p>
                             </div>
 
-                            <div class="grid md:grid-cols-4 gap-2 my-4 sm:border-b">
+                            {{-- <div class="grid md:grid-cols-4 gap-2 my-4 sm:border-b">
                                 <div class="font-extrabold">PAPER No. </div>
                                 <div class="font-extrabold">APPROVED SUBJECT TITLES </div>
                                 <div class="font-extrabold">GRADE </div>
@@ -61,7 +61,7 @@
                                 <div>{{$exam_result->session}} </div>
                                 
                             @endforeach                                
-                            </div>
+                            </div> --}}
 
                         @else
                         <p>There is no record of results. You may need to contact exams</p>

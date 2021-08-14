@@ -46,7 +46,7 @@
               <div class="flex-none w-full md:max-w-xs">
                 <x-sidebar/>
               </div>
-              <div class="flex-1">
+              <div class="flex-1 sm:ml-12 ml-12 md:ml-0">
                 <main class="">
                     {{ $slot }}
                 </main>
@@ -56,6 +56,28 @@
 
 
         </div>
+        {{-- footer --}}
+        <div class="bg-blue-900 py-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
+                    <div class="text-center text-sm text-gray-500 sm:text-left">
+                        <div class="flex items-center">
+
+                            <a href="https://portal.hrepoly.ac.zw" class="ml-1 underline">
+                                Portal
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <p>&copy; {{date('Y')}} IT Unit</p>
+                    </div>
+
+                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                        <a href="https://www.hrepoly.ac.zw">Harare Polytechnic</a>
+                    </div>
+                </div>                
+            </div>
+        </div>        
 
         @stack('modals')
 

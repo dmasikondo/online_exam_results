@@ -25,7 +25,7 @@
             @if($comment->url !='')
                  @if($comment->isImage()) 
                     <a href="/storage/{{$comment->url}}" target="_blank">
-                        <img src="/storage/{{$comment->url}}" alt="some files" class="w-16 hover:w-32 cursor-pointer">
+                        <img src="/storage/{{$comment->url}}" alt="image files" class="w-16 hover:w-32 cursor-pointer">
                     </a> 
                 @else
                     <a href="/storage/{{$comment->url}}" target="_blank">

@@ -105,6 +105,11 @@
                 <x-jet-button class="ml-4">
                     {{ __('Register') }}
                 </x-jet-button>
+                <x-jet-button class="ml-4">
+                    <a href="/">
+                        <x-icon name="home" class="w-5 h-5"/>
+                    </a>
+                </x-jet-button>                
             </div>
         </form>
     </x-jet-authentication-card>
