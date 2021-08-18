@@ -34,7 +34,7 @@
                         <a href="/"><img src="/storage/images/hrepoly_logo.png" /></a>
                     </div> 
                     <div class="contact_nu mt-8 pt-4 pb-20">
-                        <a href="#"> <x-icon name="phone" class="w-8 h-8 text-blue-900"/> Contact : +263 4 291 8081</a>
+                        <a href="#"> <x-icon name="phone" class="w-8 h-8 text-blue-900"/> Contact : +263 8677000343</a>
                     </div>                                          
                </div>
                <div class="my-20 py-32">
@@ -58,7 +58,7 @@
             @if (Route::has('login'))
                 <div class="{{-- hidden --}} fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        @if(Auth::user()->isStudent())        {
+                        @if(Auth::user()->isStudent())        
                             <a href="{{ url('/my-results') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                        
                         @elseif((Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit')) || Auth::user()->hasRole('superadmin'))        

@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['middleware' => ['auth:sanctum']], function(){
+Route::group(['middleware' => ['auth:sanctum','prevent-back-history']], function(){
     Route::get('/my-results', [ExamResultController::class, 'myresults'])->name('my-results');
     Route::get('/results/clearance/{user:slug}', [ExamResultController::class, 'show'])->name('my-clearance');
     //for accounts

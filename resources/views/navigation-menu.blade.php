@@ -17,6 +17,7 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div> --}}
+@auth                
     @if(Auth::user()->isStudent()) 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('my-results') }}" :active="request()->routeIs('my-results')">
@@ -40,7 +41,8 @@
                         {{ __('Add a New User') }}
                     </x-jet-nav-link>
                 </div>    
-    @endif              
+    @endif 
+@endauth             
 
 
             </div>
