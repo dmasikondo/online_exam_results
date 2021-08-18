@@ -34,7 +34,7 @@
           <input id="name" name="name" type="text" class="peer h-10 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 p-3" placeholder="Student Name" value="{{request('name')}}" />
           <label for="name" class="absolute left-2 px-1 -top-2.5 bg-white text-indigo-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-900 peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-indigo-600 peer-focus:text-sm">Student's Name</label>
           <div class="absolute right-0 top-0 mt-2 mr-2">
-            <x-icon name="user" class="h-6 w-6 text-indigo-600" stroke-width="1"/>
+            <x-icon name="user" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>
           </div>
         </div>
         <div class="relative flex-1">
@@ -44,7 +44,7 @@
           />
           <label for="national_id" class="absolute left-2 px-1 -top-2.5 bg-white text-indigo-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-900 peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-indigo-600 peer-focus:text-sm">National ID No.</label>
           <div class="absolute right-0 top-0 mt-2 mr-2">
-            <x-icon name="identification" class="h-6 w-6 text-indigo-600" stroke-width="1"/>
+            <x-icon name="identification" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>
           </div>
         </div>
    {{--      <div class="relative flex-1">

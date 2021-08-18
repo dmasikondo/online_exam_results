@@ -23,7 +23,7 @@
                                     <x-form.input id="first_name" type="text" name="first_name" placeholder="Surname" value="{{old('first_name')}}"  required/> 
                                     <x-form.label for="first_name">First Name</x-form.label>             
                                     <div class="absolute right-0 top-0 mt-6 mr-2">
-                                        <x-icon name="user" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                                        <x-icon name="user" class="h-6 w-6 text-indigo-600 hidden lg:block" stroke-width="1"/>                           
                                     </div>
                                     <p class="text-red-900 italic text-sm">@error('first_name') {{$message}} @enderror</p>                    
                                 </div>
@@ -32,7 +32,7 @@
                                     <x-form.input id="second_name" type="text" name="second_name" placeholder="Second Name" value="{{old('second_name')}}" required/> 
                                     <x-form.label for="second_name">Last Name</x-form.label>             
                                     <div class="absolute right-0 top-0 mt-6 mr-2">
-                                        <x-icon name="user-group" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                                        <x-icon name="user-group" class="h-6 w-6 text-indigo-600 hidden lg:block" stroke-width="1"/>                           
                                     </div>
                                     <p class="text-red-900 italic text-sm">@error('second_name') {{$message}} @enderror</p>                    
                                 </div>   
@@ -43,7 +43,7 @@
                                     <x-form.input id="password" type="password" name="password" placeholder="Password" required/> 
                                     <x-form.label for="password">New Password</x-form.label>             
                                     <div class="absolute right-0 top-0 mt-6 mr-2">
-                                        <x-icon name="lock-closed" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                                        <x-icon name="lock-closed" class="h-6 w-6 text-indigo-600 hidden lg:block" stroke-width="1"/>                           
                                     </div>
                                     <p class="text-red-900 italic text-sm">@error('password') {{$message}} @enderror</p>                    
                                 </div>
@@ -52,7 +52,7 @@
                                     <x-form.input id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm Password" required/> 
                                     <x-form.label for="password_confirmation">Confirm Password</x-form.label>             
                                     <div class="absolute right-0 top-0 mt-6 mr-2">
-                                        <x-icon name="key" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                                        <x-icon name="key" class="h-6 w-6 text-indigo-600 hidden lg:block" stroke-width="1"/>                           
                                     </div>                 
                                 </div>  
                         </div>                           
