@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Harare Polytechnic Results</title>
+        <link rel="icon" href="{{ URL::asset('storage/images/favicon2.png') }}" type="image/x-icon"/>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
