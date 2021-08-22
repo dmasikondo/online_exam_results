@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <script src="{{ mix('js/app.js') }}" defer></script>
 
         <!-- Styles -->
         <style>
@@ -40,6 +41,7 @@
                </div>
                <div class="my-20 py-32">
                     <div class="space-y-4 font-semibold traking-wide">
+                        <x-session-warning/>
                         <h1 class="text-blue-900 text-6xl ">View</h1>
                         <h2 class="text-5xl ">Your Results Online</h2>
                     </div>

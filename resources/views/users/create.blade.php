@@ -83,7 +83,7 @@
                                 </div>
 
                                 <div class="mt-4 relative flex-1">
-                                    <x-form.select id="role"  name="department" placeholder="Select the User's Department" required> 
+                                    <x-form.select id="department"  name="department" placeholder="Select the User's Department" required> 
                                         <option value="" class="py-4 border-l-4 border-transparent hover:border-blue-500 "></option>
                                     @foreach($departments as $department)
                                         <option value="{{$department->id}}">{{$department->name}}</option>

@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-// use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Role;
 use App\Models\Department;
 use App\Models\User;
 use Illuminate\Validation\Rule;
-use Auth;
 //use Auth;
 
 class UserController extends Controller
@@ -69,9 +68,11 @@ class UserController extends Controller
      */
 
     public function activate()
-    {         
+    {        
+       
+        Auth::guard('web')->logout();            
         $slug= request()->ikokokwacho;
-        Auth::guard('web')->logout();
+        
         return view('users.activate',compact('slug'));
     }
 
