@@ -7,6 +7,7 @@ use App\Http\Controllers\FeesClearanceController;
 use App\Http\Controllers\ExamResultController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StatisticsController;
+use App\Http\Controllers\CandidateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,8 @@ Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate']
     Route::get('/dashboard/fees-clearances/{user:slug}', [FeesClearanceController::class, 'show'])->name('fees-clearance');
     Route::get('/users/registration', [UserController::class, 'create'])->name('user-registration');
     Route::post('/users/registration', [UserController::class, 'store']);
-    Route::get('/statistics',[StatisticsController::class, 'index']);
+    Route::get('/statistics',[StatisticsController::class, 'index'])->name('statistics');
+    Route::get('/candidates',[CandidateController::class, 'index'])->name('candidates');
         
     Route::get('/practice', function(){
         return view('practice');

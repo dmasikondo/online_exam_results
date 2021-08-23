@@ -3,39 +3,63 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
       <div class="bg-blue-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600  text-white font-medium group">
         <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-          <x-icon name="user-group" class="stroke-current text-blue-800"/>
+          <x-icon name="user-group" class="w-8 h-8 stroke-current text-blue-800 transform transition-transform duration-500 ease-in-out" stroke-width="2"/>
         </div>
         <div class="text-right">
-          <p class="text-2xl">1,257</p>
-          <p>Visitors</p>
+          <p class="text-2xl">{{$totalCandidates}}</p>
+          <p>Candidature</p>
         </div>
       </div>
       <div class="bg-blue-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600  text-white font-medium group">
         <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-          <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-        </div>
+          <x-icon name="status-offline" class="w-8 h-8 stroke-current text-blue-800 transform transition-transform duration-500 ease-in-out" stroke-width="2"/>        
+      </div>
         <div class="text-right">
-          <p class="text-2xl">557</p>
-          <p>Orders</p>
+          <p class="text-2xl">{{$offLineClearedStudents}}</p>
+          <p>Accounts: Offline Cleared</p>
         </div>
       </div>
       <div class="bg-blue-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 text-white font-medium group">
         <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-          <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+          <x-icon name="status-online" class="w-8 h-8 stroke-current text-blue-800 transform transition-transform duration-500 ease-in-out" stroke-width="2"/> 
         </div>
         <div class="text-right">
-          <p class="text-2xl">$11,257</p>
-          <p>Sales</p>
+          <p class="text-2xl">{{$onLineClearedStudents}}</p>
+          <p>Accounts: Online Processed Requests</p>
         </div>
       </div>
       <div class="bg-blue-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 text-white font-medium group">
         <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-          <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="stroke-current text-blue-800 dark:text-gray-800 transform transition-transform duration-500 ease-in-out"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <x-icon name="users" class="w-8 h-8 stroke-current text-blue-800 transform transition-transform duration-500 ease-in-out" stroke-width="2"/> 
         </div>
         <div class="text-right">
-          <p class="text-2xl">$75,257</p>
-          <p>Balances</p>
+          <p class="text-2xl">{{$studentsRegisteredOnSystem}}</p>
+          <p>Students Registered on the System</p>
         </div>
       </div>
+@if(Auth::user()->hasRole('exams') || Auth::user()->hasRole('manager') || (Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit')) || Auth::user()->hasRole('superadmin'))      
+      <div class="bg-blue-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 text-white font-medium group">
+        <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+          <x-icon name="collection" class="w-8 h-8 stroke-current text-blue-800 transform transition-transform duration-500 ease-in-out" stroke-width="2"/> 
+        </div>
+        <div class="text-right">
+          <p class="text-2xl">{{$departments}}</p>
+          <p>Hexco Disciplines</p>
+        </div>
+      </div>
+@endif 
+
+@if(Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit') || Auth::user()->hasRole('superadmin')) 
+      <div class="bg-blue-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 text-white font-medium group">
+        <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
+          <x-icon name="identification" class="w-8 h-8 stroke-current text-blue-800 transform transition-transform duration-500 ease-in-out" stroke-width="2"/> 
+        </div>
+        <div class="text-right">
+          <p class="text-2xl">{{$staffUsers}}</p>
+          <p>Members of Staff Users</p>
+        </div>
+      </div> 
+@endif
+
     </div>
 </div>

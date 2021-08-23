@@ -6,21 +6,25 @@ use Livewire\Component;
 use App\Models\Result;
 use App\Models\User;
 use App\Models\ClearedStudent;
+use App\Models\Fee;
 
 class Candidates extends Component
 {
     public $departments;
     public $studentsRegisteredOnSystem;
     public $offLineClearedStudents;
-    public $onlineClearedStudents;
+    public $onLineClearedStudents;
     public $totalCandidates;
+    public $staffUsers;
 
     public function render()
     {
-        $this->departments = Result::select('discipline')->groupBy('discipline')->count();
+        $this->departments = Result::select('discipline')->distinct('discipline')->count();
         $this->studentsRegisteredOnSystem=User::has('results')->count();
         $this->offLineClearedStudents =ClearedStudent::count();
-        $this->totalCandidates = Result::all()->groupBy('intake_id','candidate_number');
+        $this->onLineClearedStudents =Fee::whereNotNull('cleared_at')->count();
+        $this->totalCandidates = \DB::table('results')->where('intake_id','=',1)->distinct('candidate_number')->count();
+        $this->staffUsers = User::has('staff')->count();
 
         return view('livewire.statistics.candidates');
     }

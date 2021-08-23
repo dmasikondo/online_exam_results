@@ -94,10 +94,27 @@ return [
         elseif((Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('accounts')) || Auth::user()->hasRole('accounts'))
         {
             return "/dashboard/fees-clearances";
-        }        
+        } 
+
+        /**
+         * if user is Exams Hod or exams
+         */
+        elseif((Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('exams')) || Auth::user()->hasRole('exams'))
+        {
+            return "/candidates";
+        } 
+        /**
+         * if user is principal's office
+         */
+        elseif((Auth::user()->hasRole('manager') && Auth::user()->belongsTodepartmentOf('principal office')) || Auth::user()->hasRole('principal office'))
+        {
+            return "/statistics";
+        }               
         else{
            return RouteServiceProvider::HOME;
-        }
+        } 
+
+
        
 /*        if ($is_active == 1) {
             Auth
