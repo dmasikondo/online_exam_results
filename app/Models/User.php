@@ -83,7 +83,7 @@ class User extends Authenticatable
 
    public function staff()
     {
-        return $this->hasMany(Staff::class);
+        return $this->hasMany(Staff::class,'user_id');
     }    
 
     public function roles()
@@ -152,11 +152,13 @@ class User extends Authenticatable
       * check if user belongs to a given department
       */
 
-     public function belongsToDepartmentOf($dept)
+     public function belongsTodepartmentOf($dept)
      {
         $department = Department::where('name',$dept)->first();
-
-        return (bool) $this->staff()->where('user_id', $this->id)->where('department_id',$department->id)->count();
+        //dd($department->id);
+        return (bool)($this->staff()->where('user_id', $this->id)->where('department_id',$department->id)->count());
+        //dd($value);
+        //return (bool) $this->staff()->where('user_id', $this->id)->where('department_id',$department->id)->count();
 
      /*  $exists= $this->whereHas('staff', fn ($query)=>
             $query->where('department_id',$department->id )

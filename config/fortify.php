@@ -99,7 +99,7 @@ return [
         /**
          * if user is Exams Hod or exams
          */
-        elseif((Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('exams')) || Auth::user()->hasRole('exams'))
+        elseif(Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('examinations') || Auth::user()->hasRole('exams'))
         {
             return "/candidates";
         } 

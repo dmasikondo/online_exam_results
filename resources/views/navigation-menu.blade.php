@@ -29,12 +29,24 @@
                         {{ __('Fees Clearance') }}
                     </x-jet-nav-link>
                 </div> --}}                
-    @elseif(Auth::user()->hasRole('accounts'))
+    @elseif((Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('accounts')) || Auth::user()->hasRole('accounts'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('fees-clearances') }}" :active="request()->routeIs('fees-clearances')">
                         {{ __('Fees Clearances') }}
                     </x-jet-nav-link>
-                </div>     
+                </div> 
+    @elseif(Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('examinations') || Auth::user()->hasRole('exams'))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('candidates') }}" :active="request()->routeIs('candidates')">
+                        {{ __('Candidates') }}
+                    </x-jet-nav-link>
+                </div> 
+    @elseif((Auth::user()->hasRole('manager') && Auth::user()->belongsTodepartmentOf('principal office')) || Auth::user()->hasRole('principal office'))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('statistics') }}" :active="request()->routeIs('statistics')">
+                        {{ __('Statistics') }}
+                    </x-jet-nav-link>
+                </div>                                    
     @elseif(Auth::user()->hasRole('superadmin') || (Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit')))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('user-registration') }}" :active="request()->routeIs('user-registration')">

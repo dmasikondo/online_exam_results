@@ -55,7 +55,7 @@
           <!-- ./Student -->
 
           {{-- Accounts --}}
-          @if(Auth::user()->hasRole('accounts'))
+          @if((Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('accounts')) || Auth::user()->hasRole('accounts'))
             <li class="px-5 hidden md:block">
               <div class="flex flex-row items-center mt-5 h-8">
                 <div class="text-sm font-light tracking-wide text-gray-400 uppercase">Accounts</div>
@@ -98,7 +98,7 @@
           @endif
             {{-- ./Accounts --}}
           {{-- exams --}}
-          @if(Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('exams') || Auth::user()->hasRole('exams'))
+          @if(Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('examinations') || Auth::user()->hasRole('exams'))
             <li class="px-5 hidden md:block">
               <div class="flex flex-row items-center mt-5 h-8">
                 <div class="text-sm font-light tracking-wide text-gray-400 uppercase">Examinations</div>
@@ -150,7 +150,8 @@
 
             {{-- ./exams  --}}
           {{-- ITU --}}
-      @if(Auth::user()->hasRole('superadmin') || (Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit')))
+
+      @if(Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit') || Auth::user()->hasRole('superadmin'))
             <li class="px-5 hidden md:block">
               <div class="flex flex-row items-center mt-5 h-8">
                 <div class="text-sm font-light tracking-wide text-gray-400 uppercase">IT Unit</div>
