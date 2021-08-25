@@ -5,6 +5,8 @@
             <a href="/dashboard/fees-clearances">Fees Clearance: </a>
             
             <small> {{$user->second_name}} {{$user->first_name}}</small> 
+            <x-jet-button class="text-right" onclick="window.history.back()">Back</x-jet-button>
+
         </h2>
     </x-slot> 
 
