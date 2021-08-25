@@ -40,7 +40,7 @@
         <div class="relative flex-1">
           <input id="national_id" value="{{request('nat_id')}}" name="nat_id" type="text" class="peer h-10 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 py-4 px-8" 
             placeholder="National ID" 
-            pattern="{{-- ([0-9]{2}-[0-9]{5,7}[a-zA-Z]{1}[0-9]{2}) --}}" title="National ID must be of the format 99-999999Y99"
+            pattern="([0-9]{2}-[0-9]{5,7}[a-zA-Z]{1}[0-9]{2})" title="National ID must be of the format 99-999999Y99"
           />
           <label for="national_id" class="absolute left-2 px-1 -top-2.5 bg-white text-indigo-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-900 peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-indigo-600 peer-focus:text-sm">National ID No.</label>
           <div class="absolute right-0 top-0 mt-2 mr-2">
