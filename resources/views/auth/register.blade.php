@@ -72,7 +72,7 @@
                 </div>
 
                 <div class="mt-4 relative flex-1">
-                    <x-form.input id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm Password" required/> 
+                    <x-form.input id="password_confirmation" type="password" name="password_confirmation" class="px-5" placeholder="Confirm Password" required/> 
                     <x-form.label for="password_confirmation">Confirm Password</x-form.label>             
                     <div class="absolute right-0 top-0 mt-6 mr-2">
                         <x-icon name="key" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           

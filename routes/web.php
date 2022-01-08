@@ -24,9 +24,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate']], function(){
     Route::get('/my-results', [ExamResultController::class, 'myresults'])->name('my-results');
     Route::get('/results/clearance/{user:slug}', [ExamResultController::class, 'show'])->name('my-clearance');
+    Route::get('/results/upload-csv',[ExamResultController::class, 'uploadCsv'])->name('results-csv');
     //for accounts
     Route::get('/dashboard/fees-clearances', [FeesClearanceController::class, 'index'])->name('fees-clearances');
     Route::get('/dashboard', [FeesClearanceController::class, 'index'])->name('dashboard');
@@ -34,7 +36,7 @@ Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate']
     Route::get('/users/registration', [UserController::class, 'create'])->name('user-registration');
     Route::post('/users/registration', [UserController::class, 'store']);
     Route::get('/statistics',[StatisticsController::class, 'index'])->name('statistics');
-    Route::get('/candidates',[CandidateController::class, 'index'])->name('candidates');
+    Route::get('/candidates',[CandidateController::class, 'index'])->name('candidates');    
         
     Route::get('/practice', function(){
         return view('practice');

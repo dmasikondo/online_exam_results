@@ -86,7 +86,8 @@ class UserController extends Controller
         'first_name' => ['required', 'string', 'max:255','exists:users,first_name'],
         'second_name' => ['required', 'string', 'max:255', Rule::exists('users')
                 ->where('first_name',request()->first_name)
-                ->where('slug',request()->checkit)],
+                ->where('slug',request()->checkit),
+            ],
         'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 

@@ -183,22 +183,59 @@ class User extends Authenticatable
             });
         });*/
 
+
             $query->when($filters['department'] ?? false, fn($query, $department) =>
             $query->whereHas('results', fn ($query) =>
                 $query->where('discipline', $department)
                 )
             );
-            $query->when($filters['name'] ?? false, fn($query, $name) =>
-            $query->has('results')
-                ->where('second_name', 'like', '%' . $name . '%')
-                ->orWhere('first_name', 'like', '%' . $name . '%')
+            $query->when($filters['clearance_status'] ?? false, fn($query, $clearance_status) =>
+                $query->has('results')
+          //  if($clearance_status =='cleared'){
+                ->whereDoesntHave('fees',function($q){
+                $q->where('is_cleared',1);
+                })                
+           // }
+/*            elseif($clearance_status =='pending'){
+                ->whereHas('fees',function($q){
+                $q->where('is_cleared',false)
+                ->whereNull('cleared_at');
+                })
+            }
+            elseif($clearance_status =='declined'){
+                ->whereHas('fees',function($q){
+                $q->where('is_cleared',false)
+                ->whereNotNull('cleared_at');
+                })
+            } 
+            else{
+                ->whereDoesntHave('fees',function($query){
+                            $query->where('is_cleared',1);
+                         })                
+            } */          
+            );            
+            $query->when($filters['second_name'] ?? false, fn($query, $second_name) =>
+            $query->has('results') 
+                ->where('second_name', 'like', '%' . $second_name . '%')
+             //   ->orWhere('first_name', 'like', '%' . $name . '%')
                 
             );
+            $query->when($filters['first_name'] ?? false, fn($query, $first_name) =>
+            $query->has('results')
+                ->where('first_name', 'like', '%' . $first_name . '%')
+             //   ->orWhere('first_name', 'like', '%' . $name . '%')
+                
+            );            
             $query->when($filters['nat_id'] ?? false, fn($query, $nat_id) =>
             $query->has('results')
                 ->where('national_id', 'like', '%' . $nat_id . '%')
                
-            );            
+            );  
+
+/*         $students=User::has('results')->filter(
+            request(['department','name','nat_id']))->whereDoesntHave('fees',function($query){
+            $query->where('is_cleared',1);
+         })  */                    
                        
     }
 

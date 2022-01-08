@@ -47,4 +47,13 @@ class ExamResultController extends Controller
         }
         return view('results.show',compact('fees_clearances', 'offline_cleared'));
     }
+
+    /**
+     * show form to upload csv file to mysql database
+     */
+
+    public function uploadCsv()
+    {
+        return view ('results.uploadcsv');
+    }
 }

@@ -24,8 +24,11 @@ class FeesClearanceController extends Controller
         $departments = Result::select('discipline')->groupBy('discipline')->get();
         
          $students=User::has('results')->filter(
-            request(['department','name','nat_id']))
-            ->with('fees','results','fees.approver')->paginate(20)->withQueryString() ;                   
+            request(['department','second_name','first_name','nat_id','clearance_status']))
+            ->with('fees','results','fees.approver')->orderBy('second_name')->paginate(20)->withQueryString() ; 
+/*         $students=User::has('results')->whereDoesntHave('fees',function($query){
+            $query->where('is_cleared',1);
+         })->with('fees','results','fees.approver')->orderBy('second_name')->paginate(20)->withQueryString() ;  */                             
 
         return view('dashboard.clearance.fees.index',compact('students','departments'));
     }
