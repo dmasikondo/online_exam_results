@@ -20,10 +20,13 @@ class Candidates extends Component
     public function render()
     {
         $this->departments = Result::select('discipline')->distinct('discipline')->count();
-        $this->studentsRegisteredOnSystem=User::has('results')->count();
+        $this->studentsRegisteredOnSystem=User::has('results', fn($query)=>
+            $query->where('intake_id',2)
+        );
+        //$this->studentsRegisteredOnSystem->where('intake_id','=',2)->count();
         $this->offLineClearedStudents =ClearedStudent::count();
         $this->onLineClearedStudents =Fee::whereNotNull('cleared_at')->count();
-        $this->totalCandidates = \DB::table('results')->where('intake_id','=',1)->distinct('candidate_number')->count();
+        $this->totalCandidates = \DB::table('results')->where('intake_id','=',2)->distinct('candidate_number')->count();
         $this->staffUsers = User::has('staff')->count();
 
         return view('livewire.statistics.candidates');

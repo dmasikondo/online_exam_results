@@ -33,8 +33,10 @@ class ResultPolicy
      */
     public function view(User $user, Result $result)
     {
-        $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$user->national_id.'%')->get();
-        return (($user->id == $result->users_id && $user->fees[0]->is_cleared) || $cleared_national_id->count()>0);
+        $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$user->national_id.'%')
+            ->where('intake_id',$result->intake_id)
+            ->get();
+        return (($user->id == $result->users_id && $user->fees[0]->is_cleared && $result->intake_id == $user->fees[0]->intake_id) || $cleared_national_id->count()>0);
         //|| $user->hasRole('superadmin') || $user->hasRole('exams') || $user->hasRole('superadmin') || $user->hasRole('manager') 
 
     }

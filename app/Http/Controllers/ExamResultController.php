@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
 use App\Models\Fee;
+use App\Models\Result;
 use App\Models\ClearedStudent;
+use Illuminate\Validation\Rule;
 
 class ExamResultController extends Controller
 {
@@ -22,6 +24,42 @@ class ExamResultController extends Controller
         }
         //$this->authorize('view', $exam_results[0]);
         return view('results.myresults', compact('exam_results'));
+    }
+
+    public function myexamResults()
+    {
+        //validate, check if there are results with the given candidate number matching first name and surname
+       
+        $this->validate(request(), [
+            'candidate_number' => ['required', 'string', 'max:255', Rule::exists('results')
+                ->where('names',Auth::user()->first_name)
+                ->where('surname',Auth::user()->second_name)],
+            'exam_session' => ['required'],
+        ]);
+
+        //check if the results exist
+        $exam_outcome = Result::where('candidate_number',request()->candidate_number)
+                                ->where('names',Auth::user()->first_name)
+                                ->where('surname',Auth::user()->second_name)
+                                ->where('intake_id',request()->exam_session);
+
+        //if the results where not yet assigned to the user then do so
+        if($exam_outcome->whereNull('users_id')->count()>0)
+        {
+            foreach($exam_outcome->whereNull('users_id')->get() as $exam_result){
+                $exam_result->update(['users_id'=>Auth::user()->id]);
+            }
+          
+        }
+        $exam_results = Result::where('candidate_number',request()->candidate_number)
+                                ->where('names',Auth::user()->first_name)
+                                ->where('surname',Auth::user()->second_name)
+                                ->where('intake_id',request()->exam_session)
+                                ->get();
+        return view('results.myresults', compact('exam_results'));
+
+
+
     }
 
     /**
@@ -47,6 +85,10 @@ class ExamResultController extends Controller
         }
         return view('results.show',compact('fees_clearances', 'offline_cleared'));
     }
+
+    /**
+     * Check exan results
+     */
 
     /**
      * show form to upload csv file to mysql database

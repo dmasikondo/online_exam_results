@@ -6,25 +6,49 @@
       display: none;
     }
   }
+/*.exam_results2{
+    position:absolute;
+    z-index:1;*/
+/*  content: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quis suscipit non, quam explicabo perferendis maxime, blanditiis id amet odit neque. Minus alias deleniti neque recusandae voluptates, nulla, optio ipsa. ';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  opacity: 0.2; 
+      min-height:50%; 
+    min-width:50%;*/   
+ /*   }  
+#background{
+    position:absolute;
+    z-index:0;
+    background:white;
+    display:block;
+    min-height:50%; 
+    min-width:50%;
+    color:yellow;
+}
 
+#bg-text
+{
+    color:lightgrey;
+    font-size:120px;
+    transform:rotate(225deg);
+    -webkit-transform:rotate(225deg);
+}*/
 
 </style>
-    <x-app-layout>
-        <div class="no-print">
-        <x-slot name="header">
-            <h2 class="font-semibold text-xl text-indigo-200 leading-tight">
-                {{ __('Dashboard') }} 
-            </h2>
-        </x-slot>
-        </div>
- 
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-indigo-200 leading-tight no-print" {{-- style="border-bottom-left-radius: 50% 20%; border-bottom-right-radius: 50% 20%;" --}}>
+            {{ Auth::user()->second_name }} 
+            {{ Auth::user()->first_name }}
+        </h2>
+    </x-slot>    
 
-       <div class="py-3">
-            <div class="max-w-7xl rounded-lg my-4">
-                @livewire('result.check-result')
-            </div>
-            <div class="max-w-7xl rounded-lg">
-
+    <div class="py-12">
+        <div class="max-w-7xl {{-- mx-auto --}} sm:px-6 lg:px-8">
             <div class="p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg no-print">
                 <div>
                     <x-jet-application-logo class="block h-12 w-auto" />
@@ -88,7 +112,7 @@
   </div> --}}
                        <article class="exam_results">
                             <div class="text-center border-b">
-                                <h2 class="border-b text-lg font-thin">MINISTRY OF HIGHER AND TERTIARY EDUCATION, SCIENCE, INNOVATION AND TECHNOLOGY DEVELOPMENT</h2>
+                                <h2 class="border-b text-lg font-thin">MINISTRY OF HIGHER AND TERTIARY EDUCATION, SCIENCE AND TECHNOLOGY DEVELOPMENT</h2>
                                 <p class="text-xl font-extrabold">HIGHER EDUCATION EXAMINATIONS COUNCIL</p>
                                 <p class="text-xl font-extrabold">(HEXCO)</p>
                                 <p class="text-xl font-extrabold">INDIVIDUAL STATEMENT OF RESULTS</p>
@@ -125,9 +149,9 @@
               
                @foreach($exam_results as $exam_result)   
                   <tr class="bg-gray-100  text-gray-700">
-{{--         <div class="text-gray-50 container__watermark text-4xl space-y-2 opacity-25" style=" transform: rotate(-45deg); position:absolute; width: 100%; margin: 0 auto; opacity: 0.25;">
+        <div class="text-gray-50 container__watermark text-4xl space-y-2 opacity-25" style=" transform: rotate(-45deg); position:absolute; width: 100%; margin: 0 auto; opacity: 0.25;">
             <p>Not for Official Use Not for Official Use</p>
-        </div> --}}                     
+        </div>                     
                     <td class="px-4 py-3">
                       <div class="flex items-center text-sm">
                         <div>
@@ -152,8 +176,8 @@
                         @endif
                         </div>
                 </section>
-                </div>                                     
-            </div>
-        </div>        
-    </x-app-layout> 
+                </div>                     
+        </div>
+    </div>        
+</x-app-layout>  
 </div>

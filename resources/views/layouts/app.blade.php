@@ -60,8 +60,8 @@
 
         </div>
         {{-- footer --}}
-        <div class="bg-blue-900 py-4">
-            <div class="max-w-7xl mx-auto">
+        <div class="bg-blue-900 py-4 no-print">
+            <div class="max-w-7xl">
                 <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
                     <div class="text-center text-sm text-gray-500 sm:text-left">
                         <div class="flex items-center">
