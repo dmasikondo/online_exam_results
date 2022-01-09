@@ -104,7 +104,7 @@
                     <td>{{$fee_clearance->intake->label}}</td>
                     <td>
      {{-- action buttons--}} 
-                    @if($user->isClearedOffline())
+                    @if($user->isClearedOffline($fee_clearance->intake_id))
                       <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> 
                         <x-icon name="check-circle" class="inline w-4 h-4"/>
                       </span>                        

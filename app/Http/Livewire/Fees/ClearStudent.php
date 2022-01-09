@@ -110,7 +110,12 @@ class ClearStudent extends Modal
                       
         }   
         
-        $this->fee->update(['is_cleared'=>true, 'clearer_id'=>Auth::user()->id, 'cleared_at'=>now()]);  
+        //$this->fee->update(['is_cleared'=>true, 'clearer_id'=>Auth::user()->id, 'cleared_at'=>now()]); 
+        Fee::where('user_id',$this->fee->user_id)
+            ->where('intake_id','<=',$this->fee->intake_id)
+            ->where('is_cleared',0)
+            ->update(['is_cleared'=>true, 'clearer_id'=>Auth::user()->id, 'cleared_at'=>now()]);
+
          $this->fee->files()->create(['body' =>'Your account was successfully processed','user_id' => Auth::user()->id]);          
          session()->flash('message',"The student: '$this->surname $this->first_name's account was successfully updated");
         $this->hide(); 

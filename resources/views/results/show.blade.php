@@ -17,15 +17,17 @@
                     Welcome to Harare Polytechnic's Hexco Examination Results!
                 </div>
 
+            {{-- @foreach($fees_clearances as $fees_clearance) --}}
                 <div class="mt-6 text-gray-500">
-                   @can('sendProof', $fees_clearances[0]) {{-- not able to view results unless admin --}}
-                    You are not currently cleared by the accounts department to view your current Harare Polytechnic Hexco Results. You may need to upload proof of fees payment.
+                   @can('sendProof', $fees_clearances->last()) 
+                    You are not currently cleared by the accounts department to view your Harare Polytechnic's {{$fees_clearances->last()->intake->label}}. You may need to upload proof of fees payment.
                    @endcan 
-                   @cannot('sendProof', $fees_clearances[0])
-                    You have been cleared by the accounts department and you are able to view your current Harare Polytechnic Hexco Results.
+                   @cannot('sendProof', $fees_clearances->last())
+                    You have been cleared by the accounts department and you are able to view your Harare Polytechnic's {{$fees_clearances->last()->intake->label}}.
                    @endcannot
 
                 </div>
+           {{--  @endforeach --}}
             </div>
 
             <div class="my-24 p-6 sm:px-20 bg-white rounded-lg">

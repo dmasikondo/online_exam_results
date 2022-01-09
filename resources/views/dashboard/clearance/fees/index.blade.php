@@ -59,20 +59,20 @@
                     <td class="px-4 py-3 text-sm">{{$student->results[0]->discipline}}</td>
                     <td class="px-4 py-3 text-xs">
      {{-- Display clearannce status--}}
-                    @if($student->isClearedOffline())
+                    @if($student->isClearedOffline($student->fees->last()->intake_id))
                       <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> 
                         Approved 
                         <x-icon name="check-circle" class="inline w-4 h-4"/>
-                      </span>                    
-                     @elseif($student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared == false)
+                      </span>                                      
+                     @elseif($student->fees->last()->cleared_at == null && $student->fees->last()->is_cleared == false)
                      	<span class="px-2 py-1 font-semibold leading-tight text-yellow-700 bg-yellow-100 rounded-full"> 
                      		Pending
                      	</span>                     	
-                     @elseif(!$student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared == false)
+                     @elseif(!$student->fees->last()->cleared_at == null && $student->fees->last()->is_cleared == false)
                      	<span class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full"> 
                      		Declined
                      	</span>
-                     @elseif(!$student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared)
+                     @elseif(!$student->fees->last()->cleared_at == null && $student->fees->last()->is_cleared)
                      	<span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> 
                      		Approved
                      	</span>
@@ -80,41 +80,41 @@
        {{-- ./ Display clearannce status--}}              
                       
                       <p class="text-xs text-gray-600 dark:text-gray-400">
-                      	{{!is_null($student->fees[0]->cleared_at)? $student->fees[0]->cleared_at->diffForHumans():''}}
+                      	{{!is_null($student->fees->last()->cleared_at)? $student->fees->last()->cleared_at->diffForHumans():''}}
                       </p>
                     </td>
                     <td class="px-4 py-3 text-sm">
                       <p class="font-semibold">
-                @if($student->isClearedOffline())
+                @if($student->isClearedOffline($student->fees->last()->intake_id))
                     <span class="text-xs">Accounts Department -- (Offline)</span>  
                 @else                
-                    @can('showName',$student->fees[0])
-                        {{$student->fees[0]->approver->second_name ?? false}}
-                        {{$$student->fees[0]->approver->first_name ?? false}}  
+                    @can('showName',$student->fees->last())
+                        {{$student->fees->last()->approver->second_name ?? false}}
+                        {{$student->fees->last()->approver->first_name ?? false}}  
                     @endcan                   
-                    @cannot('showName',$student->fees[0])
+                    @cannot('showName',$student->fees->last())
                       <span class="text-xs">Accounts Department</span>  
                     @endcannot
                 @endif
                       </p>
                       <p class="text-xs text-gray-600 dark:text-gray-400">
-                      	{{$student->fees[0]->cleared_at? Carbon\Carbon::parse($student->fees[0]->cleared_at)->format('D d M Y h:i:s'): ''}}
+                      	{{$student->fees->last()->cleared_at? Carbon\Carbon::parse($student->fees->last()->cleared_at)->format('D d M Y h:i:s'): ''}}
                       </p>
                     </td>
-                    <td class="px-4 py-3 text-sm">{{$student->updated_at}}</td>
+                    <td class="px-4 py-3 text-sm">{{$student->fees->last()->updated_at}}</td>
                     <td>
      {{-- action buttons--}} 
-                    @if($student->isClearedOffline())
+                    @if($student->isClearedOffline($student->fees->last()->intake_id))
                       <span class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full"> 
                         <x-icon name="check-circle" class="inline w-4 h-4"/>
                       </span>                        
-                     @elseif(!$student->fees[0]->cleared_at == null && $student->fees[0]->is_cleared)
+                     @elseif(!$student->fees->last()->cleared_at == null && $student->fees->last()->is_cleared)
                        <x-icon name="check-circle" class="w-4 h-4 text-green-700"/>
                       
 {{--                      @elseif(!$student->fees[0]->cleared_at == null && !is_null($student->fees[0]->clearer_id) && $student->fees[0]->is_cleared == false)
                         <x-icon name="exclamation" class="w-4 h-4 text-red-700"/> --}}
                      @else        
-                    	<button onclick="window.livewire.emitTo('fees.clear-student','updateFeesClearanceState','{{$student->fees[0]->slug}}')" 
+                    	<button onclick="window.livewire.emitTo('fees.clear-student','updateFeesClearanceState','{{$student->fees->last()->slug}}')" 
             				    class="text-sm py-1 px-2 rounded-lg bg-indigo-500 text-white hover:text-indigo-500 hover:bg-white hover:border-1 hover:border-indigo-500">
             				    update fees clearance
             			   </button>

@@ -54,10 +54,12 @@ class Result extends Model
                        
     } 
 
-    public function isClearedOffline()
+    public function isClearedOffline($intake)
     {
         return false;
-        $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$this->user->national_id.'%')->get();
+        $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$this->user->national_id.'%')
+            ->where('intake_id',$intake)
+            ->get();
         if($cleared_national_id->count()>0) {
             return true;
         }

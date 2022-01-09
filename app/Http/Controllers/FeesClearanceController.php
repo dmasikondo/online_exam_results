@@ -25,7 +25,7 @@ class FeesClearanceController extends Controller
         
          $students=User::has('results')->filter(
             request(['department','second_name','first_name','nat_id','clearance_status']))
-            ->with('fees','results','fees.approver')->orderBy('second_name')->paginate(20)->withQueryString() ; 
+            ->with('fees','results','fees.approver')->orderBy('second_name')->paginate(20)->withQueryString(); 
 /*         $students=User::has('results')->whereDoesntHave('fees',function($query){
             $query->where('is_cleared',1);
          })->with('fees','results','fees.approver')->orderBy('second_name')->paginate(20)->withQueryString() ;  */                             
@@ -46,7 +46,7 @@ class FeesClearanceController extends Controller
         /**
          * Check if student was cleared offline (excel list of cleared students from accounts dept to ITU updated to database)
          */
-        $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$user->national_id.'%')->get();
+        $cleared_national_id = ClearedStudent::where('national_id_name','LIKE',$user->national_id.'%')->latest();
         if($cleared_national_id->count()>0) {
             $offline_cleared = true;
         }

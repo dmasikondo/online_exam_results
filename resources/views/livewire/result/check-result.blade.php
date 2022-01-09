@@ -7,6 +7,7 @@
       </div>
        <form method="post" action="/my-results">
          @csrf
+         
       <div class="flex gap-2 flex-col lg:flex-row center space-y-4">
         
         <div class="relative flex-1 mt-4">          
