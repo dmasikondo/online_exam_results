@@ -1,64 +1,64 @@
-<div class="h-full mt-14 mb-10">
-     <!-- Statistics Cards -->
+<div class="h-full mt-14 mb-10">     
+      <!-- Stats Filters -->
+      <div class="relative lg:flex lg:inline-flex items-center bg-gradient-to-br from-yellow-50 via-white to-green-50 border border-1 border-black mt-8">
+          <x-articles.dropdown> 
+               <x-slot name="title">
+                  @if(isset(request()->intake))
+                      {{request()->intake}}
+                  @else
+                      All
+                  @endif
+               </x-slot>
+              <x-articles.dropdown-item  href="/statistics">All</x-articles.dropdown-item>
+            @foreach($intakes as $intake)
+              <x-articles.dropdown-item  href="/statistics?intake={{$intake->label}}">
+                  {{$intake->label}}
+              </x-articles.dropdown-item> 
+            @endforeach                                 
+          </x-articles.dropdown>   
+      </div>
+      <!-- Stats Filters -->
+
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-4 gap-4">
-      <div class="bg-blue-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600  text-white font-medium group">
-        <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-          <x-icon name="user-group" class="w-8 h-8 stroke-current text-blue-800 transform transition-transform duration-500 ease-in-out" stroke-width="2"/>
-        </div>
-        <div class="text-right">
-          <p class="text-2xl">{{$totalCandidates}}</p>
-          <p>Candidature</p>
-        </div>
-      </div>
-      <div class="bg-blue-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600  text-white font-medium group">
-        <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-          <x-icon name="status-offline" class="w-8 h-8 stroke-current text-blue-800 transform transition-transform duration-500 ease-in-out" stroke-width="2"/>        
-      </div>
-        <div class="text-right">
-          <p class="text-2xl">{{$offLineClearedStudents}}</p>
-          <p>Accounts: Offline Cleared</p>
-        </div>
-      </div>
-      <div class="bg-blue-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 text-white font-medium group">
-        <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-          <x-icon name="status-online" class="w-8 h-8 stroke-current text-blue-800 transform transition-transform duration-500 ease-in-out" stroke-width="2"/> 
-        </div>
-        <div class="text-right">
-          <p class="text-2xl">{{$onLineClearedStudents}}</p>
-          <p>Accounts: Online Processed Requests</p>
-        </div>
-      </div>
-      <div class="bg-blue-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 text-white font-medium group">
-        <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-          <x-icon name="users" class="w-8 h-8 stroke-current text-blue-800 transform transition-transform duration-500 ease-in-out" stroke-width="2"/> 
-        </div>
-        <div class="text-right">
-          <p class="text-2xl">{{$studentsRegisteredOnSystem}}</p>
-          <p>Students Registered on the System</p>
-        </div>
-      </div>
-@if(Auth::user()->hasRole('exams') || Auth::user()->hasRole('manager') || (Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit')) || Auth::user()->hasRole('superadmin'))      
-      <div class="bg-blue-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 text-white font-medium group">
-        <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-          <x-icon name="collection" class="w-8 h-8 stroke-current text-blue-800 transform transition-transform duration-500 ease-in-out" stroke-width="2"/> 
-        </div>
-        <div class="text-right">
-          <p class="text-2xl">{{$departments}}</p>
-          <p>Hexco Disciplines</p>
-        </div>
-      </div>
+<!-- Statistics Cards -->
+        <x-statistics-card>
+            <x-slot name="symbol">user-group</x-slot>
+            <x-slot name="number">{{$totalCandidates}}</x-slot>
+            <x-slot name="title">Candidature</x-slot>
+        </x-statistics-card>       
+
+        <x-statistics-card>
+            <x-slot name="symbol">status-offline</x-slot>
+            <x-slot name="number">{{$offLineClearedStudents}}</x-slot>
+            <x-slot name="title">Accounts: Offline Cleared</x-slot>
+        </x-statistics-card>
+
+        <x-statistics-card>
+            <x-slot name="symbol">status-online</x-slot>
+            <x-slot name="number">{{$onLineClearedStudents}}</x-slot>
+            <x-slot name="title">Accounts: Online Processed Requests</x-slot>
+        </x-statistics-card>        
+
+        <x-statistics-card>
+            <x-slot name="symbol">users</x-slot>
+            <x-slot name="number">{{$studentsRegisteredOnSystem}}</x-slot>
+            <x-slot name="title">Students Registered on the System</x-slot>
+        </x-statistics-card> 
+
+@if(Auth::user()->hasRole('exams') || Auth::user()->hasRole('manager') || (Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit')) || Auth::user()->hasRole('superadmin')) 
+        <x-statistics-card>
+            <x-slot name="symbol">collection</x-slot>
+            <x-slot name="number">{{$departments}}</x-slot>
+            <x-slot name="title">Hexco Disciplines</x-slot>
+        </x-statistics-card>      
 @endif 
 
-@if(Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit') || Auth::user()->hasRole('superadmin')) 
-      <div class="bg-blue-500 shadow-lg rounded-md flex items-center justify-between p-3 border-b-4 border-blue-600 text-white font-medium group">
-        <div class="flex justify-center items-center w-14 h-14 bg-white rounded-full transition-all duration-300 transform group-hover:rotate-12">
-          <x-icon name="identification" class="w-8 h-8 stroke-current text-blue-800 transform transition-transform duration-500 ease-in-out" stroke-width="2"/> 
-        </div>
-        <div class="text-right">
-          <p class="text-2xl">{{$staffUsers}}</p>
-          <p>Members of Staff Users</p>
-        </div>
-      </div> 
+@if(Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit') || Auth::user()->hasRole('superadmin'))
+        <x-statistics-card>
+            <x-slot name="symbol">identification</x-slot>
+            <x-slot name="number">{{$staffUsers}}</x-slot>
+            <x-slot name="title">Members of Staff Users</x-slot>
+        </x-statistics-card>  
 @endif
 
     </div>

@@ -1,6 +1,6 @@
   <!-- Sidebar -->
   @auth
-      <div class="fixed flex flex-col {{-- top-28 --}}  sm:top-28 left-0 w-12 hover:w-64 md:w-64 bg-gradient-to-br from-yellow-50 via-white to-indigo-50 border border-black border-opacity-5 h-full text-white transition-all duration-300 {{-- border-none --}} z-10  sidebar opacity-75" style="top: 4em;">
+      <div class="fixed flex flex-col sm:top-28 left-0 w-12 hover:w-64 md:w-64 bg-gradient-to-br from-yellow-50 via-white to-indigo-50 border border-black border-opacity-5 h-full text-white transition-all duration-300 {{-- border-none --}} z-10  sidebar opacity-75" style="top: 4em;">
         <div class=" {{-- overflow-x-hidden --}} flex flex-col justify-between {{-- flex-grow --}}">
           <ul class="flex flex-col py-4 space-y-1">
             <li class="px-5 hidden md:block">  
@@ -125,7 +125,7 @@
        {{--./principal  --}}                   
 
         {{-- accounts, exams, itu principal --}}
-          @if(Auth::user()->hasRole('accounts')||Auth::user()->hasRole('exams')||Auth::user()->hasRole('superadmin')) 
+          @if(Auth::user()->hasRole('accounts')||Auth::user()->hasRole('exams')||Auth::user()->hasRole('superadmin') || Auth::user()->belongsTodepartmentOf('IT Unit')) 
             <li  class="@if(request()->routeIs('statistics')) bg-indigo-800 border-indigo-500 border-l-4 @endif">
               <x-sidebar.link-item  href="/statistics"  title="Statistics">
                 <x-slot name='symbol'>

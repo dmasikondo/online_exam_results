@@ -26,7 +26,7 @@
         <x-jet-banner />
 
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-100 bg-gradient-to-br hover:from-yellow-50 hover:via-white to-indigo-50">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
