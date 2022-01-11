@@ -17,23 +17,29 @@
     </div>
     <div class="px-5 py-3">
         <p>Important! The .csv file must have column headings in the order of:</p>
-            <table class="table-auto my-4">
-              <thead>
-                <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b">
-                  <th class="border-r-1">discipline</th>
-                  <th class="border-r-1">course code</th>
-                  <th class="border-r-1">candidate number</th>
-                  <th class="border-r-1">surname</th>
-                  <th class="border-r-1">first names</th>
-                  <th class="border-r-1">subject code</th>
-                  <th class="border-r-1">subject</th>
-                  <th class="border-r-1">grade</th>
-                  <th class="border-r-1">session</th>
-                  <th class="border-r-1">course comment</th>
-                  <th class="border-r-1">intake_id</th>
-                </tr>
-              </thead>
-            </table>
+        <table class="table-auto my-4">
+          <thead>
+            <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b">
+              <th class="border-r-1">discipline</th>
+              <th class="border-r-1">course code</th>
+              <th class="border-r-1">candidate number</th>
+              <th class="border-r-1">surname</th>
+              <th class="border-r-1">first names</th>
+              <th class="border-r-1">subject code</th>
+              <th class="border-r-1">subject</th>
+              <th class="border-r-1">grade</th>
+              <th class="border-r-1">session</th>
+              <th class="border-r-1">course comment</th>
+              <th class="border-r-1">intake_id</th>
+            </tr>
+          </thead>
+        </table>
+
+        <p>
+            The last uploaded exam results are of Intake <b>{{$intake->id}}</b> for the session <b>{{$intake->label}}</b> last updated 
+            <small>{{$intake->updated_at->diffForHumans()}}</small>
+        </p>
+
     </div>
 
   <div class="py-6" >
@@ -46,14 +52,12 @@
       <div>
         <img class="rounded-full w-8" src="{{Auth::user()->profile_photo_url }}" />
       </div>
-  </div>
-  
-
+    </div>
         <div class="flex items-center text-blue-400 justify-between py-6 px-4 border-t">  
             <form wire:submit.prevent="uploadFile" enctype="multipart/form-data">
                 <div x-data="{fileSelected: true}" x-on:livewire-upload-finish="fileSelected = true" class="border-b-4 pb-4 space-y-4">
 
-                    <input id="upload{{ $iteration }}"  type="file" wire:model.defer="file"  accept=".csv, text/csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" wire:click="clearErrors"
+                    <input id="upload{{ $iteration }}"  type="file" wire:model.defer="file" accept=".csv, text/csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" wire:click="clearErrors"
                     class="text-xs" required />  
                      <p wire:loading.remove>
                         @error('file')
@@ -72,7 +76,7 @@
                 <div>
                     <span wire:loading>
                         Processing ...
-                    </span>
+                </span>
                 </div>
             </form>                 
         </div> 

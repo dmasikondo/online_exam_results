@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Result;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use App\Models\Result;
+use App\Models\Intake;
 use Auth;
 
 class UploadCsv extends Component
@@ -124,6 +125,8 @@ class UploadCsv extends Component
 
     public function render()
     {
-        return view('livewire.result.upload-csv');
+
+        $intake = Intake::latest()->first();
+        return view('livewire.result.upload-csv',compact('intake'));
     }
 }
