@@ -60,7 +60,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify'); 
 
-Route::get('/54136C581CC9D55B389B5AA7AB0B3ACE.DE6A45191118C7CC3F738289249D46E4.4654ff647abbad2.comodoca.com', function(){
-    return '_181DF768572E618DC8AF0EB84C95A107.178.79.149.58';
+Route::get('/.well-known/pki-validation/181DF768572E618DC8AF0EB84C95A107.txt', function(){
+    return  url('storage/images/181DF768572E618DC8AF0EB84C95A107.txt');
 });
 
