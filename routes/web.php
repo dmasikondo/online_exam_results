@@ -61,6 +61,6 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 })->middleware(['auth', 'signed'])->name('verification.verify'); 
 
 Route::get('/.well-known/pki-validation/181DF768572E618DC8AF0EB84C95A107.txt', function(){
-    return  url('storage/images/181DF768572E618DC8AF0EB84C95A107.txt');
+    return  {{url('storage/images/181DF768572E618DC8AF0EB84C95A107.txt')}};
 });
 
