@@ -58,8 +58,64 @@
             <x-slot name="symbol">identification</x-slot>
             <x-slot name="number">{{$staffUsers}}</x-slot>
             <x-slot name="title">Members of Staff Users</x-slot>
+        </x-statistics-card> 
+        <x-statistics-card>
+            <x-slot name="symbol">emoji-happy</x-slot>
+            <x-slot name="number">{{$active_users}}</x-slot>
+            <x-slot name="title">Active Users</x-slot>
         </x-statistics-card>  
+        <x-statistics-card>
+            <x-slot name="symbol">mail-open</x-slot>
+            <x-slot name="number">{{$usersWithUnverifiedEmail}}</x-slot>
+            <x-slot name="title">Users with unverified email</x-slot>
+        </x-statistics-card>
+        <x-statistics-card>
+            <x-slot name="symbol">emoji-sad</x-slot>
+            <x-slot name="number">{{$inactive_users}}</x-slot>
+            <x-slot name="title">Inactive Users</x-slot>
+        </x-statistics-card>
+        <x-statistics-card>
+            <x-slot name="symbol">lock-closed</x-slot>
+            <x-slot name="number">{{$active_users}}</x-slot>
+            <x-slot name="title">Suspended Users</x-slot>
+        </x-statistics-card>  
+        <x-statistics-card>
+            <x-slot name="symbol">users</x-slot>
+            <x-slot name="number">{{$itunit_users}}</x-slot>
+            <x-slot name="title">IT Unit</x-slot>
+        </x-statistics-card> 
+        <x-statistics-card>
+            <x-slot name="symbol">users</x-slot>
+            <x-slot name="number">{{$accounts_users}}</x-slot>
+            <x-slot name="title">Accounts Dept</x-slot>
+        </x-statistics-card>  
+        <x-statistics-card>
+            <x-slot name="symbol">users</x-slot>
+            <x-slot name="number">{{$admin_office_users}}</x-slot>
+            <x-slot name="title">Admin Office</x-slot>
+        </x-statistics-card>  
+        <x-statistics-card>
+            <x-slot name="symbol">users</x-slot>
+            <x-slot name="number">{{$warden_users}}</x-slot>
+            <x-slot name="title">Wardens</x-slot>
+        </x-statistics-card>  
+        <x-statistics-card>
+            <x-slot name="symbol">users</x-slot>
+            <x-slot name="number">{{$library_users}}</x-slot>
+            <x-slot name="title">Library</x-slot>
+        </x-statistics-card> 
+        <x-statistics-card>
+            <x-slot name="symbol">users</x-slot>
+            <x-slot name="number">{{$hod_users}}</x-slot>
+            <x-slot name="title">HODs</x-slot>
+        </x-statistics-card> 
+        <x-statistics-card>
+            <x-slot name="symbol">users</x-slot>
+            <x-slot name="number">{{$manager_users}}</x-slot>
+            <x-slot name="title">Principal's office</x-slot>
+        </x-statistics-card>                                                           
 @endif
 
     </div>
 </div>
+   

@@ -18,6 +18,20 @@ class Candidates extends Component
     public $totalCandidates;
     public $staffUsers;
 
+    public $active_users;
+    public $usersWithUnverifiedEmail;
+    public $inactive_users;
+    public $suspended_users;
+    public $itunit_users;
+    public $accounts_users;
+    public $admin_office_users;
+    public $warden_users;
+    public $manager_users;
+    public $library_users;
+    public $hod_users;
+
+   
+
     public function render()
     {
         $intake = Intake::latest()->first()->id;
@@ -43,6 +57,19 @@ class Candidates extends Component
         //number of candidates as per the uploaded hexco results                                        
         $this->totalCandidates = \DB::table('results')->where('intake_id','=',$intake)->distinct('candidate_number')->count();
         $this->staffUsers = User::has('staff')->count();
+
+        $this->active_users = User::where('must_reset',false)->where('is_suspended',false)->whereNotNull('email_verified_at')->count();
+         $this->usersWithUnverifiedEmail=User::whereNull('email_verified_at')->count();
+         $this->inactive_users = User::where('must_reset')->count();
+         $this->suspended_users = User::where('must_reset')->count();
+         $this->itunit_users =User::whereHas('roles', fn($query)=>$query->where('name','superadmin'))->count();
+         $this->accounts_users =User::whereHas('roles', fn($query)=>$query->where('name','accounts'))->count();
+         $this->exams_users =User::whereHas('roles', fn($query)=>$query->where('name','exams'))->count();
+         $this->library_users =User::whereHas('roles', fn($query)=>$query->where('name','library'))->count();
+         $this->manager_users =User::whereHas('roles', fn($query)=>$query->where('name','manager'))->count();
+         $this->hod_users =User::whereHas('roles', fn($query)=>$query->where('name','hod'))->count();
+         $this->warden_users =User::whereHas('roles', fn($query)=>$query->where('name','warden'))->count();
+         $this->admin_office_users =User::whereHas('roles', fn($query)=>$query->where('name','admin_office'))->count();
 
         $intakes = Intake::latest()->get();
         return view('livewire.statistics.candidates',compact('intakes'));
