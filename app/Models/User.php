@@ -71,13 +71,13 @@ class User extends Authenticatable
      */
     public function getProfilePhotoUrlAttribute()
     {
-        $name = $this->first_name.' '.$this->surname;       
+        $name = $this->first_name.' '.$this->second_name;       
         if(isset($this->profile_photo_path)){
             return Storage::disk($this->profilePhotoDisk())->url($this->profile_photo_path);
         }
         return 'https://ui-avatars.com/api/?name='.urlencode($name).'&color=7F9CF5&background=EBF4FF';
     }
-    
+
     public function results()
     {
         return $this->hasMany(Result::class, 'users_id');
