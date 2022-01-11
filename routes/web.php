@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FeesClearanceController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\ExamResultController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\CandidateController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +27,7 @@ Route::get('/', function () {
 });
 
 
-Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate']], function(){
+Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate','verified']], function(){
     Route::get('/my-results', [ExamResultController::class, 'myresults'])->name('my-results');
     Route::post('/my-results', [ExamResultController::class, 'myexamResults'])->name('my-result');
     Route::get('/results/clearance/{user:slug}', [ExamResultController::class, 'show'])->name('my-clearance');
@@ -49,3 +51,11 @@ Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate']
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify'); 
