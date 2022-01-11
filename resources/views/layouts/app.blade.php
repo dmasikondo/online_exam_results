@@ -47,7 +47,7 @@
             </main> --}}
             <div class="min-h-screen md:flex">
               <div class="flex-none w-full md:max-w-xs">
-                <x-sidebar/>
+                <x-sidebar.menu/>
               </div>
               <div class="flex-1 sm:ml-12 ml-12 md:ml-0">
                 <main class="">
