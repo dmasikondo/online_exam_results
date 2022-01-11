@@ -60,6 +60,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
     return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify'); 
 
-Route::get('/_84FF3D5A427A459C6541D9CA83370A79.178.79.149.58', function(){
-    return 'DF67AEFE949D6B4280B85A2D7B13FC1E.27BCA970DA5891593E26550872CAD260.b332f55cb1a1994.comodoca.com';
+Route::get('/54136C581CC9D55B389B5AA7AB0B3ACE.DE6A45191118C7CC3F738289249D46E4.4654ff647abbad2.comodoca.com', function(){
+    return '_181DF768572E618DC8AF0EB84C95A107.178.79.149.58';
 });
+
