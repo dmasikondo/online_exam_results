@@ -59,29 +59,35 @@
 
 
         </div>
-        {{-- footer --}}
-        <div class="bg-blue-900 py-4 no-print">
-            <div class="max-w-7xl">
-                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
-                    <div class="text-center text-sm text-gray-500 sm:text-left">
-                        <div class="flex items-center">
+        {{-- footer --}} 
 
-                            <a href="https://portal.hrepoly.ac.zw" class="ml-1 underline">
-                                Portal
-                            </a>
+        <footer class="bg-gradient-to-br from-yellow-50 via-white to-indigo-50 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
+            <img src="{{url('storage/images/itunit_cat.png')}}" alt="IT Unit Cat" alt="" class="mx-auto -mb-6" style="width: 145px;">
+            <h5 class="text-3xl font-semibold">Harare Polytechnic IT Unit</h5>
+            <p class="text-sm mt-3">&copy; {{date('Y')}} </p>
+
+            <div class="mt-10">
+                <div class="relative inline-block mx-auto lg:bg-indigo-200 px-6 rounded-full">
+                    <nav class="md:flex md:justify-between md:items-center">
+                        <div class="mr-4">
+                           {{--  <a href="/" class="hover:shadow-xl">
+                                <img src="{{url('storage/images/health_plus_logo.svg')}}" alt="Health Plus Logo" class="h-8 hover:shadow-xl">
+                            </a> --}}
                         </div>
-                    </div>
-                    <div class="ml-4">
-                        <p>&copy; {{date('Y')}} IT Unit</p>
-                    </div>
 
-                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        <a href="https://www.hrepoly.ac.zw">Harare Polytechnic</a>
-                    </div>
-                </div>                
+                        <div class="mt-8 md:mt-0 space-x-12">
+                            <x-link href="/">Home Page</x-link>
+                            <x-link href="https://portal.hrepoly.ac.zw">Portal</x-link>
+                            <x-link href="https://www.hrepoly.ac.zw">Harare Polytechnic</x-link>
+                            
+                        </div>
+                    </nav>
+
+                   
+                </div>
             </div>
-        </div>        
-
+        </footer>              
+        {{-- ./footer--}}
         @stack('modals')
 
         @livewireScripts
