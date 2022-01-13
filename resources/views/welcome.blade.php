@@ -30,7 +30,7 @@
          <div class="max-w-7xl mx-auto">
                <div class="grid md:grid-cols-3 grid-rows-3 gap-4 my-4 mb-20"> 
                     <div class="email mt-8 pt-4 text-blue-900">
-                        <a href="mailto:info@hrepoly.ac.zw"><x-icon name="mail" class="w-8 h-8"/> Email : info@minOfHealth.gov.zw</a>
+                        <a href="mailto:info@hrepoly.ac.zw"><x-icon name="mail" class="w-8 h-8"/> Email : hrepoly@hrepoly.ac.zw</a>
                     </div> 
                     <div class="logo mt-4">
                         <a href="/"><img src="/storage/images/hrepoly_logo.png" /></a>
