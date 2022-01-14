@@ -27,7 +27,7 @@ Route::get('/', function () {
 });
 
 
-Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate','verified']], function(){
+Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate']], function(){
     Route::get('/my-results', [ExamResultController::class, 'myresults'])->name('my-results');
     Route::post('/my-results', [ExamResultController::class, 'myexamResults'])->name('my-result');
     Route::get('/results/clearance/{user:slug}', [ExamResultController::class, 'show'])->name('my-clearance');
@@ -62,6 +62,5 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
 Route::get('/.well-known/pki-validation/181DF768572E618DC8AF0EB84C95A107.txt', function(){
      return response()->file('storage/images/181DF768572E618DC8AF0EB84C95A107.txt');
-
 });
 
