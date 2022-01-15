@@ -19,10 +19,18 @@ class UserController extends Controller
     public function index()
     {
         $this->authorize('view', User::class);
+
+        //check for requested number of pages to be displayed
+        if(request()->perPage && intval(request()->perPage) > 0){
+            $numberOfRecordsPerPage = request()->perPage;
+        }  
+        else{
+            $numberOfRecordsPerPage = 20;
+        }   
         $roles = Role::orderBy('name')->get();         
         $users = User::filters(request(['role','surname','first_name','email']))
          ->with('roles','staff.department')
-         ->paginate(10)->withQueryString();
+         ->paginate($numberOfRecordsPerPage)->withQueryString();
         //dd($users);
         return view('users.index', compact('roles','users'));
     }

@@ -254,7 +254,7 @@ class User extends Authenticatable implements MustVerifyEmail
             // filter by user's email
             $query->when($filters['email'] ?? false, fn($query, $email) =>
                 $query->where('email', 'like', '%' . $email . '%')                
-            );                               
+            );                                           
                        
     }    
 
