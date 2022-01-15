@@ -7,8 +7,8 @@
     </x-slot> 
 
     <div class="py-12">
-        <div class="max-w-7xl {{-- mx-auto --}} sm:px-6 lg:px-8  shadow-inner">
-            <div class="mb-6 {{-- p-6 sm:px-20 --}} bg-white border-b border-gray-200 shadow-lg">
+        <div class="max-w-7xl {{-- mx-auto --}} sm:px-6 lg:px-8  {{-- shadow-inner --}}">
+            <div class="mb-6 {{-- p-6 sm:px-20 --}} bg-white border-b border-gray-200 shadow-lg rounded-full">
                 <div>
                     <div class="w-full bg-white p-5 rounded-lg lg:rounded-l-none">
                         <x-session-message/>
@@ -21,7 +21,7 @@
                                 <div class="mt-4 relative flex-1">
                                     <x-form.input id="first_name" type="text" name="first_name" placeholder="Surname" value="{{old('first_name')}}"  required/> 
                                     <x-form.label for="first_name">First Name</x-form.label>             
-                                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                                    <div class="absolute right-0 top-0 mt-2 mr-2">
                                         <x-icon name="user" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>                           
                                     </div>
                                     <p class="text-red-900 italic text-sm">@error('first_name') {{$message}} @enderror</p>                    
@@ -30,7 +30,7 @@
                                 <div class="mt-4 relative flex-1">
                                     <x-form.input id="last_name" type="text" name="last_name" placeholder="Names" value="{{old('last_name')}}" required/> 
                                     <x-form.label for="last_name">Last Name</x-form.label>             
-                                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                                    <div class="absolute right-0 top-0 mt-2 mr-2">
                                         <x-icon name="user-group" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>                           
                                     </div>
                                     <p class="text-red-900 italic text-sm">@error('last_name') {{$message}} @enderror</p>                    
@@ -41,7 +41,7 @@
                                 <div class="mt-4 relative flex-1">
                                     <x-form.input id="email" type="email" name="email" placeholder="Email" value="{{old('email')}}" required/> 
                                     <x-form.label for="email">Email</x-form.label>             
-                                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                                    <div class="absolute right-0 top-0 mt-2 mr-2">
                                         <x-icon name="mail-open" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>                           
                                     </div>
                                     <p class="text-red-900 italic text-sm">@error('email') {{$message}} @enderror</p>                    
@@ -52,7 +52,7 @@
                                 <div class="mt-4 relative flex-1">
                                     <x-form.input id="password" type="password" name="password" placeholder="Password" required/> 
                                     <x-form.label for="password">Password</x-form.label>             
-                                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                                    <div class="absolute right-0 top-0 mt-2 mr-2">
                                         <x-icon name="lock-closed" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>                           
                                     </div>
                                     <p class="text-red-900 italic text-sm">@error('password') {{$message}} @enderror</p>                    
@@ -61,7 +61,7 @@
                                 <div class="mt-4 relative flex-1">
                                     <x-form.input id="password_confirmation" type="password" name="password_confirmation" placeholder="Confirm Password" required/> 
                                     <x-form.label for="password_confirmation">Confirm Password</x-form.label>             
-                                    <div class="absolute right-0 top-0 mt-6 mr-2">
+                                    <div class="absolute right-0 top-0 mt-2 mr-2">
                                         <x-icon name="key" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>                           
                                     </div>                 
                                 </div>  
@@ -76,8 +76,8 @@
                                     @endforeach 
                                     </x-form.select>
                                     <x-form.label for="role">Select a User Role</x-form.label>             
-                                    <div class="absolute right-0 top-0 mt-6 mr-2">
-                                        <x-icon name="tag" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                                    <div class="absolute right-0 top-0 mt-2 mr-2">
+                                        <x-icon name="tag" class="hidden lg:block h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
                                     </div>
                                     <p class="text-red-900 italic text-sm">@error('role') {{$message}} @enderror</p>                    
                                 </div>
@@ -90,14 +90,14 @@
                                     @endforeach
                                     </x-form.select>
                                     <x-form.label for="department">Select the User's Department</x-form.label>             
-                                    <div class="absolute right-0 top-0 mt-6 mr-2">
-                                        <x-icon name="clipboard-list" class="h-6 w-6 text-indigo-600 " stroke-width="1"/>                           
+                                    <div class="absolute right-0 top-0 mt-2 mr-2">
+                                        <x-icon name="clipboard-list" class="hidden lg:block h-6 w-6 text-indigo-600" stroke-width="1"/>                      
                                     </div>
                                     <p class="text-red-900 italic text-sm">@error('department') {{$message}} @enderror</p>                    
                                 </div>               
                         </div>        
                           <div class="my-6 text-center">
-                                <button class="w-full px-4 py-2 font-bold text-white bg-indigo-500 rounded-full hover:bg-indigo-700 focus:outline-none focus:shadow-outline" type="submit">
+                                <button class="w-full inline px-4 py-3 rounded-full font-bold text-white bg-indigo-300 hover:bg-indigo-100 hover:text-indigo-900 cursor-pointer" type="submit">
                                     Register User Account
                                 </button>
                             </div>

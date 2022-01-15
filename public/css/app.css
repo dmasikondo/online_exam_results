@@ -1127,6 +1127,9 @@ select {
 .m-1 {
 	margin: 0.25rem;
 }
+.-m-16 {
+	margin: -4rem;
+}
 .m-8 {
 	margin: 2rem;
 }
@@ -1161,6 +1164,10 @@ select {
 .my-1 {
 	margin-top: 0.25rem;
 	margin-bottom: 0.25rem;
+}
+.mx-2 {
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
 }
 .my-24 {
 	margin-top: 6rem;
@@ -1284,14 +1291,26 @@ select {
 .mb-16 {
 	margin-bottom: 4rem;
 }
+.-ml-20 {
+	margin-left: -5rem;
+}
+.mt-32 {
+	margin-top: 8rem;
+}
+.mb-1 {
+	margin-bottom: 0.25rem;
+}
+.mb-2 {
+	margin-bottom: 0.5rem;
+}
+.mt-0 {
+	margin-top: 0px;
+}
 .ml-auto {
 	margin-left: auto;
 }
 .mb-8 {
 	margin-bottom: 2rem;
-}
-.mb-2 {
-	margin-bottom: 0.5rem;
 }
 .block {
 	display: block;
@@ -1355,6 +1374,9 @@ select {
 }
 .h-14 {
 	height: 3.5rem;
+}
+.h-auto {
+	height: auto;
 }
 .h-1\/2 {
 	height: 50%;
@@ -1875,6 +1897,10 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
 }
+.bg-indigo-300 {
+	--tw-bg-opacity: 1;
+	background-color: rgba(165, 180, 252, var(--tw-bg-opacity));
+}
 .bg-green-100 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(209, 250, 229, var(--tw-bg-opacity));
@@ -1902,10 +1928,6 @@ select {
 .bg-blue-900 {
 	--tw-bg-opacity: 1;
 	background-color: rgba(30, 58, 138, var(--tw-bg-opacity));
-}
-.bg-indigo-300 {
-	--tw-bg-opacity: 1;
-	background-color: rgba(165, 180, 252, var(--tw-bg-opacity));
 }
 .bg-indigo-800 {
 	--tw-bg-opacity: 1;
@@ -2146,6 +2168,9 @@ select {
 }
 .align-baseline {
 	vertical-align: baseline;
+}
+.align-middle {
+	vertical-align: middle;
 }
 .font-sans {
 	font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -2506,6 +2531,9 @@ select {
 .ease-in {
 	transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
+.ease-linear {
+	transition-timing-function: linear;
+}
 .hover\:w-64:hover {
 	width: 16rem;
 }
@@ -2551,10 +2579,6 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
 }
-.hover\:bg-indigo-700:hover {
-	--tw-bg-opacity: 1;
-	background-color: rgba(67, 56, 202, var(--tw-bg-opacity));
-}
 .hover\:bg-indigo-100:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(224, 231, 255, var(--tw-bg-opacity));
@@ -2563,9 +2587,17 @@ select {
 	--tw-bg-opacity: 1;
 	background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
 }
+.hover\:bg-indigo-700:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(67, 56, 202, var(--tw-bg-opacity));
+}
 .hover\:bg-blue-500:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(59, 130, 246, var(--tw-bg-opacity));
+}
+.hover\:bg-green-100:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(209, 250, 229, var(--tw-bg-opacity));
 }
 .hover\:bg-blue-800:hover {
 	--tw-bg-opacity: 1;
@@ -2586,6 +2618,10 @@ select {
 .hover\:bg-indigo-500:hover {
 	--tw-bg-opacity: 1;
 	background-color: rgba(99, 102, 241, var(--tw-bg-opacity));
+}
+.hover\:bg-indigo-200:hover {
+	--tw-bg-opacity: 1;
+	background-color: rgba(199, 210, 254, var(--tw-bg-opacity));
 }
 .hover\:from-yellow-50:hover {
 	--tw-gradient-from: #fffbeb;
@@ -2640,6 +2676,10 @@ select {
 }
 .hover\:underline:hover {
 	text-decoration: underline;
+}
+.hover\:shadow-md:hover {
+	--tw-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .hover\:shadow-xl:hover {
 	--tw-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -2933,6 +2973,10 @@ select {
 		margin-left: 0px;
 	}
 
+	.sm\:mr-2 {
+		margin-right: 0.5rem;
+	}
+
 	.sm\:block {
 		display: block;
 	}
@@ -3214,8 +3258,24 @@ select {
 }
 @media (min-width: 1024px) {
 
+	.lg\:order-2 {
+		order: 2;
+	}
+
+	.lg\:order-3 {
+		order: 3;
+	}
+
+	.lg\:order-1 {
+		order: 1;
+	}
+
 	.lg\:col-span-4 {
 		grid-column: span 4 / span 4;
+	}
+
+	.lg\:-ml-16 {
+		margin-left: -4rem;
 	}
 
 	.lg\:block {
@@ -3238,6 +3298,14 @@ select {
 		width: 10rem;
 	}
 
+	.lg\:w-3\/12 {
+		width: 25%;
+	}
+
+	.lg\:w-4\/12 {
+		width: 33.333333%;
+	}
+
 	.lg\:w-9\/12 {
 		width: 75%;
 	}
@@ -3254,6 +3322,10 @@ select {
 		flex-direction: row;
 	}
 
+	.lg\:self-center {
+		align-self: center;
+	}
+
 	.lg\:rounded-l-none {
 		border-top-left-radius: 0px;
 		border-bottom-left-radius: 0px;
@@ -3267,6 +3339,14 @@ select {
 	.lg\:px-8 {
 		padding-left: 2rem;
 		padding-right: 2rem;
+	}
+
+	.lg\:pt-4 {
+		padding-top: 1rem;
+	}
+
+	.lg\:text-right {
+		text-align: right;
 	}
 }
 @media (min-width: 1280px) {

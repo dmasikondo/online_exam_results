@@ -14,6 +14,27 @@ use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
     /**
+     * show all the users
+     */
+    public function index()
+    {
+        $this->authorize('view', User::class);
+        $roles = Role::orderBy('name')->get();         
+        $users = User::filters(request(['role','surname','first_name','email']))
+         ->with('roles','staff.department')
+         ->paginate(10)->withQueryString();
+        //dd($users);
+        return view('users.index', compact('roles','users'));
+    }
+
+    /**
+     * show the specified user
+     */
+    public function show(User $user)
+    {
+        return view('users.show', compact('user'));
+    }    
+    /**
      * Show the form for registering users
      * To IT mgr & IT Unit 
      */
@@ -105,6 +126,29 @@ class UserController extends Controller
          return redirect('/login') ;      
 
     }
+
+    /**
+     * redirect if the account has been suspended
+     */
+    public function redirectIfSuspended()
+    {
+        Auth::guard('web')->logout();  
+        session()->flash('warning',"This account is suspended. Please contact your administrator"); 
+        return view('/login'); 
+    } 
+
+    /**
+     * show users who are students
+     */
+    public function userStudents()
+    {
+        $this->authorize('view', User::class);
+        $roles = Role::orderBy('name')->get();         
+        $users = User::has('results')
+         ->with('roles','staff.department')
+         ->paginate(10)->withQueryString(); 
+         return view('users.index', compact('roles','users'));       
+    }   
 
 
 }

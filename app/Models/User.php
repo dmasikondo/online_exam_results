@@ -171,32 +171,11 @@ class User extends Authenticatable implements MustVerifyEmail
         $department = Department::where('name',$dept)->first();
         //dd($department->id);
         return (bool)($this->staff()->where('user_id', $this->id)->where('department_id',$department->id)->count());
-        //dd($value);
-        //return (bool) $this->staff()->where('user_id', $this->id)->where('department_id',$department->id)->count();
-
-     /*  $exists= $this->whereHas('staff', fn ($query)=>
-            $query->where('department_id',$department->id )
-                    ->where('user_id', $this->id)
-            )->get();  
-       if($exists->count()>0){
-        return true;
-       }
-       else{
-        return false;
-       }*/
-        
-         
      }
+
 
     public function scopeFilter($query, array $filters)
     {
-    /*    $query->when($filters['department'] ?? false, function($query, $department){
-            $query->whereHas('results', function($query, $department){
-                $query->where('discipline', $department);
-
-            });
-        });*/
-
 
             $query->when($filters['department'] ?? false, fn($query, $department) =>
             $query->whereHas('results', fn ($query) =>
@@ -252,6 +231,32 @@ class User extends Authenticatable implements MustVerifyEmail
          })  */                    
                        
     }
+
+    public function scopeFilters($query, array $filters)
+    {
+            //filter by user's role
+            $query->when($filters['role'] ?? false, fn($query, $role) =>
+                $query->whereHas('roles', fn ($query) =>
+                $query->where('name', $role)
+                )
+            );  
+
+            //filter by user's surname          
+            $query->when($filters['surname'] ?? false, fn($query, $surname) =>
+                $query->where('second_name', 'like', '%' . $surname . '%')                
+            );
+
+            // filter by user's first name
+            $query->when($filters['first_name'] ?? false, fn($query, $first_name) =>
+                $query->where('first_name', 'like', '%' . $first_name . '%')                
+            ); 
+
+            // filter by user's email
+            $query->when($filters['email'] ?? false, fn($query, $email) =>
+                $query->where('email', 'like', '%' . $email . '%')                
+            );                               
+                       
+    }    
 
    
 }

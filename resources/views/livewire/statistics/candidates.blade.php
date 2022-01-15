@@ -1,6 +1,6 @@
 <div class="h-full mt-14 mb-10">     
       <!-- Stats Filters -->
-      <div class="relative lg:flex lg:inline-flex items-center bg-gradient-to-br from-yellow-50 via-white to-green-50 border border-1 border-black mt-8">
+      <div class="relative lg:flex lg:inline-flex items-center bg-gradient-to-br from-yellow-50 via-white to-indigo-50 border border-1 border-black mt-8">
           <x-articles.dropdown> 
                <x-slot name="title">
                   @if(isset(request()->intake))
@@ -9,7 +9,7 @@
                       All
                   @endif
                </x-slot>
-              <x-articles.dropdown-item  href="/statistics">All</x-articles.dropdown-item>
+              <x-articles.dropdown-item  href="/statistics">Current</x-articles.dropdown-item>
             @foreach($intakes as $intake)
               <x-articles.dropdown-item  href="/statistics?intake={{$intake->label}}">
                   {{$intake->label}}

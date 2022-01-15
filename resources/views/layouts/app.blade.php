@@ -14,6 +14,14 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <style>
+          @media print
+          {
+            .no-print{
+              display: none;
+            }
+          }
+        </style>        
 
         @livewireStyles
               
@@ -31,20 +39,14 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow">
+                <header class="bg-white shadow no-print">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-gray-200">
                         {{ $header }}
                     </div>
                 </header>
             @endif
 
-            <!-- Side Bar -->
-            {{-- <x-sidebar/> --}}
-
             <!-- Page Content -->
-{{--             <main class="ml-12">
-                {{ $slot }}
-            </main> --}}
             <div class="min-h-screen md:flex">
               <div class="flex-none w-full md:max-w-xs">
                 <x-sidebar.menu/>
@@ -61,7 +63,7 @@
         </div>
         {{-- footer --}} 
 
-        <footer class="bg-gradient-to-br from-yellow-50 via-white to-indigo-50 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
+        <footer class="mx-auto no-print bg-gradient-to-br from-yellow-50 via-white to-indigo-50 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
             <img src="{{url('storage/images/itunit_cat.png')}}" alt="IT Unit Cat" alt="" class="mx-auto -mb-6" style="width: 145px;">
             <h5 class="text-3xl font-semibold">Harare Polytechnic IT Unit</h5>
             <p class="text-sm mt-3">&copy; {{date('Y')}} </p>

@@ -1,14 +1,4 @@
 <div>
-  <style>
-  @media print
-  {
-    .no-print{
-      display: none;
-    }
-  }
-
-
-</style>
     <x-app-layout>
         <div class="no-print">
         <x-slot name="header">

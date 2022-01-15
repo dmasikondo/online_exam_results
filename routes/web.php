@@ -27,7 +27,7 @@ Route::get('/', function () {
 });
 
 
-Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate']], function(){
+Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended','activate']], function(){
     Route::get('/my-results', [ExamResultController::class, 'myresults'])->name('my-results');
     Route::post('/my-results', [ExamResultController::class, 'myexamResults'])->name('my-result');
     Route::get('/results/clearance/{user:slug}', [ExamResultController::class, 'show'])->name('my-clearance');
@@ -35,9 +35,13 @@ Route::group(['middleware' => ['auth:sanctum','prevent-back-history','activate']
     //for accounts
     Route::get('/dashboard/fees-clearances', [FeesClearanceController::class, 'index'])->name('fees-clearances');
     Route::get('/dashboard', [FeesClearanceController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/fees-clearances/{user:slug}', [FeesClearanceController::class, 'show'])->name('fees-clearance');
+    Route::get('/dashboard/fees-clearances/{user:slug}', [FeesClearanceController::class, 'show'])->name('fees-clearance');  
+    Route::get('/users', [UserController::class, 'index'])->name('users');
     Route::get('/users/registration', [UserController::class, 'create'])->name('user-registration');
-    Route::post('/users/registration', [UserController::class, 'store']);
+    Route::post('/users/registration', [UserController::class, 'store']); 
+    Route::get('/users/{user:slug}', [UserController::class, 'show'])->name('user');
+    Route::get('/users/is-suspended', [UserController::class, 'redirectIfSuspended']); 
+    Route::get('/users-students', [UserController::class, 'userStudents'])->name('users-students'); 
     Route::get('/statistics',[StatisticsController::class, 'index'])->name('statistics');
     Route::get('/candidates',[CandidateController::class, 'index'])->name('candidates');    
         

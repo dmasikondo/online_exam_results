@@ -1,6 +1,6 @@
   <!-- Sidebar -->
   @auth
-      <div class="fixed flex flex-col sm:top-28 left-0 w-12 hover:w-64 md:w-64 bg-gradient-to-br from-yellow-50 via-white to-indigo-50 border border-black border-opacity-5 h-full text-white transition-all duration-300 {{-- border-none --}} z-10  sidebar opacity-75" style="top: 4em;">
+      <div class="no-print fixed flex flex-col sm:top-28 left-0 w-12 hover:w-64 md:w-64 bg-gradient-to-br from-yellow-50 via-white to-indigo-50 border border-black border-opacity-5 h-full text-white transition-all duration-300 {{-- border-none --}} z-10  sidebar opacity-75" style="top: 4em;">
         <div class=" {{-- overflow-x-hidden --}} flex flex-col justify-between {{-- flex-grow --}}">
           <ul class="flex flex-col py-4 space-y-1">
             <li class="px-5 hidden md:block">  
@@ -98,7 +98,17 @@
                 </x-slot>
                 Add User
               </x-sidebar.link-item>
-            </li> 
+            </li>
+
+            <li  class="@if(request()->routeIs('users') 
+             || request()->routeIs('user') || request()->routeIs('users-students')) bg-indigo-800 border-indigo-500 border-l-4 @endif">
+              <x-sidebar.link-item href="/users" title="Show User(s)">
+                <x-slot name='symbol'>
+                  users
+                </x-slot>
+                Users
+              </x-sidebar.link-item>
+            </li>             
 
             <li  class="{{Request::is('results/upload-csv')? 'bg-indigo-800 border-indigo-500 border-l-4':''}}">
               <x-sidebar.link-item href="/results/upload-csv" title="Upload Exam Results">
