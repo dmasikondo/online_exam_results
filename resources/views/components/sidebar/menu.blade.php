@@ -118,6 +118,15 @@
                 Upload Exam Results
               </x-sidebar.link-item>
             </li> 
+
+            <li >
+              <x-sidebar.link-item href="https://github.com/dmasikondo/online_exam_results" target="_blank" title="Documentation">
+                <x-slot name='symbol'>
+                  book-open
+                </x-slot>
+                Documentation
+              </x-sidebar.link-item>
+            </li>            
         @endif
       {{-- ./ITU --}}
 
@@ -156,7 +165,7 @@
               </x-sidebar.link-item>  
             </li> 
 
-            <li  class="{{Request::is('notifications')? 'bg-indigo-800 border-indigo-500 border-l-4':''}}" >   
+            <li  class="@if(request()->routeIs('statistics')) bg-indigo-800 border-indigo-500 border-l-4 @endif" >   
               <x-sidebar.link-item  href="#/notifications"  title="Notifications">
                 <x-slot name='symbol'>
                   bell

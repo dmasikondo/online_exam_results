@@ -135,8 +135,18 @@
                         <x-slot name="content">
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Manage Account') }}
+                                {{ __('Manage Your Account') }}
                             </div>
+
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                <img class="h-8 w-8 rounded-full object-cover" @auth src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->profile_photo_url }}" @endauth />                                
+                               {{ Auth::user()->first_name }} {{ Auth::user()->second_name }}
+                            </div>  
+
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                <x-icon name="mail" class="h-6 w-6 text-indigo-200"/>                               
+                               {{ Auth::user()->email }}
+                            </div>                                                       
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
