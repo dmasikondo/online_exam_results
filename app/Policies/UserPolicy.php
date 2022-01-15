@@ -30,7 +30,7 @@ class UserPolicy
      */
     public function view(User $user)
     {
-        return $user->belongsTodepartmentOf('IT Unit') && ($user->hasRole('hod') || $user->hasRole('hod'));
+        return $user->belongsTodepartmentOf('IT Unit') && ($user->hasRole('hod') || $user->hasRole('superadmin'));
     }
 
     /**

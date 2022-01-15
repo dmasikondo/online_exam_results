@@ -6,7 +6,7 @@
                   @if(isset(request()->intake))
                       {{request()->intake}}
                   @else
-                      All
+                      Current
                   @endif
                </x-slot>
               <x-articles.dropdown-item  href="/statistics">Current</x-articles.dropdown-item>

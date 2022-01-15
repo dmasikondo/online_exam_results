@@ -81,7 +81,7 @@
 
           {{-- ITU --}}
 
-      @if(Auth::user()->hasRole('hod') && Auth::user()->belongsTodepartmentOf('IT Unit') || Auth::user()->hasRole('superadmin'))
+      @if(Auth::user()->hasRole('hod') && (Auth::user()->belongsTodepartmentOf('IT Unit') || Auth::user()->hasRole('superadmin')))
             <li>
               <x-sidebar.link-item href="/users/registration" title="Home">
                 <x-slot name='symbol'>
