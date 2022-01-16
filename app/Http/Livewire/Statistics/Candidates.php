@@ -61,7 +61,7 @@ class Candidates extends Component
         $this->active_users = User::where('must_reset',false)->where('is_suspended',false)->whereNotNull('email_verified_at')->count();
          $this->usersWithUnverifiedEmail=User::whereNull('email_verified_at')->count();
          $this->inactive_users = User::where('must_reset')->count();
-         $this->suspended_users = User::where('must_reset')->count();
+         $this->suspended_users = User::where('is_suspended',1)->count();
          $this->itunit_users =User::whereHas('roles', fn($query)=>$query->where('name','superadmin'))->count();
          $this->accounts_users =User::whereHas('roles', fn($query)=>$query->where('name','accounts'))->count();
          $this->exams_users =User::whereHas('roles', fn($query)=>$query->where('name','exams'))->count();

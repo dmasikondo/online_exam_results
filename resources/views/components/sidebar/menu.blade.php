@@ -165,7 +165,7 @@
               </x-sidebar.link-item>  
             </li> 
 
-            <li  class="@if(request()->routeIs('statistics')) bg-indigo-800 border-indigo-500 border-l-4 @endif" >   
+            <li  {{-- class="@if(request()->routeIs('statistics')) bg-indigo-800 border-indigo-500 border-l-4 @endif" --}} >   
               <x-sidebar.link-item  href="#/notifications"  title="Notifications">
                 <x-slot name='symbol'>
                   bell
