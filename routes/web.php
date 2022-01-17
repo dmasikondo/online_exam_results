@@ -27,7 +27,7 @@ Route::get('/', function () {
 });
 
 
-Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended','activate']], function(){
+Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended']], function(){
     Route::get('/my-results', [ExamResultController::class, 'myresults'])->name('my-results');
     Route::post('/my-results', [ExamResultController::class, 'myexamResults'])->name('my-result');
     Route::get('/results/clearance/{user:slug}', [ExamResultController::class, 'show'])->name('my-clearance');

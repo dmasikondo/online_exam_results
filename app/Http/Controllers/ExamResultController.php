@@ -17,7 +17,8 @@ class ExamResultController extends Controller
      * retrieve student's hexco examination results
      */
     public function myresults()
-    { 
+    {
+
         $result = Result::where('users_id',Auth::user()->id)->latest()->first();      
         $exam_results = Result::where('users_id',$result->users_id)
                                 ->where('intake_id',$result->intake_id)
@@ -40,7 +41,9 @@ class ExamResultController extends Controller
                 ->where('surname',Auth::user()->second_name)
                 ->where('intake_id',request()->exam_session)],
             'exam_session' => ['required'],
-        ]);
+        ],
+            ['candidate_number.exists'=>'No results for selected Exam Session matching your Candidate No.'],
+        );
 
             $candidate_number = request()->candidate_number;
             $exam_session = Intake::where('id',request()->exam_session)->first();

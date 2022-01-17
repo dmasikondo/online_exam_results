@@ -72,7 +72,7 @@
 
 
                         @if($exam_results->count()>0)
-                          @can('view',$exam_results[0])
+                          @can('view',$exam_results->last())
                     {{-- watermark --}}
   {{-- <div id="background">
   <p id="bg-text">Background</p>

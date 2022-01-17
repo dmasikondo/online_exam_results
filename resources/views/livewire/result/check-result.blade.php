@@ -11,10 +11,16 @@
       <div class="flex gap-2 flex-col lg:flex-row center space-y-4">
         
         <div class="relative flex-1 mt-4">          
-          <x-form.select  id="exam_session" name="exam_session" placeholder="Select Exam Session" title="Exam Session">
-            <option value="" class="hover:bg-indigo-100">Exam Session</option>
+          <x-form.select  id="exam_session" name="exam_session" placeholder="Select Exam Session" 
+            title="Exam Session" 
+            oninvalid="this.setCustomValidity('Please select an Exam Session')"
+            oninput="this.setCustomValidity('')"
+            required
+            class="@error('candidate_number')invalid:border-pink-500 invalid:text-pink-600 @enderror"
+          >
+            <option value="" class="hover:bg-indigo-100" disabled selected>Exam Session</option>
           @foreach($intakes as $intake)
-            <option value="{{$intake->id}}"{{ (collect(old('intake'))->contains($intake->id)) ? 'selected':'' }}>{{$intake->label}}</option>
+            <option value="{{$intake->id}}"{{ (collect(old('exam_session'))->contains($intake->id)) ? 'selected':'' }}>{{$intake->label}}</option>
           @endforeach
           </x-form.select>
           <x-form.label for="exam_session">Exam Session</x-form.label> 
@@ -28,7 +34,12 @@
        
 
         <div class="relative flex-1">
-          <x-form.input id="candidate_number" value="{{old('candidate_number')}}" name="candidate_number" type="text" placeholder="Candidate No. used"
+          <x-form.input id="candidate_number" value="{{old('candidate_number')}}" name="candidate_number" type="text" 
+            placeholder="Candidate No. used" pattern="([0-9]{7}[a-zA-Z]{1}[0-9]{5})"
+            oninvalid="this.setCustomValidity('The Candidate No. must be in the format 9999999X99999')"
+            oninput="this.setCustomValidity('')"
+            required
+            class="@error('candidate_number')border-red-400 @enderror"
           />
           <x-form.label for="candidate_number">Candidate No. used</x-form.label> 
           <div class="absolute right-0 top-0 mt-2 mr-2">

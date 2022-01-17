@@ -37,8 +37,9 @@ class ResultPolicy
             ->where('intake_id','<=',$result->intake_id)
             ->get();
         return $user->whereHas('results')
-                    ->whereHas('fees', function ($query) use($result) {
-                            $query->where('is_cleared',true)
+                    ->whereHas('fees', function ($query) use($result, $user) {
+                            $query->where('is_cleared',1)
+                                    ->where('user_id',$user->id)
                                     ->where('intake_id',$result->intake_id);
                         })->exists() || $cleared_national_id->count()>0;
                                         
