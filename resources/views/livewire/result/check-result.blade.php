@@ -54,7 +54,9 @@
 
       </div>
       <div class="flex justify-center mt-6">
-        <button class="bg-white text-indigo-400  font-extrabold text-lg rounded-full px-6 py-3 hover:bg-indigo-100 ">Search</button>
+        <button type="submit" class="bg-indigo-300 text-white  font-extrabold text-lg rounded-full px-6 py-3 hover:bg-indigo-100 hover:text-indigo-900 cursor-pointer">
+          Search
+      </button>
       </div>
     </form>
 

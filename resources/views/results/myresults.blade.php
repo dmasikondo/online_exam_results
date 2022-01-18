@@ -15,7 +15,7 @@
             </div>
             <div class="max-w-7xl rounded-lg">
 
-            <div class="p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg no-print">
+            <div class="p-6 sm:px-20 bg-white border-b border-gray-200 shadow-lg rounded-lg no-print">
                 <div>
                     <x-jet-application-logo class="block h-12 w-auto" />
                     <x-session-message/>

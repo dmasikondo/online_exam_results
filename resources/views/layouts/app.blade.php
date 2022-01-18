@@ -80,7 +80,7 @@
                         <div class="mt-8 md:mt-0 space-x-12">
                             <x-link href="/">Home Page</x-link>
                             <x-link href="https://portal.hrepoly.ac.zw">Portal</x-link>
-                            <x-link href="https://www.hrepoly.ac.zw">Harare Polytechnic</x-link>
+                            <x-link href="http://www.hrepoly.ac.zw">Harare Polytechnic</x-link>
                             
                         </div>
                     </nav>

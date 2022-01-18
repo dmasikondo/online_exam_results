@@ -1,4 +1,4 @@
-<div class="{{-- absolute w-full --}} flex justify-center bg-gray-200 {{-- h-screen --}} items-center">
+<div class="{{-- absolute w-full --}} flex justify-center bg-gray-200 {{-- h-screen --}} items-center rounded-lg">
     
   <div class="rounded-xl bg-white w-full overflow-x-auto{{-- md:w-2/3 --}} {{-- lg:w-1/3 --}}"
         x-data="{ isUploading: false, progress: 0 }"
@@ -23,7 +23,7 @@
     </div>
 
  <form wire:submit.prevent="uploadFile" enctype="multipart/form-data">
-    <div class="flex p-4 ">
+    <div class="flex p-4 rounded-lg">
       <div>
         <img class="rounded-full w-8" src="{{Auth::user()->profile_photo_url }}" />
       </div>
