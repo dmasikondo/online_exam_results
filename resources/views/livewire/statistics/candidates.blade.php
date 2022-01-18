@@ -76,7 +76,7 @@
         </x-statistics-card>
         <x-statistics-card>
             <x-slot name="symbol">lock-closed</x-slot>
-            <x-slot name="number">{{$active_users}}</x-slot>
+            <x-slot name="number">{{$suspended_users}}</x-slot>
             <x-slot name="title">Suspended Users</x-slot>
         </x-statistics-card>  
         <x-statistics-card>
