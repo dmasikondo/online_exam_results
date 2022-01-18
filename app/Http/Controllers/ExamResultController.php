@@ -44,7 +44,7 @@ class ExamResultController extends Controller
         ],
             ['candidate_number.exists'=>'No results for selected Exam Session matching your Candidate No.'],
         );
-
+            //declare variables from form inputs
             $candidate_number = request()->candidate_number;
             $exam_session = Intake::where('id',request()->exam_session)->first();
             $exam_session = $exam_session->label;
@@ -63,7 +63,7 @@ class ExamResultController extends Controller
             }
              //create a record in fees clearance
             $uniq_slug = Auth::user()->second_name.uniqid();
-            Auth::user()->fees()->create(['intake_id'=>2,'cleared_at'=>NULL,'slug'=>$uniq_slug]);
+            Auth::user()->fees()->create(['intake_id'=>request()->exam_session,'cleared_at'=>NULL,'slug'=>$uniq_slug]);
           
         }
         $exam_results = Result::where('candidate_number',request()->candidate_number)

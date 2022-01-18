@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Result;
 use App\Models\ClearedStudent;
+use App\Models\Intake;
 use Auth;
 
 class FeesClearanceController extends Controller
@@ -21,16 +22,17 @@ class FeesClearanceController extends Controller
         {
             abort(403, 'It seems you are not authorised to view this page. Please contact ITUnit');
         }
-        $departments = Result::select('discipline')->groupBy('discipline')->get();
-        
+        $intakes = Intake::latest()->get();
+        //dd($intakes);
+        $departments = Result::select('discipline')->groupBy('discipline')->get();        
          $students=User::has('results')->filter(
-            request(['department','second_name','first_name','nat_id','clearance_status']))
+            request(['department','second_name','first_name','nat_id','clearance_status','exam_session']))
             ->with('fees','results','fees.approver')->orderBy('second_name')->paginate(20)->withQueryString(); 
 /*         $students=User::has('results')->whereDoesntHave('fees',function($query){
             $query->where('is_cleared',1);
          })->with('fees','results','fees.approver')->orderBy('second_name')->paginate(20)->withQueryString() ;  */                             
 
-        return view('dashboard.clearance.fees.index',compact('students','departments'));
+        return view('dashboard.clearance.fees.index',compact('students','departments','intakes'));
     }
 
     public function show (User $user)

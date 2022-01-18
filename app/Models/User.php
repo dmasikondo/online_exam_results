@@ -188,24 +188,7 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
                 ->whereDoesntHave('fees',function($q){
                 $q->where('is_cleared',1);
                 })                
-           // }
-/*            elseif($clearance_status =='pending'){
-                ->whereHas('fees',function($q){
-                $q->where('is_cleared',false)
-                ->whereNull('cleared_at');
-                })
-            }
-            elseif($clearance_status =='declined'){
-                ->whereHas('fees',function($q){
-                $q->where('is_cleared',false)
-                ->whereNotNull('cleared_at');
-                })
-            } 
-            else{
-                ->whereDoesntHave('fees',function($query){
-                            $query->where('is_cleared',1);
-                         })                
-            } */          
+          
             );            
             $query->when($filters['second_name'] ?? false, fn($query, $second_name) =>
             $query->has('results') 
@@ -222,7 +205,11 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
             $query->when($filters['nat_id'] ?? false, fn($query, $nat_id) =>
             $query->has('results')
                 ->where('national_id', 'like', '%' . $nat_id . '%')
-               
+            );
+            $query->when($filters['exam_session'] ?? false, fn($query, $exam_session) =>
+                $query->whereHas('results', fn ($query) =>
+                $query->where('intake_id', $exam_session)
+                )
             );  
 
 /*         $students=User::has('results')->filter(
@@ -254,7 +241,10 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
             // filter by user's email
             $query->when($filters['email'] ?? false, fn($query, $email) =>
                 $query->where('email', 'like', '%' . $email . '%')                
-            );                                           
+            );
+
+            //filter by Exam Session 
+
                        
     }    
 
