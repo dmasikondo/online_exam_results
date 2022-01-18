@@ -83,7 +83,7 @@
                 <option value="{{$department->id}}" @if($department->id=='17')selected @endif
                     
                     >
-                    {{$department->name}} {{$department->id}}
+                    {{$department->name}} {{-- {{$department->id}} --}}
                 {{--     @forelse($staff as $staf) 
                         {{$staf->id}}
                     @empty --}}

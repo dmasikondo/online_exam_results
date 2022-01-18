@@ -78,13 +78,14 @@ class ManageRoles extends Modal
             'department' =>'required_with:roles',
             'roles' =>'required_with:department',
         ]);
-        dd($this->department);
+        //dd($this->department);
         $this->authorize('update', $this->user, Auth::user());     
-        $this->user->roles()->sync($this->roles); 
-        $this->user->staff()->updateOrCreate(['id'=>$this->staff->id],['user_id'=>$user->id,'department'=>$this->department]);       
-        session()->flash('message',"The user: '$this->surname $this->first_name' was successfully given new roles");
+        //$this->user->roles()->sync($this->roles); 
+        //$this->user->staff()->updateOrCreate(['id'=>$this->staff->id],['user_id'=>$user->id,'department'=>$this->department]);       
+        //session()->flash('message',"The user: '$this->surname $this->first_name' was successfully given new roles");
         //send a notification to all admins and superadmins that the user's roles were changed
         //Notification::send($this->admins, new UserRoleWasChanged($this->user, $this->admini->first_name, $this->admini->surname)); 
+        session()->flash('message',"Nothing was done. IT Unit is still finalising on this feature");
         return redirect($this->currentUrl);        
     }    
     /**
