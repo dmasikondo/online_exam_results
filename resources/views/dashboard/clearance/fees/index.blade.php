@@ -127,7 +127,7 @@
               </table>
         @else
             <h2 class="my-4 px-4 font-semibold text-xl text-center text-gray-400  bg-white inline-block self-center leading-loose rounded-lg">
-              No student fees clearances exist in this section
+              No student fees clearances exist in this section's criteria
             </h2>
         @endif
               <div class="my-2 px-2">

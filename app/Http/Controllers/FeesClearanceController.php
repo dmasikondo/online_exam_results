@@ -22,6 +22,29 @@ class FeesClearanceController extends Controller
         {
             abort(403, 'It seems you are not authorised to view this page. Please contact ITUnit');
         }
+        request()->cleared = null;
+        request()->pending = null;
+        request()->declined = null;
+        request()->offline = null;
+        if (request()->clearance_status=='cleared')
+        {
+            request()->cleared = 'cleared';
+        }
+        if (request()->clearance_status=='pending')
+        {
+            request()->pending='pending';
+        }
+        if (request()->clearance_status=='declined')
+        {
+            request()->declined = 'declined';
+        }  
+        if (request()->clearance_status=='offline')
+        {
+            request()->offline = 'offline';
+        }  
+
+        //dd(request()->all());   
+        //dd(request()->pending);         
         $intakes = Intake::latest()->get();
         //dd($intakes);
         $departments = Result::select('discipline')->groupBy('discipline')->get();        

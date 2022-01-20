@@ -4,7 +4,7 @@
       <div class="flex justify-end mb-3 text-indigo-600 gap-1">
           <span class="text-xs text-indigo-600">Filter Students by Exam Session</span>
           <x-form.select  id="exam_session" name="exam_session" placeholder="Exam Session" title="Exam Session" 
-            class="h-6 text-xs p-1 border-1 focus:border-1" onchange="this.form.submit()">
+            class="h-6 text-xs p-1 border-1 focus:border-1" {{-- onchange="this.form.submit()" --}}>
             <option value="" class="hover:bg-indigo-100">All Sessions</option>  
           @foreach($intakes as $intake)        
             <option value="{{$intake->id}}" {{request('exam_session')== $intake->id? 'selected':''}} >{{$intake->label}}</option> 
@@ -12,10 +12,10 @@
           </x-form.select>          
         {{-- </form> --}}
 {{-- ./exam session filter --}}         
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
         </svg>
-        <span class="text-xs text-indigo-600 mt-2">Search for the student using different criteria</span>
+        <span class="text-xs text-indigo-600">Search for the student using different criteria</span>
       </div>
     
       <div class="flex gap-2 flex-col md:flex-row center">
@@ -23,7 +23,7 @@
           <x-form.select  id="department" name="department" placeholder="Select a Department" title="Role">
             <option value="" class="hover:bg-indigo-100">All: arranged By Hexco Disciplines</option>
           @foreach($departments as $department)
-            <option value="{{$department->discipline}}"  >{{$department->discipline}}</option>
+            <option value="{{$department->discipline}}" {{request('department')== $department->discipline? 'selected':''}} >{{$department->discipline}}</option>
           @endforeach
           </x-form.select>
           <x-form.label for="department">Department</x-form.label>
@@ -63,10 +63,9 @@
         <div class="relative flex-1">
           <x-form.select  id="clearance_status" name="clearance_status" placeholder="Select a Department" title="Role">
             <option value="" class="hover:bg-indigo-100">All: criteria</option>
-            <option value="cleared" class="hover:bg-indigo-100">Cleared</option>
-            <option value="pending" class="hover:bg-indigo-100">Pending</option>
-            <option value="declined" class="hover:bg-indigo-100">Declined</option>
-            <option value="not_cleared" class="hover:bg-indigo-100">Not Cleared</option>
+            <option value="cleared" class="hover:bg-indigo-100"{{request('clearance_status')== 'cleared'? 'selected':''}}>Cleared</option>
+            <option value="pending" class="hover:bg-indigo-100" {{request('clearance_status')== 'pending'? 'selected':''}}>Pending</option>
+            <option value="declined" class="hover:bg-indigo-100" {{request('clearance_status')== 'declined'? 'selected':''}}>Declined</option>
           </x-form.select>
           <x-form.label for="clearance_status">Clearance Status</x-form.label>
         </div>        
