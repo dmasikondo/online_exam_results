@@ -236,7 +236,9 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
          })  */                    
                        
     }
-
+     /**
+      * filters for searching criteria in superadmin dashboard
+      */
     public function scopeFilters($query, array $filters)
     {
             //filter by user's role
@@ -264,7 +266,8 @@ class User extends Authenticatable /*implements MustVerifyEmail*/
             //filter by Exam Session 
 
                        
-    }    
+    }
+    
 
    
 }

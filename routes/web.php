@@ -44,6 +44,7 @@ Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended'
     Route::get('/users-students', [UserController::class, 'userStudents'])->name('users-students'); 
     Route::get('/statistics',[StatisticsController::class, 'index'])->name('statistics');
     Route::get('/candidates',[CandidateController::class, 'index'])->name('candidates');    
+    Route::get('/candidates/{result:candidate_number}',[CandidateController::class, 'show'])->name('candidate');    
         
     Route::get('/practice', function(){
         return view('practice');

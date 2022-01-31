@@ -1,63 +1,95 @@
-<div class="w-7/10 mx-auto shadow-md rounded-md p-4 bg-white">
+<div class="w-7/10 mx-auto shadow-md rounded-md p-4 bg-white no-print">
+  {{-- exam session filter --}}
+      <form action="/candidates">
       <div class="flex justify-end mb-3 text-indigo-600 gap-1">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <span class="text-xs text-indigo-600">Filter Candidates by Exam Session</span>
+          <x-form.select  id="exam_session" name="exam_session" placeholder="Exam Session" title="Exam Session" 
+            class="h-6 text-xs p-1 border-1 focus:border-1" {{-- onchange="this.form.submit()" --}}>
+            <option value="" class="hover:bg-indigo-100">All Sessions</option>  
+          @foreach($intakes as $intake)        
+            <option value="{{$intake->id}}" {{request('exam_session')== $intake->id? 'selected':''}} >{{$intake->label}}</option> 
+          @endforeach       
+          </x-form.select>          
+        {{-- </form> --}}
+{{-- ./exam session filter --}}         
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
         </svg>
-        <span class="text-xs text-indigo-600">Search for the candidate using different criteria</span>
+        <span class="text-xs text-indigo-600">Search for the Candidate using different criteria</span>
       </div>
-    <form action="/candidates">
+    
       <div class="flex gap-2 flex-col md:flex-row center">
         <div class="relative flex-1">
-          <select  id="department" name="department" type="text" class="peer h-12 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 p-3" placeholder="Select a Discipline"/>
-          {{-- <div class="max-h-12 overflow-auto" > --}}
-            <option value="" class="hover:bg-indigo-100">All: arranged By Hexco Disciplines</option>
+          <x-form.select  id="department" name="department" placeholder="Select a Discipline" title="Role">
+            <option value="" class="hover:bg-indigo-100">All Hexco Disciplines</option>
           @foreach($departments as $department)
-            <option value="{{$department->discipline}}">{{$department->discipline}}</option>
+            <option value="{{$department->discipline}}" {{request('department')== $department->discipline? 'selected':''}} >{{$department->discipline}}</option>
           @endforeach
-         {{--  </div> --}}
+          </x-form.select>
+          <x-form.label for="department">Hexco Discipline</x-form.label>
+        </div>
 
-          </select>
-          <label for="department" class="absolute left-2 px-1 -top-2.5 bg-white text-indigo-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-900 peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-indigo-600 peer-focus:text-sm">Hexco Discipline</label>
-          
-         {{--  <div class="absolute right-0 top-0 mt-2 mr-2">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </div> --}}
-        </div>
-       {{--  <div class="relative self-center">
-          <svg xmlns="http://www.w3.org/2000/svg" class="mt-2 h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-          </svg>
-        </div> --}}
         <div class="relative flex-1">
-          <input id="name" name="name" type="text" class="peer h-10 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 p-3" placeholder="Student Name" value="{{request('name')}}" />
-          <label for="name" class="absolute left-2 px-1 -top-2.5 bg-white text-indigo-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-900 peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-indigo-600 peer-focus:text-sm">Candidate's Name</label>
-          <div class="absolute right-0 top-0 mt-2 mr-2">
-            <x-icon name="user" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>
-          </div>
-        </div>
-        <div class="relative flex-1">
-          <input id="candidate_number" value="{{request('candidate_number')}}" name="candidate_number" type="text" class="peer h-10 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 py-4 px-8" 
+          <x-form.input id="candidate" name="candidate" type="text"  placeholder="Candidate Surname"
             placeholder="Candidate Number" 
-            pattern="([0-9]{7}[a-zA-Z]{1}[0-9]{5})" title="The Candidate No. must be in the format 9999999X99999"
-          />
-          <label for="candidate_number" class="absolute left-2 px-1 -top-2.5 bg-white text-indigo-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-900 peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-indigo-600 peer-focus:text-sm">Candidate Number</label>
+            pattern="([0-9]{7}[a-zA-Z]{1}[0-9]{5})" 
+            title="The Candidate No. must be in the format 9999999X99999" 
+            value="{{request('candidate')}}"/>
+          <x-form.label for="candidate">Candidate Number</x-form.label>
           <div class="absolute right-0 top-0 mt-2 mr-2">
-            <x-icon name="identification" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>
+            <x-icon name="identification" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>            
           </div>
         </div>
-   {{--      <div class="relative flex-1">
-          <input id="candidate_no" name="cand_no" type="text" class="peer h-10 w-full border border-1.5 rounded-md border-gray-300 text-gray-900 placeholder-transparent focus:outline-none focus:border-indigo-600 focus:border-2 p-3" placeholder="Candidate No." />
-          <label for="candidate_no" class="absolute left-2 px-1 -top-2.5 bg-white text-indigo-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-900 peer-placeholder-shown:top-2 peer-focus:-top-2.5 peer-focus:text-indigo-600 peer-focus:text-sm">Candidate No.</label>
-          <div class="absolute right-0 top-0 mt-2 mr-2">
-            <x-icon name="user-circle" class="h-6 w-6 text-indigo-600" stroke-width="1"/>
-          </div>
-        </div> --}}
+ 
       </div>
+
+      <div class="flex gap-2 flex-col md:flex-row center mt-4">       
+        <div class="relative flex-1">
+          <x-form.input id="second_name" name="second_name" type="text"  placeholder="Candidate Surname" value="{{request('second_name')}}"/>
+          <x-form.label for="second_name">Candidate's Surname</x-form.label>
+          <div class="absolute right-0 top-0 mt-2 mr-2">
+            <x-icon name="users" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>            
+          </div>
+        </div>
+
+        <div class="relative flex-1">
+          <x-form.input id="first_name" name="first_name" type="text"  placeholder="Candidate Surname" value="{{request('first_name')}}"/>
+          <x-form.label for="first_name">Candidate's First Name(s)</x-form.label>
+          <div class="absolute right-0 top-0 mt-2 mr-2">
+            <x-icon name="user" class="h-6 w-6 text-indigo-600 hidden md:block" stroke-width="1"/>            
+          </div>
+        </div>        
+      </div>
+
+      <div class="flex gap-2 flex-col md:flex-row center mt-4">       
+        <div class="relative flex-1">
+          <x-form.select  id="level" name="level" placeholder="Level" title="Level">
+            <option value="" class="hover:bg-indigo-100">All Levels</option>        
+            <option value="nc" class="hover:bg-indigo-100" {{request('level')== 'nc'? 'selected':''}} disabled>NC</option>        
+            <option value="nd" class="hover:bg-indigo-100" {{request('level')== 'nd'? 'selected':''}} disabled>ND</option>        
+            <option value="hnd" class="hover:bg-indigo-100" {{request('level')== 'hnd'? 'selected':''}} disabled>HND</option>            
+          </x-form.select> 
+        </div>
+
+        <div class="relative flex-1">
+            <x-form.select  id="comment" name="comment" placeholder="Comment" title="Comment">
+            <option value="" class="hover:bg-indigo-100">All Comments</option>        
+            <option value="absent" class="hover:bg-indigo-100" {{request('comment')== 'absent'? 'selected':''}}>Absent</option>        
+            <option value="award" class="hover:bg-indigo-100" {{request('comment')== 'award'? 'selected':''}}>Award</option> 
+            <option value="disqualified" class="hover:bg-indigo-100" {{request('comment')== 'disqualified'? 'selected':''}}>Disqualified</option>        
+            <option value="fail" class="hover:bg-indigo-100" {{request('comment')== 'fail'? 'selected':''}}>Fail</option>            
+            <option value="proceed" class="hover:bg-indigo-100" {{request('comment')== 'proceed'? 'selected':''}}>Proceed</option>            
+            <option value="referred" class="hover:bg-indigo-100" {{request('comment')== 'referred'? 'selected':''}}>Referred</option>  
+          </x-form.select> 
+        </div>        
+      </div>
+
       <div class="flex justify-center mt-6">
-        <button class="bg-white text-blue-400  font-extrabold text-lg rounded-full px-6 py-3 hover:bg-indigo-100 ">Search</button>
+        <button type="submit" class="bg-indigo-300 text-white  font-extrabold text-lg rounded-full px-6 py-3 hover:bg-indigo-100 hover:text-indigo-900 cursor-pointer">
+          Search
+      </button>
       </div>
     </form>
 
   </div>
+
