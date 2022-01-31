@@ -25,7 +25,8 @@ use App\Http\Controllers\CandidateController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/users/activate-account',[UserController::class, 'activate'])->name('account-activation');
+Route::put('/users/activate-account',[UserController::class, 'activation']);
 
 Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended','verified']], function(){
     Route::get('/my-results', [ExamResultController::class, 'myresults'])->name('my-results');
@@ -51,8 +52,7 @@ Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended'
     });
     
 });
-    Route::get('/users/activate-account',[UserController::class, 'activate'])->name('account-activation');
-    Route::put('/users/activate-account',[UserController::class, 'activation']);
+
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');
