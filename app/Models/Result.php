@@ -33,6 +33,11 @@ class Result extends Model
         return $this->belongsTo(User::class, 'users_id');
     }
 
+    public function intake()
+    {
+        return $this->belongsTo(Intake::class, 'intake_id');
+    }
+
     public function isClearedOffline($intake)
     {
         return false;
@@ -67,6 +72,11 @@ class Result extends Model
             return false;
         }
     } 
+
+    public function subjectResults()
+    {
+        return $this->where('candidate_number',$this->candidate_number)->select('subject','subject_code','session','grade')->get();
+    }
 
      /**
       * filters for searching criteria in exams dashboard

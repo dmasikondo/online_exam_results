@@ -10,4 +10,13 @@ class Intake extends Model
     use HasFactory;
 
     protected $guarded =[];
+    // sentence-capitalise 
+     public function getTitleAttribute($desc)
+     {
+         return ucwords($desc);
+     }    
+     public function getLabelAttribute($desc)
+     {
+         return ucwords($desc);
+     }         
 }

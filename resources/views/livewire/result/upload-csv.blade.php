@@ -36,8 +36,8 @@
         </table>
 
         <p>
-            The last uploaded exam results are of Intake <b>{{$intake->id}}</b> for the session <b>{{$intake->label}}</b> last updated 
-            <small>{{$intake->updated_at->diffForHumans()}}</small>
+            The last uploaded exam results are of Intake <b>{{optional($intake)->id}}</b> for the session <b>{{optional($intake)->label}}</b> last updated 
+            <small>{{$intake?->updated_at?->diffForHumans()}}</small>
         </p>
 
     </div>

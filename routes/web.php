@@ -9,6 +9,7 @@ use App\Http\Controllers\ExamResultController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\CandidateController;
+use App\Http\Controllers\TranscriptController;
 
 
 /*
@@ -50,7 +51,9 @@ Route::group(['middleware' => ['auth:sanctum','prevent-back-history','suspended'
     Route::get('/practice', function(){
         return view('practice');
     });
-    
+    //for exams
+    Route::get('/transcript', [TranscriptController::class, 'index']);
+    Route::get('/transcript/{result:candidate_number}', [TranscriptController::class, 'show']);
 });
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
